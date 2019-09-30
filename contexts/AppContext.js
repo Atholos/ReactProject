@@ -42,5 +42,5 @@ AppProvider.defaultProps = {
   user: {},
 };
 
-export {appContext, AppProvider};
+export {AppContext, AppProvider};
 
