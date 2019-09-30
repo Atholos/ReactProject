@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
-import Main from '../views/Main';
+import GuestMain from '../views/GuestMain';
+import LoggedMain from '../views/LoggedMain';
 import User from '../views/User';
 import Article from '../views/Article';
 import Creator from '../views/Creator';
@@ -11,9 +12,33 @@ import Login from '../views/Login';
 import MyArticles from '../views/MyArticles';
 import {Icon} from 'native-base';
 
-const TabNavigator = createBottomTabNavigator(
+const GuestTabNavigator = createBottomTabNavigator(
   {
-    Main,
+    GuestMain,
+    Login,
+  },
+  {
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: () => {
+        const {routeName} = navigation.state;
+        let iconName;
+        if (routeName === 'GuestMain') {
+          iconName = 'home';
+        } else if (routeName === 'Login') {
+          iconName = 'person';
+        }
+        // You can return any component that you like here!
+        return <Icon
+          name={iconName}
+          size={25}
+        />;
+      },
+    }),
+  }
+);
+const LoggedTabNavigator = createBottomTabNavigator(
+  {
+    LoggedMain,
     Creator,
     User,
   },
@@ -40,10 +65,10 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const StackNavigator = createStackNavigator(
+const LoggedStackNavigator = createStackNavigator(
     {
-      Main: {
-        screen: TabNavigator,
+      LoggedMain: {
+        screen: LoggedTabNavigator,
         navigationOptions: {
           header: null, // this will hide the header
         },
@@ -60,14 +85,30 @@ const StackNavigator = createStackNavigator(
     },
 );
 
+const GuestStackNavigator = createStackNavigator(
+  {
+    GuestMain: {
+      screen: GuestTabNavigator,
+      navigationOptions: {
+        header: null, // this will hide the header
+      },
+    },
+    Article: {
+      screen: Article,
+    },
+  },
+);
+
+
+
 const Navigator = createSwitchNavigator(
     {
-      AuthLoading: AuthLoading,
-      App: StackNavigator,
-      Auth: Login,
+      Auth: Auth,
+      User: LoggedStackNavigator,
+      Guest: GuestStackNavigator,
     },
     {
-      initialRouteName: 'AuthLoading',
+      initialRouteName: 'Auth',
     }
 );
 
