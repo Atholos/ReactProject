@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Main from '../views/Main';
+import Test from '../views/Test';
 import User from '../views/User';
 import Article from '../views/Article';
 import Creator from '../views/Creator';
@@ -15,15 +16,15 @@ import { Icon } from 'native-base';
 
 const GuestTabNavigator = createBottomTabNavigator(
   {
-    Main,
-    Login
+    Test,
+    Login,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: () => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'Main') {
+        if (routeName === 'Test') {
           iconName = 'home';
         } else if (routeName === 'Login') {
           iconName = 'person';
@@ -61,7 +62,7 @@ const LoggedTabNavigator = createBottomTabNavigator(
 );
 
 const LoggedStackNavigator = createStackNavigator({
-  Main: {
+  Test: {
     screen: LoggedTabNavigator,
     navigationOptions: {
       header: null // this will hide the header
@@ -79,7 +80,7 @@ const LoggedStackNavigator = createStackNavigator({
 });
 
 const GuestStackNavigator = createStackNavigator({
-  Main: {
+  Test: {
     screen: GuestTabNavigator,
     navigationOptions: {
       header: null // this will hide the header
