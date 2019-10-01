@@ -8,11 +8,11 @@ const Test = (props) => {
       <Content>
         <Text>This is Main page</Text>
         <Button onPress={() =>
-        {props.navigation.push('Creator')}}>
+        {props.navigation.navigate('Creator')}}>
           <Text>Creator</Text>
         </Button>
         <Button onPress={() =>
-        {props.navigation.push('Main')}}>
+        {props.navigation.navigate('Main')}}>
           <Text>Main Page</Text>
         </Button>
       </Content>
