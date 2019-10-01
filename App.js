@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 /* eslint-disable max-len */
 import {MediaProvider} from './contexts/MediaContext';
-import Navigator from './Navigators/Navigator';
+import Navigator from './navigators/Navigator';
 import * as Expo from "expo";
 import {Ionicons} from "@expo/vector-icons"
 import * as Font from 'expo-font';
