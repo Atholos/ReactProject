@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import { createStackNavigator } from "react-navigation-stack";
-import Main from "../views/Main";
-import User from "../views/User";
-import Article from "../views/Article";
-import Creator from "../views/Creator";
-import Auth from "../views/Auth";
-import Login from "../views/Login";
-import MyArticles from "../views/MyArticles";
-import { Icon } from "native-base";
+import React from 'react';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
+import Main from '../views/Main';
+import User from '../views/User';
+import Article from '../views/Article';
+import Creator from '../views/Creator';
+import Auth from '../views/Auth';
+import Login from '../views/Login';
+import MyArticles from '../views/MyArticles';
+import { Icon } from 'native-base';
 
-//NAVIGAATIO ei toimi ennen kun kaikkiin vieweihin on exportit
+//NAVIGAATIO TOIMII HAH
 
 const GuestTabNavigator = createBottomTabNavigator(
   {
@@ -23,10 +23,10 @@ const GuestTabNavigator = createBottomTabNavigator(
       tabBarIcon: () => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === "Main") {
-          iconName = "home";
-        } else if (routeName === "Login") {
-          iconName = "person";
+        if (routeName === 'Main') {
+          iconName = 'home';
+        } else if (routeName === 'Login') {
+          iconName = 'person';
         }
         // You can return any component that you like here!
         return <Icon name={iconName} size={25} />;
@@ -45,12 +45,12 @@ const LoggedTabNavigator = createBottomTabNavigator(
       tabBarIcon: () => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === "Main") {
-          iconName = "home";
-        } else if (routeName === "User") {
-          iconName = "person";
-        } else if (routeName === "Creator") {
-          iconName = "md-cloud-upload";
+        if (routeName === 'Main') {
+          iconName = 'home';
+        } else if (routeName === 'User') {
+          iconName = 'person';
+        } else if (routeName === 'Creator') {
+          iconName = 'md-cloud-upload';
         }
 
         // You can return any component that you like here!
@@ -94,10 +94,10 @@ const Navigator = createSwitchNavigator(
   {
     Auth: Auth,
     User: LoggedStackNavigator,
-    Guest: GuestStackNavigator
+    Guest: GuestStackNavigator,
   },
   {
-    initialRouteName: "Auth"
+    initialRouteName: 'Auth'
   }
 );
 
