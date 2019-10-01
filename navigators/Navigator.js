@@ -12,6 +12,8 @@ import Login from '../views/Login';
 import MyArticles from '../views/MyArticles';
 import {Icon} from 'native-base';
 
+//NAVIGAATIO ei toimi ennen kun kaikkiin vieweihin on exportit
+
 const GuestTabNavigator = createBottomTabNavigator(
     {
       GuestMain,
