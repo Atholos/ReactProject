@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 /* eslint-disable max-len */
-import {MediaProvider} from './contexts/MediaContext';
+import {AppProvider} from './contexts/AppContext';
 import Navigator from './navigators/Navigator';
 import * as Expo from "expo";
 import {Ionicons} from "@expo/vector-icons"
@@ -27,9 +27,9 @@ const App = () => {
   }
 
   return (
-    <MediaProvider>
+    <AppProvider>
       <Navigator></Navigator>
-    </MediaProvider>
+    </AppProvider>
   );
 };
 
