@@ -6,10 +6,10 @@ import {
   View,
   Text,
 } from 'react-native';
-import mainHooks from '../hooks/mainHooks'
+import MainHooks from '../hooks/MainHooks'
 
 const Auth = (props) => {
-  const {bootstrapAsync} = mainHooks();
+  const {bootstrapAsync} = MainHooks();
   bootstrapAsync(props);
   return (
     <View>
