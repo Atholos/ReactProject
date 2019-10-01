@@ -6,7 +6,6 @@ const mainHooks = () => {
     const { navigation } = props;
     const getToken = async () => {
       const userToken = await AsyncStorage.getItem("userToken");
-
       // This will switch to the Logged in User screen or Guest screen
       // screen will be unmounted and thrown away.
       console.log("token", userToken);
