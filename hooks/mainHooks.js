@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { AsyncStorage } from "react-native";
 
-const mainHooks = () => {
+const MainHooks = () => {
   const bootstrapAsync = async props => {
     const { navigation } = props;
     const getToken = async () => {
@@ -19,4 +19,4 @@ const mainHooks = () => {
     bootstrapAsync,
   };
 };
-export default mainHooks;
+export default MainHooks;
