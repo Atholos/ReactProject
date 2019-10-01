@@ -5,7 +5,6 @@ import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import validate from 'validate.js';
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
 // const idUrl = 'http://media.mw.metropolia.fi/wbma/media/';
