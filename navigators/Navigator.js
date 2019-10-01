@@ -13,56 +13,56 @@ import MyArticles from '../views/MyArticles';
 import {Icon} from 'native-base';
 
 const GuestTabNavigator = createBottomTabNavigator(
-  {
-    GuestMain,
-    Login,
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: () => {
-        const {routeName} = navigation.state;
-        let iconName;
-        if (routeName === 'GuestMain') {
-          iconName = 'home';
-        } else if (routeName === 'Login') {
-          iconName = 'person';
-        }
-        // You can return any component that you like here!
-        return <Icon
-          name={iconName}
-          size={25}
-        />;
-      },
-    }),
-  }
+    {
+      GuestMain,
+      Login,
+    },
+    {
+      defaultNavigationOptions: ({navigation}) => ({
+        tabBarIcon: () => {
+          const {routeName} = navigation.state;
+          let iconName;
+          if (routeName === 'GuestMain') {
+            iconName = 'home';
+          } else if (routeName === 'Login') {
+            iconName = 'person';
+          }
+          // You can return any component that you like here!
+          return <Icon
+            name={iconName}
+            size={25}
+          />;
+        },
+      }),
+    }
 );
 const LoggedTabNavigator = createBottomTabNavigator(
-  {
-    LoggedMain,
-    Creator,
-    User,
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: () => {
-        const {routeName} = navigation.state;
-        let iconName;
-        if (routeName === 'Main') {
-          iconName = 'home';
-        } else if (routeName === 'User') {
-          iconName = 'person';
-        } else if (routeName === 'Creator') {
-          iconName = 'md-cloud-upload';
-        }
+    {
+      LoggedMain,
+      Creator,
+      User,
+    },
+    {
+      defaultNavigationOptions: ({navigation}) => ({
+        tabBarIcon: () => {
+          const {routeName} = navigation.state;
+          let iconName;
+          if (routeName === 'Main') {
+            iconName = 'home';
+          } else if (routeName === 'User') {
+            iconName = 'person';
+          } else if (routeName === 'Creator') {
+            iconName = 'md-cloud-upload';
+          }
 
-        // You can return any component that you like here!
-        return <Icon
-          name={iconName}
-          size={25}
-        />;
-      },
-    }),
-  }
+          // You can return any component that you like here!
+          return <Icon
+            name={iconName}
+            size={25}
+          />;
+        },
+      }),
+    }
 );
 
 const LoggedStackNavigator = createStackNavigator(
@@ -81,24 +81,23 @@ const LoggedStackNavigator = createStackNavigator(
       },
       MyArticles: {
         screen: MyArticles,
-      }
+      },
     },
 );
 
 const GuestStackNavigator = createStackNavigator(
-  {
-    GuestMain: {
-      screen: GuestTabNavigator,
-      navigationOptions: {
-        header: null, // this will hide the header
+    {
+      GuestMain: {
+        screen: GuestTabNavigator,
+        navigationOptions: {
+          header: null, // this will hide the header
+        },
+      },
+      Article: {
+        screen: Article,
       },
     },
-    Article: {
-      screen: Article,
-    },
-  },
 );
-
 
 
 const Navigator = createSwitchNavigator(
