@@ -20,6 +20,7 @@ const Creator = (props) => {
     upload,
     handleTitleChange,
     handleDescChange,
+    handleBodyChange,
     handleUpload,
     clearForm,
   } = useUploadForm();
@@ -65,10 +66,17 @@ const Creator = (props) => {
         />
         <FormTextInput
           autoCapitalize='none'
-          placeholder='description'
+          placeholder=''
           onChangeText={handleDescChange}
           value={upload.desc} required
         />
+        <FormTextInput
+          autoCapitalize='none'
+          placeholder='Article body text'
+          onChangeText={handleBodyChange}
+          value={upload.body} required
+        />
+
         <Button onPress={() => pickImage()}>
           <Text>Show image</Text>
         </Button>
