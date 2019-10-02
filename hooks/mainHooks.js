@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
-import { useFetch } from './FetchHooks';
+import {useFetch} from './FetchHooks';
 
 const appHooks = () => {
   const bootstrapAsync = async props => {
@@ -26,7 +26,7 @@ const appHooks = () => {
     const json = await fetchPostUrl('login', data);
     await AsyncStorage.setItem('userToken', json.token);
     // await AsyncStorage.setItem('user', JSON.stringify(json.user));
-    navigation.navigate('App');
+    navigation.navigate('User');
   };
   const register = async (inputs, props) => {
     const { fetchPostUrl } = useFetch();

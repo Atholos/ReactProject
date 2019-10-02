@@ -17,6 +17,7 @@ const useFetch = () => {
     return exists;
   };
   const fetchPostUrl = async (url, data) => {
+    console.log(url);
     console.log('fetchPostUrl data', data);
     const response = await fetch(fetchUrl+url, {
       method: 'POST',
@@ -29,7 +30,6 @@ const useFetch = () => {
     console.log('fetchPostUrl json', json);
     return json;
   };
-
   return {
     checkAvailability,
     fetchPostUrl,
