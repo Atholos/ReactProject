@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 const AppContext = React.createContext({});
+
 const AppProvider = (props) => {
   const {
     articles: initialArticle,
