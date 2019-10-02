@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  ArticleListItem as BaseListItem,
+  ListItem,
   Left,
   Body,
   Right,
@@ -20,7 +20,7 @@ const ArticleListItem = (props) => {
 
   const tn = getThumbnail(singleMedia.file_id);
   return (
-    <BaseListItem thumbnail>
+    <ListItem thumbnail>
       <Left>
         <Thumbnail
           square
@@ -34,7 +34,7 @@ const ArticleListItem = (props) => {
           {singleMedia.description}
         </Text>
       </Body>
-{/*       <Right>
+       <Right>
         <Button Primary
           onPress={() => {
             navigation.push("Single", { file: singleMedia });
@@ -42,8 +42,8 @@ const ArticleListItem = (props) => {
         >
           <Text >View</Text>
         </Button>
-      </Right> */}
-    </BaseListItem>
+      </Right>
+    </ListItem>
   );
 };
 

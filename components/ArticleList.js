@@ -1,7 +1,7 @@
 import React, {keyExtractor} from "react";
 import PropTypes from "prop-types";
 import ArticleListItem from "./ArticleListItem";
-import { ArticleList as BaseList } from 'native-base';
+import { List } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
 
 
@@ -14,7 +14,7 @@ const ArticleList = (props) => {
 
   const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
   return (
-    <BaseList
+    <List
       dataArray={articles}
       renderRow={(item) => (
         <ArticleListItem navigation={navigation} singleMedia={item} />
