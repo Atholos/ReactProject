@@ -18,6 +18,7 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
   };
 
   const getTagFiles = async () => {
+    console.log('TAGISSA ON KÄYTY')
     const tagresult = await fetchGetUrl(apiUrl + 'tags/diyArduino')
     console.log('!!!!!!!!!!!!!!!!', tagresult);
   }
@@ -27,10 +28,10 @@ const ArticleHooks = () => {
 
 
     const getAllMedia = () => {
+      console.log('getAllMedia')
         const [articles, setArticles] = useContext(AppContext);
         const [loading, setLoading] = useState(true);
         useEffect(() => {
-          getTagFiles();
           fetchGetUrl(apiUrl + 'media').then((json) => {
             setArticles(json);
             setLoading(false);
@@ -59,6 +60,7 @@ const ArticleHooks = () => {
           setLoading(false);
         };
         useEffect(() => {
+          getTagFiles();
           fetchUrl();
         }, []);
         return [articles, loading];
