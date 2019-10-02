@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import { AsyncStorage } from "react-native";
+import React from "react";
 
 const fetchUrl = 'http://media.mw.metropolia.fi/wbma/';
 

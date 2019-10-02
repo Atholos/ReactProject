@@ -1,15 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
-  AsyncStorage,
   StatusBar,
   View,
   Text,
 } from 'react-native';
-import MainHooks from '../hooks/MainHooks';
+import appHooks from '../hooks/MainHooks';
 
 const Auth = (props) => {
-  const {bootstrapAsync} = MainHooks();
+  const { bootstrapAsync } = appHooks();
   bootstrapAsync(props);
   return (
     <View>

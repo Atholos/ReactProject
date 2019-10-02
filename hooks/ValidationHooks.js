@@ -54,9 +54,9 @@ const appValidation = () => {
       }
     }
   };
-  return(
+  return {
     userCheck,
     loginValidate,
     registerValidate,
-  );
+  };
 }
