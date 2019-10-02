@@ -1,11 +1,32 @@
+import React from 'react';
+import FormTextInput from './FormTextInput';
+import useLogRegForm from '../hooks/LogRegHooks';
+import appHooks from '../hooks/MainHooks';
+import {
+  Container,
+  Header,
+  Content,
+  Form,
+  Item,
+  Input,
+  Label,
+  Body,
+  Button,
+  Text,
+  View,
+  Toast,
+} from "native-base";
+import useLogRegForm from '../hooks/LogRegHooks';
+
 const RegisterForm = () => {
+  const {userCheck} = appHooks();
   const {
     inputs,
     handleUsernameChange,
     handlePasswordChange,
     handleConfirmPwChange,
     handleEmailChange,
-  } = useSignUpForm();
+  } = useLogRegForm();
   return (
     <Content>
       <Text>Register!</Text>
@@ -64,3 +85,4 @@ const RegisterForm = () => {
     </Content>
   );
 };
+export default RegisterForm;

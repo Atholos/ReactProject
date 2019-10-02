@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const LogRegHooks = () => {
+const useLogRegForm = () => {
   const [inputs, setInputs] = useState({});
   const handleUsernameChange = (text) => {
     setInputs((inputs) =>
@@ -48,4 +48,4 @@ const LogRegHooks = () => {
 };
 
 
-export default LogRegHooks;
+export default useLogRegForm;

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
-import { AsyncStorage } from 'react-native';
-import {useFetch} from './FetchHooks';
+import React, { useEffect } from 'react';
+import { AsyncStorage, Alert } from 'react-native';
+import { useFetch } from './FetchHooks';
 
-const MainHooks = () => {
+const appHooks = () => {
   const bootstrapAsync = async props => {
     const { navigation } = props;
     const getToken = async () => {
@@ -17,8 +17,8 @@ const MainHooks = () => {
     }, []);
   };
   const signIn = async (inputs, props) => {
-    const {navigation} = props;
-    const {fetchPostUrl} = useFetch();
+    const { navigation } = props;
+    const { fetchPostUrl } = useFetch();
     const data = {
       'username': inputs.username,
       'password': inputs.password,
@@ -29,7 +29,7 @@ const MainHooks = () => {
     navigation.navigate('App');
   };
   const register = async (inputs, props) => {
-    const {fetchPostUrl} = useFetch();
+    const { fetchPostUrl } = useFetch();
     const data = {
       'username': inputs.username,
       'password': inputs.password,
@@ -41,10 +41,26 @@ const MainHooks = () => {
       signIn(inputs, props);
     }
   };
+  const userCheck = async (uname) => {
+    const { checkAvailability } = useFetch();
+    const json = await checkAvailability(uname);
+    console.log(json);
+    if (!json) {
+      Alert.alert(
+        'Error',
+        'Username already taken',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false },
+      );
+    };
+  };
   return {
     bootstrapAsync,
     signIn,
     register,
+    userCheck,
   };
 };
-export default MainHooks;
+export default appHooks;
