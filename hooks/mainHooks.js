@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
+<<<<<<< HEAD
 import useFetch from './FetchHooks';
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
+=======
+>>>>>>> b6952a581a0f93930a8fc1ac2608c9c4b7187965
 const appHooks = () => {
   const bootstrapAsync = async props => {
     const { navigation } = props;
@@ -17,7 +20,10 @@ const appHooks = () => {
       getToken();
     }, []);
   };
+<<<<<<< HEAD
   // function used to sign in
+=======
+>>>>>>> b6952a581a0f93930a8fc1ac2608c9c4b7187965
   const signIn = async (inputs, props) => {
     const { navigation } = props;
     const { fetchPostUrl } = useFetch();
@@ -28,9 +34,14 @@ const appHooks = () => {
     const json = await fetchPostUrl('login', data);
     await AsyncStorage.setItem('userToken', json.token);
     // await AsyncStorage.setItem('user', JSON.stringify(json.user));
+<<<<<<< HEAD
     navigation.navigate('User');
   };
   //function for registering a user
+=======
+    navigation.navigate('App');
+  };
+>>>>>>> b6952a581a0f93930a8fc1ac2608c9c4b7187965
   const register = async (inputs, props) => {
     const { fetchPostUrl } = useFetch();
     const data = {
@@ -44,7 +55,10 @@ const appHooks = () => {
       signIn(inputs, props);
     }
   };
+<<<<<<< HEAD
   //function for checking username availability
+=======
+>>>>>>> b6952a581a0f93930a8fc1ac2608c9c4b7187965
   const userCheck = async (uname) => {
     const { checkAvailability } = useFetch();
     const json = await checkAvailability(uname);
@@ -62,7 +76,7 @@ const appHooks = () => {
   };
   //function for user signing out
   const signOut = async (props) => {
-    const {navigation} = props;
+    const { navigation } = props;
     await AsyncStorage.clear();
     navigation.navigate('Guest');
   };
@@ -74,4 +88,8 @@ const appHooks = () => {
     signOut,
   };
 };
+<<<<<<< HEAD
 export default appHooks;
+=======
+export default appHooks;
+>>>>>>> b6952a581a0f93930a8fc1ac2608c9c4b7187965
