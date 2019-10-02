@@ -3,8 +3,10 @@ import { AsyncStorage } from "react-native";
 import {AppContext} from '../contexts/AppContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
-  
+
   const fetchGetUrl = async (url) => {
+    // PLACEHOLDER token. TEE KUNNOLLA !!!!! !!!    !
+    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
     const response = await fetch(url, {
       headers: {
         'x-access-token': userToken,
@@ -14,7 +16,7 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
     console.log('fetchUrl json', json);
     return json;
   };
-  
+
 const ArticleHooks = () => {
 
     const getAllMedia = () => {
@@ -28,7 +30,7 @@ const ArticleHooks = () => {
         }, []);
         return [articles, loading];
       };
-    
+
       const getThumbnail = (url) => {
         const [thumbnails, setThumbnails] = useState({});
         useEffect(() => {
