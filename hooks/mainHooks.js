@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
+<<<<<<< HEAD
 
+=======
+import useFetch from './FetchHooks';
+
+// MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
 const appHooks = () => {
   const bootstrapAsync = async props => {
     const { navigation } = props;
@@ -15,6 +21,10 @@ const appHooks = () => {
       getToken();
     }, []);
   };
+<<<<<<< HEAD
+=======
+  // function used to sign in
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
   const signIn = async (inputs, props) => {
     const { navigation } = props;
     const { fetchPostUrl } = useFetch();
@@ -25,8 +35,14 @@ const appHooks = () => {
     const json = await fetchPostUrl('login', data);
     await AsyncStorage.setItem('userToken', json.token);
     // await AsyncStorage.setItem('user', JSON.stringify(json.user));
+<<<<<<< HEAD
     navigation.navigate('App');
   };
+=======
+    navigation.navigate('User');
+  };
+  //function for registering a user
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
   const register = async (inputs, props) => {
     const { fetchPostUrl } = useFetch();
     const data = {
@@ -40,6 +56,10 @@ const appHooks = () => {
       signIn(inputs, props);
     }
   };
+<<<<<<< HEAD
+=======
+  //function for checking username availability
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
   const userCheck = async (uname) => {
     const { checkAvailability } = useFetch();
     const json = await checkAvailability(uname);
@@ -55,11 +75,27 @@ const appHooks = () => {
       );
     };
   };
+<<<<<<< HEAD
+=======
+  //function for user signing out
+  const signOut = async (props) => {
+    const {navigation} = props;
+    await AsyncStorage.clear();
+    navigation.navigate('Guest');
+  };
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
   return {
     bootstrapAsync,
     signIn,
     register,
     userCheck,
+<<<<<<< HEAD
   };
 };
 export default appHooks;
+=======
+    signOut,
+  };
+};
+export default appHooks;
+>>>>>>> 10b74dc90ddae231840a2b58d00b36bdbbd3e77d
