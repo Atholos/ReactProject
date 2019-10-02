@@ -7,13 +7,13 @@ const Article = (props) => {
   const {navigation} = props;
   const media = navigation.getParam('file', 'WRONG');
   const title = media.title;
-  console.log('MEDIA', media)
 
   const [uname, setUname] = useState({});
 
 
   useEffect(() => {
-    checkUser(props);
+    gotName = checkUser(props);
+    setUname(gotName)
   }
   , []);
 

@@ -13,16 +13,24 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
       },
     });
     const json = await response.json();
-    console.log('fetchUrl json', json);
+    //console.log('fetchUrl json', json);
     return json;
   };
 
+  const getTagFiles = async () => {
+    const tagresult = await fetchGetUrl(apiUrl + 'tags/diyArduino')
+    console.log('!!!!!!!!!!!!!!!!', tagresult);
+  }
+
 const ArticleHooks = () => {
+
+
 
     const getAllMedia = () => {
         const [articles, setArticles] = useContext(AppContext);
         const [loading, setLoading] = useState(true);
         useEffect(() => {
+          getTagFiles();
           fetchGetUrl(apiUrl + 'media').then((json) => {
             setArticles(json);
             setLoading(false);
