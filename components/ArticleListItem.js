@@ -37,7 +37,7 @@ const ArticleListItem = (props) => {
        <Right>
         <Button Primary
           onPress={() => {
-            navigation.push("Single", { file: singleMedia });
+            navigation.push("Article", { file: singleMedia });
           }}
         >
           <Text >View</Text>
