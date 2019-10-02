@@ -15,8 +15,11 @@ import {
   View,
 } from 'native-base';
 import useLogRegForm from '../hooks/LogRegHooks';
+import appValidation from '../hooks/ValidationHooks'
+
+//Component for Login form that is then imported in Login View as a tab
 const LoginForm = (props) => {
-  const {signIn} = appHooks();
+  const {loginValidate} = appValidation();
   const {
     inputs,
     handleUsernameChange,
@@ -43,7 +46,7 @@ const LoginForm = (props) => {
             value={inputs.password} required
           />
         </Item>
-        <Button onPress={() => signIn(inputs, props)}>
+        <Button onPress={() => loginValidate(inputs, props)}>
           <Text>Login</Text>
         </Button>
       </Form>

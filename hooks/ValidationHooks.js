@@ -37,7 +37,7 @@ const appValidation = () => {
       signIn(inputs, props);
       console.log('Logged in succesfully');
     } else {
-      const errorArr = [emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword];
+      const errorArr = [passwordError.password, usernameError.username];
       for (let i = 0; i < errorArr.length; i++) {
         if (errorArr[i]) {
           alert(errorArr[i]);

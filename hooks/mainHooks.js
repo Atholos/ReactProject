@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
 import useFetch from './FetchHooks';
 
+// MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
   const bootstrapAsync = async props => {
     const { navigation } = props;
@@ -16,6 +17,7 @@ const appHooks = () => {
       getToken();
     }, []);
   };
+  // function used to sign in
   const signIn = async (inputs, props) => {
     const { navigation } = props;
     const { fetchPostUrl } = useFetch();
@@ -28,6 +30,7 @@ const appHooks = () => {
     // await AsyncStorage.setItem('user', JSON.stringify(json.user));
     navigation.navigate('User');
   };
+  //function for registering a user
   const register = async (inputs, props) => {
     const { fetchPostUrl } = useFetch();
     const data = {
@@ -41,6 +44,7 @@ const appHooks = () => {
       signIn(inputs, props);
     }
   };
+  //function for checking username availability
   const userCheck = async (uname) => {
     const { checkAvailability } = useFetch();
     const json = await checkAvailability(uname);
@@ -56,11 +60,18 @@ const appHooks = () => {
       );
     };
   };
+  //function for user signing out
+  const signOut = async (props) => {
+    const {navigation} = props;
+    await AsyncStorage.clear();
+    navigation.navigate('Guest');
+  };
   return {
     bootstrapAsync,
     signIn,
     register,
     userCheck,
+    signOut,
   };
 };
 export default appHooks;
