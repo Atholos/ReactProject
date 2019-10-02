@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
-import {useFetch} from './FetchHooks';
+import useFetch from './FetchHooks';
 
 const appHooks = () => {
   const bootstrapAsync = async props => {
