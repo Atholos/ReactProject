@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import {AsyncStorage} from 'react-native';
 
 const useUploadForm = () => {
   const [upload, setUpload] = useState({});
@@ -19,6 +18,14 @@ const useUploadForm = () => {
       }));
   };
 
+  const handleBodyChange = (text) => {
+    setUpload((upload) =>
+      ({
+        ...upload,
+        body: text,
+      }));
+  };
+
   const handleUpload = async (file) => {
     // const gotToken = await AsyncStorage.getItem('userToken');
     const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
@@ -32,6 +39,8 @@ const useUploadForm = () => {
     formData.append('description', upload.desc);
     console.log('formdata', formData);
 
+
+    // Kuvan uppaaminen
     const response = await fetch('http://media.mw.metropolia.fi/wbma/media', {
       method: 'POST',
       headers: {
@@ -43,28 +52,57 @@ const useUploadForm = () => {
     const json = await response.json();
     console.log(json);
 
-    // TÄNNE
+    // Tagin bodytext sisältö, käyttää upatin kuvan file iideetä
+    const tagBodyData = {
+      file_id: json.file_id,
+      tag: upload.body,
+    };
+
+    // Lisätään bodytext tagina
+    const tagBody = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(tagBodyData),
+    });
+    const tagJson = await tagBody.json();
+    console.log(tagJson);
+
+
+    // Lisätään kategoria tagina. TEE KATEGORIASTA ITSE VALITTAVA!!
+
+    const tagCatData = {
+      file_id: json.file_id,
+      tag: 'diyArduino',
+    };
+
+    const tagCategory = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(tagCatData),
+    });
+    const tagCatJson = await tagCategory.json();
+    console.log(tagCatJson);
   };
+
 
   const clearForm = () => {
-    setUpload("");
+    setUpload('');
   };
 
-  // const handleFormChange = (form) => {
-  //   setInputs((inputs) =>
-  //     ({
-  //       ...inputs,
-  //       form: form,
-  //     }));
-  // };
   return {
     handleTitleChange,
     handleDescChange,
+    handleBodyChange,
     handleUpload,
     upload,
     clearForm,
   };
 };
-
 
 export default useUploadForm;
