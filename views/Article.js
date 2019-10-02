@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Image, AsyncStorage} from 'react-native';
 
-const Single = (props) => {
-  console.log(props);
+const Article = (props) => {
   const {navigation} = props;
   const media = navigation.getParam('file', 'WRONG');
-  console.log(JSON.stringify(media.thumbnails.w160));
   const title = media.title;
   const uid = media.user_id;
-  console.log('UID', uid);
+  console.log('MEDIA', media)
 
   const [uname, setUname] = useState({});
 
-
   const checkUser = async () => {
-    const gotToken = await AsyncStorage.getItem('userToken');
+    // PLACEHOLDER TOKEN!!!!! ! ! ! !
+    const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
+
     const response = await fetch('http://media.mw.metropolia.fi/wbma/users/'+ uid, {
       method: 'GET',
       headers: {
@@ -38,7 +37,7 @@ const Single = (props) => {
       <Text style={styles.title}>{title}</Text>
       <Text>{media.description}</Text>
       <Text>{uname.name}</Text>
-      <Image style={styles.image} source={{uri: media.thumbnails.w160}} />
+      <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
     </View>
   );
 };
@@ -63,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Single;
+export default Article;
