@@ -3,8 +3,8 @@ import { AsyncStorage } from "react-native";
 
 const fetchUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const FetchHooks = () => {
-  const fetchUser = async (uname) => {
+const useFetch = () => {
+  const checkAvailability = async (uname) => {
     const settings = {
       method: 'GET',
       headers: {
@@ -32,8 +32,8 @@ const FetchHooks = () => {
   };
 
   return {
-    fetchUser,
+    checkAvailability,
     fetchPostUrl,
   };
 };
-export default FetchHooks;
+export default useFetch;
