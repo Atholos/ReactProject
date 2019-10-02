@@ -10,10 +10,10 @@ const Login = (props) => {
       <Header hasTabs />
       <Tabs>
         <Tab heading="Login">
-          <LoginForm />
+          <LoginForm {...props} />
         </Tab>
         <Tab heading="Register">
-          <RegisterForm />
+          <RegisterForm {...props} />
         </Tab>
       </Tabs>
     </Container>

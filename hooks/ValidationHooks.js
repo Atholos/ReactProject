@@ -1,7 +1,7 @@
 import React from 'react';
 import validate from 'validate.js';
-import LoginValidation from '../validation/LoginValidation';
-import RegisterValidation from '../validation/RegisterValidation';
+import LoginValidation from '../validations/LoginValidation';
+import RegisterValidation from '../validations/RegisterValidation';
 import appHooks from './MainHooks';
 
 

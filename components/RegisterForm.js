@@ -2,6 +2,7 @@ import React from 'react';
 import FormTextInput from './FormTextInput';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
+import appValidation from '../hooks/ValidationHooks';
 import {
   Container,
   Header,
@@ -16,9 +17,10 @@ import {
   View,
   Toast,
 } from "native-base";
-import useLogRegForm from '../hooks/LogRegHooks';
 
-const RegisterForm = () => {
+
+const RegisterForm = (props) => {
+  const {registerValidate} = appValidation();
   const {userCheck} = appHooks();
   const {
     inputs,
@@ -26,6 +28,7 @@ const RegisterForm = () => {
     handlePasswordChange,
     handleConfirmPwChange,
     handleEmailChange,
+    handleFullnameChange,
   } = useLogRegForm();
   return (
     <Content>
@@ -78,7 +81,7 @@ const RegisterForm = () => {
             value={inputs.fullname} required
           />
         </Item>
-        <Button onPress={() => formValidate(inputs, props)}>
+        <Button onPress={() => registerValidate(inputs, props)}>
           <Text>Register</Text>
         </Button>
       </Form>

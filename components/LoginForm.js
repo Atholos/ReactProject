@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { AsyncStorage, Alert } from "react-native";
-import PropTypes from 'prop-types';
-import FormTextInput from "../components/FormTextInput";
-import useSignUpForm from "../hooks/LoginHooks";
-import mediaAPI from '../hooks/ApiHooks';
-import validate from 'validate.js';
-import Validation from '../validation/Validation';
+import React from 'react';
+import FormTextInput from './FormTextInput';
+import appHooks from '../hooks/MainHooks';
 import {
   Container,
   Header,
@@ -20,7 +15,8 @@ import {
   View,
 } from 'native-base';
 import useLogRegForm from '../hooks/LogRegHooks';
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const {signIn} = appHooks();
   const {
     inputs,
     handleUsernameChange,
@@ -47,11 +43,11 @@ const LoginForm = () => {
             value={inputs.password} required
           />
         </Item>
-        <Button onPress={() => signInAsync(inputs, props)}>
+        <Button onPress={() => signIn(inputs, props)}>
           <Text>Login</Text>
         </Button>
       </Form>
     </Content>
   );
-};¨
+};
 export default LoginForm;
