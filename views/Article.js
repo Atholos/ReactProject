@@ -1,36 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text, Image, AsyncStorage} from 'react-native';
+import appHooks from '../hooks/MainHooks'
 
 const Article = (props) => {
+  const {checkUser} = appHooks();
   const {navigation} = props;
   const media = navigation.getParam('file', 'WRONG');
   const title = media.title;
-  const uid = media.user_id;
   console.log('MEDIA', media)
 
   const [uname, setUname] = useState({});
 
-  const checkUser = async () => {
-    // PLACEHOLDER TOKEN!!!!! ! ! ! !
-    const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
 
-    const response = await fetch('http://media.mw.metropolia.fi/wbma/users/'+ uid, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'x-access-token': gotToken,
-      },
-    }).catch((error) => {
-      console.error(error);
-    });
-    const result = await response.json();
-    console.log('USEROBJ', result);
-    setUname(
-        {
-          name: result.username,
-        });
-  };
-  checkUser();
+  useEffect(() => {
+    checkUser(props);
+  }
+  , []);
 
   return (
     <View style={styles.container}>
