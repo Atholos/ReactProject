@@ -29,37 +29,11 @@ const ArticleListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
 
   useEffect(() => {
-    const gotDesc = getArticleDesc(singleMedia.file_id)
-    setDesc(gotDesc);
-    console.log('DESC SETATTU', desc.tag)
+    getArticleDesc(singleMedia.file_id);
   }
   , []);
   return (
     <ListItem thumbnail>
-<<<<<<< HEAD
-      <Left>
-        <Thumbnail
-          square
-          large
-          source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160 }}
-        />
-      </Left>
-      <Body>
-        <Text>{singleMedia.title}</Text>
-        <Text note numberOfLines={1}>
-        {desc.tag}
-        </Text>
-      </Body>
-       <Right>
-        <Button Primary
-          onPress={() => {
-            navigation.push("Article", { file: singleMedia });
-          }}
-        >
-          <Text >View</Text>
-        </Button>
-      </Right>
-=======
         <Card style={{flex: 1}}>
         <TouchableOpacity 
         onPress={() => {
@@ -83,7 +57,6 @@ const ArticleListItem = (props) => {
             </CardItem>
             </TouchableOpacity>
           </Card>
->>>>>>> 27ac76abf9985437835da3bf238416a263be846e
     </ListItem>
   );
 };
