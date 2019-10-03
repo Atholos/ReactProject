@@ -19,8 +19,8 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
   const getTagFiles = async () => {
     console.log('TAGISSA ON KÄYTY')
-    const tagresult = await fetchGetUrl(apiUrl + 'tags/diyArduino')
-    console.log('!!!!!!!!!!!!!!!!', tagresult);
+    const tagresult = await fetchGetUrl(apiUrl + 'tags/craftersguild')
+    return tagresult;
   }
 
 const ArticleHooks = () => {
@@ -54,13 +54,25 @@ const ArticleHooks = () => {
         const { articles, setArticles } = useContext(AppContext);
         const [loading, setLoading] = useState(true);
         const fetchUrl = async () => {
-          const response = await fetch(url);
+          const tagfiles = await getTagFiles()
+          console.log('TAGFILES', tagfiles[1])
+          const tagFileId = [];
+          const taggedFilesList = [];
+          for (i=0;i < tagfiles.length; i++) {
+            tagFileId.push(tagfiles[i].file_id);
+          }
+          //console.log('tagFileID', tagFileId[1])
+          for (let i=0; i < tagFileId.length; i++) {
+            console.log('rullaa')
+          const response = await fetch(url + tagFileId[i]);
           const json = await response.json();
-          setArticles(json);
+          taggedFilesList.push(json);
+        }
+          console.log('TAGGED FILES LIST', taggedFilesList);
+          setArticles(taggedFilesList);
           setLoading(false);
         };
         useEffect(() => {
-          getTagFiles();
           fetchUrl();
         }, []);
         return [articles, loading];
