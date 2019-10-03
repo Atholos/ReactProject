@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import {
   ListItem,
@@ -13,12 +13,19 @@ import ArticleHooks from "../hooks/ArticleHooks";
 
 
 const ArticleListItem = (props) => {
+  const [desc, setDesc] = useState({});
   const { navigation, singleMedia } = props;
   const {
     getThumbnail,
+    getArticleDesc,
   } = ArticleHooks();
 
   const tn = getThumbnail(singleMedia.file_id);
+
+  useEffect(() => {
+    getArticleDesc(singleMedia.file_id);
+  }
+  , []);
   return (
     <ListItem thumbnail>
       <Left>
@@ -31,7 +38,7 @@ const ArticleListItem = (props) => {
       <Body>
         <Text>{singleMedia.title}</Text>
         <Text note numberOfLines={1}>
-          {singleMedia.description}
+          Moi
         </Text>
       </Body>
        <Right>
