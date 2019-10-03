@@ -25,7 +25,16 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
 const ArticleHooks = () => {
 
-
+  const getArticleDesc = async (fileid) => {
+    const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid)
+    console.log(descResult);
+    for (i=0; i > descResult.length; i++) {
+      if (descResult[i].tag.length > 30) {
+        return JSON.stringify(descResult[i].tag);
+      }
+    }
+    //return "Description not found"
+  }
 
     const getAllMedia = () => {
       console.log('getAllMedia')
@@ -82,6 +91,7 @@ const ArticleHooks = () => {
           getAllMedia,
           getThumbnail,
           useFetch,
+          getArticleDesc,
       };
 }
 
