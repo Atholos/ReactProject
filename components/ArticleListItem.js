@@ -35,7 +35,7 @@ const ArticleListItem = (props) => {
   return (
     <ListItem thumbnail>
         <Card style={{flex: 1}}>
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={() => {
           props.navigation.push('Article', {
             thumbnail: URL+props.singleMedia.thumbnails.w160,
@@ -51,7 +51,7 @@ const ArticleListItem = (props) => {
             <Body>
                   <Text>{singleMedia.title}</Text>
                   <Text note numberOfLines={3}>
-                  {singleMedia.description}
+                  {desc.tag}
                   </Text>
                 </Body>
             </CardItem>
