@@ -36,32 +36,8 @@ const ArticleListItem = (props) => {
   , []);
   return (
     <ListItem thumbnail>
-<<<<<<< HEAD
-      <Left>
-        <Thumbnail
-          square
-          large
-          source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160 }}
-        />
-      </Left>
-      <Body>
-        <Text>{singleMedia.title}</Text>
-        <Text note numberOfLines={1}>
-        {desc.tag}
-        </Text>
-      </Body>
-       <Right>
-        <Button Primary
-          onPress={() => {
-            navigation.push("Article", { file: singleMedia });
-          }}
-        >
-          <Text >View</Text>
-        </Button>
-      </Right>
-=======
         <Card style={{flex: 1}}>
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Article', {
             thumbnail: URL+props.singleMedia.thumbnails.w160,
@@ -77,13 +53,12 @@ const ArticleListItem = (props) => {
             <Body>
                   <Text>{singleMedia.title}</Text>
                   <Text note numberOfLines={3}>
-                  {singleMedia.description}
+                  {desc.tag}
                   </Text>
                 </Body>
             </CardItem>
             </TouchableOpacity>
           </Card>
->>>>>>> 27ac76abf9985437835da3bf238416a263be846e
     </ListItem>
   );
 };
