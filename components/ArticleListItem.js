@@ -37,7 +37,7 @@ const ArticleListItem = (props) => {
         <Card style={{flex: 1}}>
         <TouchableOpacity 
         onPress={() => {
-          props.navigation.navigate('Article', {
+          props.navigation.push('Article', {
             thumbnail: URL+props.singleMedia.thumbnails.w160,
             title: props.singleMedia.title,
           });
