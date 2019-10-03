@@ -23,7 +23,9 @@ const ArticleListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
 
   useEffect(() => {
-    getArticleDesc(singleMedia.file_id);
+    const gotDesc = getArticleDesc(singleMedia.file_id)
+    setDesc(gotDesc);
+    console.log('DESC SETATTU', desc.tag)
   }
   , []);
   return (
@@ -38,7 +40,7 @@ const ArticleListItem = (props) => {
       <Body>
         <Text>{singleMedia.title}</Text>
         <Text note numberOfLines={1}>
-          Moi
+        {desc.tag}
         </Text>
       </Body>
        <Right>

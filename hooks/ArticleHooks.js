@@ -30,7 +30,11 @@ const ArticleHooks = () => {
     console.log(descResult);
     for (i=0; i > descResult.length; i++) {
       if (descResult[i].tag.length > 30) {
+        console.log('JACKPOT', descResult[i].tag)
         return JSON.stringify(descResult[i].tag);
+      }
+      else {
+        console.log(descResult[i].tag)
       }
     }
     //return "Description not found"
