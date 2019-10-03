@@ -36,7 +36,7 @@ const useUploadForm = () => {
     const formData = new FormData();
     formData.append('file', {uri: localUri, name: filename, type});
     formData.append('title', upload.title);
-    formData.append('description', upload.desc);
+    formData.append('description', upload.body);
     console.log('formdata', formData);
 
 
@@ -53,21 +53,21 @@ const useUploadForm = () => {
     console.log(json);
 
     // Tagin bodytext sisältö, käyttää upatin kuvan file iideetä
-    const tagBodyData = {
+    const tagDescData = {
       file_id: json.file_id,
       tag: upload.body,
     };
 
-    // Lisätään bodytext tagina
-    const tagBody = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
+    // Lisätään description tagina
+    const tagDesc = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': gotToken,
       },
-      body: JSON.stringify(tagBodyData),
+      body: JSON.stringify(tagDescData),
     });
-    const tagJson = await tagBody.json();
+    const tagJson = await tagDesc.json();
     console.log(tagJson);
 
 
@@ -88,6 +88,22 @@ const useUploadForm = () => {
     });
     const tagCatJson = await tagCategory.json();
     console.log(tagCatJson);
+
+    const tagProjectData = {
+      file_id: json.file_id,
+      tag: 'craftersguild',
+    };
+
+    const tagProject = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(tagProjectData),
+    });
+    const tagProjectJson = await tagProject.json();
+    console.log(tagProjectJson);
   };
 
 
