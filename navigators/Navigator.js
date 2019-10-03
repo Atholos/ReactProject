@@ -18,6 +18,7 @@ const GuestTabNavigator = createBottomTabNavigator(
   {
     Test,
     Login,
+    Main,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -28,6 +29,8 @@ const GuestTabNavigator = createBottomTabNavigator(
           iconName = 'home';
         } else if (routeName === 'Login') {
           iconName = 'person';
+        } else if ( routeName === 'Main') {
+          iconName = 'home';
         }
         // You can return any component that you like here!
         return <Icon name={iconName} size={25} />;
@@ -88,7 +91,10 @@ const GuestStackNavigator = createStackNavigator({
   },
   Article: {
     screen: Article
-  }
+  },
+  Main: {
+    screen: Main
+  },
 });
 
 const Navigator = createSwitchNavigator(
