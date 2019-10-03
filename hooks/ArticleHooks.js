@@ -26,10 +26,10 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 const ArticleHooks = () => {
 
   const getArticleDesc = async (fileid) => {
-    const descResult = await fetchGetUrl('tags/file/' + fileid)
+    const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid)
+    console.log(descResult);
     for (i=0; i > descResult.length; i++) {
-      console.log('DESCRESULT', descResult[i.tag])
-      if (descResult[i].tag.length > 30 ) {
+      if (descResult[i].tag.length > 30) {
         return JSON.stringify(descResult[i].tag);
       }
     }
