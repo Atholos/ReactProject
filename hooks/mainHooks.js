@@ -84,7 +84,7 @@ const appHooks = () => {
     });
     const result = await response.json();
     console.log('USEROBJ', result);
-    return result.username
+    return JSON.stringify(result.username)
   };
 
   return {

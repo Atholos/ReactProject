@@ -29,14 +29,15 @@ const ArticleListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
 
   useEffect(() => {
-    const gotDesc = getArticleDesc(singleMedia.file_id)
-    setDesc(
-      {
-        text: gotDesc
+    getArticleDesc(singleMedia.file_id).then((json) => {
+        setDesc({text: json});
+      }).catch((error) => {
+        console.log(console.error);
       });
-  }
-  , []);
-  return (
+    }, []);
+
+    return (
+
     <ListItem thumbnail>
         <Card style={{flex: 1}}>
         <TouchableOpacity
@@ -51,14 +52,14 @@ const ArticleListItem = (props) => {
             <Body>
                   <Text>{singleMedia.title}</Text>
                   <Text note numberOfLines={3}>
-                  {desc.tag}
+                  {desc.text}
                   </Text>
                 </Body>
             </CardItem>
             </TouchableOpacity>
           </Card>
     </ListItem>
-  );
+    );
 };
 
 ArticleListItem.propTypes = {

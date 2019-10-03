@@ -10,21 +10,19 @@ const Article = (props) => {
 
   const [uname, setUname] = useState({});
 
-
   useEffect(() => {
-    const gotName = checkUser(props);
-    setUname(
-      {
-        name: gotName,
+    checkUser(props).then((json) => {
+        setUname({name: json});
+      }).catch((error) => {
+        console.log(error);
       });
-  }
-  , []);
+    }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text>{media.description}</Text>
-      <Text>{uname.name}</Text>
+      {uname.name &&<Text>{uname.name}</Text>}
       <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
     </View>
   );
