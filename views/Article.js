@@ -12,8 +12,11 @@ const Article = (props) => {
 
 
   useEffect(() => {
-    gotName = checkUser(props);
-    setUname(gotName)
+    const gotName = checkUser(props);
+    setUname(
+      {
+        name: gotName,
+      });
   }
   , []);
 

@@ -30,8 +30,10 @@ const ArticleListItem = (props) => {
 
   useEffect(() => {
     const gotDesc = getArticleDesc(singleMedia.file_id)
-    setDesc(gotDesc);
-    console.log('DESC SETATTU', desc.tag)
+    setDesc(
+      {
+        text: gotDesc
+      });
   }
   , []);
   return (
