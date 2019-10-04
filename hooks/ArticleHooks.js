@@ -28,16 +28,13 @@ const ArticleHooks = () => {
   const getArticleDesc = async (fileid) => {
     const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid)
     console.log(descResult);
-    for (i=0; i > descResult.length; i++) {
+    for (let i=0; i < descResult.length; i++) {
       if (descResult[i].tag.length > 30) {
+        return descResult[i].tag;
         console.log('JACKPOT', descResult[i].tag)
-        return JSON.stringify(descResult[i].tag);
-      }
-      else {
-        console.log(descResult[i].tag)
       }
     }
-    //return "Description not found"
+    return "Description not found"
   }
 
     const getAllMedia = () => {

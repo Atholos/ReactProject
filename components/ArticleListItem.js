@@ -29,32 +29,40 @@ const ArticleListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
 
   useEffect(() => {
-    getArticleDesc(singleMedia.file_id);
-  }
-  , []);
-  return (
+    getArticleDesc(singleMedia.file_id).then((json) => {
+        setDesc({text: json});
+      }).catch((error) => {
+        console.log(console.error);
+      });
+    }, []);
+
+    return (
+
     <ListItem thumbnail>
         <Card style={{flex: 1}}>
         <TouchableOpacity
-        onPress={() => {navigation.push('Article', { file: singleMedia });
+        onPress={() => {navigation.push("Article", {
+          file: singleMedia,
+          filedesc: desc.text,
+         });
         }}>
             <CardItem>
               <Body>
-                <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160 }} style={{height: 200, width: '100%', flex: 1}}/>
+                <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320 }} style={{height: 200, width: '100%', flex: 1}}/>
               </Body>
             </CardItem>
             <CardItem>
             <Body>
                   <Text>{singleMedia.title}</Text>
                   <Text note numberOfLines={3}>
-                  {desc.tag}
+                  {desc.text}
                   </Text>
                 </Body>
             </CardItem>
             </TouchableOpacity>
           </Card>
     </ListItem>
-  );
+    );
 };
 
 ArticleListItem.propTypes = {

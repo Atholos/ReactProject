@@ -27,7 +27,7 @@ const appHooks = () => {
     };
     const json = await fetchPostUrl('login', data);
     await AsyncStorage.setItem('userToken', json.token);
-    // await AsyncStorage.setItem('user', JSON.stringify(json.user));
+    await AsyncStorage.setItem('user', json.user);
     navigation.navigate('User');
   };
   //function for registering a user
@@ -67,6 +67,11 @@ const appHooks = () => {
     navigation.navigate('Guest');
   };
 
+  const getUser = async () => {
+    const gotuser = await AsyncStorage.getItem('user');
+    return gotuser
+  };
+
   const checkUser = async (props) => {
     // PLACEHOLDER TOKEN!!!!! ! ! ! !
     const {navigation} = props;
@@ -84,7 +89,7 @@ const appHooks = () => {
     });
     const result = await response.json();
     console.log('USEROBJ', result);
-    return result.username
+    return JSON.stringify(result.username)
   };
 
   return {
@@ -94,6 +99,7 @@ const appHooks = () => {
     userCheck,
     signOut,
     checkUser,
+    getUser,
   };
 };
 export default appHooks;

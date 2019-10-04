@@ -36,7 +36,7 @@ const useUploadForm = () => {
     const formData = new FormData();
     formData.append('file', {uri: localUri, name: filename, type});
     formData.append('title', upload.title);
-    formData.append('description', upload.body);
+    formData.append('description', upload.desc);
     console.log('formdata', formData);
 
 
