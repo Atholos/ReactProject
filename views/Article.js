@@ -6,11 +6,13 @@ const Article = (props) => {
   const {checkUser} = appHooks();
   const {navigation} = props;
   const media = navigation.getParam('file', 'WRONG');
+  const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
 
   const [uname, setUname] = useState({});
 
   useEffect(() => {
+    console.log('Articlemedia!!!', media)
     checkUser(props).then((json) => {
         setUname({name: json});
       }).catch((error) => {
@@ -22,6 +24,7 @@ const Article = (props) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       {uname.name &&<Text>{uname.name}</Text>}
+      <Text>{mediaDesc}</Text>
       <Text>{media.description}</Text>
       <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
     </View>
