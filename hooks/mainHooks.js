@@ -27,7 +27,7 @@ const appHooks = () => {
     };
     const json = await fetchPostUrl('login', data);
     await AsyncStorage.setItem('userToken', json.token);
-    await AsyncStorage.setItem('user', json.user);
+    await AsyncStorage.setItem('user', JSON.stringify(json.user));
     navigation.navigate('User');
   };
   //function for registering a user
