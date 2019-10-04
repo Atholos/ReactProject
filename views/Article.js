@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     marginBottom: 30,
-    fontWeight: 500,
+    fontWeight: "500",
   },
   bodytext: {
   },
