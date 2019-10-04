@@ -60,21 +60,21 @@ const Creator = (props) => {
         <Text>Upload</Text>
         <FormTextInput
           autoCapitalize='none'
-          placeholder='title'
+          placeholder='Title'
           onChangeText={handleTitleChange}
           value= {upload.title} required
         />
         <FormTextInput
           autoCapitalize='none'
-          placeholder=''
-          onChangeText={handleDescChange}
-          value={upload.desc} required
+          placeholder='Description'
+          onChangeText={handleBodyChange}
+          value={upload.body} required
         />
         <FormTextInput
           autoCapitalize='none'
           placeholder='Article body text'
-          onChangeText={handleBodyChange}
-          value={upload.body} required
+          onChangeText={handleDescChange}
+          value={upload.desc} required
         />
 
         <Button onPress={() => pickImage()}>
