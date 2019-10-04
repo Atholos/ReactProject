@@ -20,8 +20,8 @@ import {
 
 //Component for Register form that is then imported in Login View as a tab
 const RegisterForm = (props) => {
-  const {registerValidate} = appValidation();
-  const {userCheck} = appHooks();
+  const { registerValidate } = appValidation();
+  const { userCheck } = appHooks();
   const {
     inputs,
     handleUsernameChange,
@@ -32,10 +32,10 @@ const RegisterForm = (props) => {
   } = useLogRegForm();
   return (
     <Content>
-      <Text>Register!</Text>
       <Form>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+          <Label>Username</Label>
+          <Input
             autoCapitalize="none"
             placeholder="username"
             onChangeText={handleUsernameChange}
@@ -47,8 +47,9 @@ const RegisterForm = (props) => {
             }}
           />
         </Item>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+          <Label>Password</Label>
+          <Input
             autoCapitalize="none"
             placeholder="password"
             secureTextEntry={true}
@@ -56,8 +57,9 @@ const RegisterForm = (props) => {
             value={inputs.password} required
           />
         </Item>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+          <Label>Confirm Password</Label>
+          <Input
             autoCapitalize="none"
             placeholder="password"
             secureTextEntry={true}
@@ -65,16 +67,18 @@ const RegisterForm = (props) => {
             value={inputs.cpw} required
           />
         </Item>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+          <Label>Email</Label>
+          <Input
             autoCapitalize="none"
             placeholder="email"
             onChangeText={handleEmailChange}
             value={inputs.email} required
           />
         </Item>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+          <Label>Full name</Label>
+          <Input
             autoCapitalize="none"
             placeholder="fullname"
             onChangeText={handleFullnameChange}

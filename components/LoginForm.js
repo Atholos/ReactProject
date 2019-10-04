@@ -27,18 +27,19 @@ const LoginForm = (props) => {
   } = useLogRegForm();
   return (
     <Content>
-      <Text>Login</Text>
       <Form>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+        <Label>Username</Label>
+          <Input
             autoCapitalize="none"
             placeholder="username"
             onChangeText={handleUsernameChange}
             value={inputs.username} required
           />
         </Item>
-        <Item>
-          <FormTextInput
+        <Item floatingLabel>
+        <Label>Password</Label>
+          <Input
             autoCapitalize="none"
             placeholder="password"
             secureTextEntry={true}
