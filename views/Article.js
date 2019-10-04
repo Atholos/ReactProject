@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, Image, AsyncStorage} from 'react-native';
+import {StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import appHooks from '../hooks/MainHooks'
 
 const Article = (props) => {
@@ -21,33 +22,41 @@ const Article = (props) => {
     }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      {uname.name &&<Text>{uname.name}</Text>}
-      <Text>{mediaDesc}</Text>
-      <Text>{media.description}</Text>
+<Container>
+    <Content>
+  <Text style={styles.title}>{title}</Text>
       <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-    </View>
+      {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
+      <Text style ={styles.desc}>{mediaDesc}</Text>
+      <Text style ={styles.bodytext}>{media.description}</Text>
+      </Content>
+      </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 40,
   },
   image: {
-    flex: 1,
     borderRadius: 16,
-    maxHeight: 200,
-    width: 200,
+    height: 250,
+    width: '100%',
+    marginBottom: 10,
   },
   title: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: '600',
+    marginBottom: 30,
+  },
+  desc: {
+    marginBottom: 30,
+    fontWeight: 500,
+  },
+  bodytext: {
   },
 });
 
