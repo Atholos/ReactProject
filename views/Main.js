@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Main = (props) => {
   const {navigation} = props;
   return (
-    
+
     <Container>
       <Content>
         <ArticleList navigation={navigation}></ArticleList>

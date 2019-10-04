@@ -18,7 +18,7 @@ import {
   Toast,
 } from "native-base";
 
-
+//Component for Register form that is then imported in Login View as a tab
 const RegisterForm = (props) => {
   const {registerValidate} = appValidation();
   const {userCheck} = appHooks();
