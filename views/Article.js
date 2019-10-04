@@ -19,10 +19,10 @@ const Article = (props) => {
 
   return (
     <View style={styles.container}>
+      <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
       <Text style={styles.title}>{title}</Text>
       <Text>{media.description}</Text>
       <Text>{uname.name}</Text>
-      <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
     </View>
   );
 };

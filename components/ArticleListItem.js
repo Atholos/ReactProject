@@ -1,5 +1,5 @@
-import React,{useState, useEffect} from "react";
-import PropTypes from "prop-types";
+import React,{useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {
   ListItem,
   Left,
@@ -12,10 +12,10 @@ import {
   Header,
   Button,
   Icon
-} from "native-base";
+} from 'native-base';
 import {Image } from 'react-native';
-import ArticleHooks from "../hooks/ArticleHooks";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import ArticleHooks from '../hooks/ArticleHooks';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const ArticleListItem = (props) => {
@@ -36,11 +36,7 @@ const ArticleListItem = (props) => {
     <ListItem thumbnail>
         <Card style={{flex: 1}}>
         <TouchableOpacity
-        onPress={() => {
-          props.navigation.push('Article', {
-            thumbnail: URL+props.singleMedia.thumbnails.w160,
-            title: props.singleMedia.title,
-          });
+        onPress={() => {navigation.push('Article', { file: singleMedia });
         }}>
             <CardItem>
               <Body>

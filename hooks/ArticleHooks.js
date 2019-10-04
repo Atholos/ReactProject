@@ -91,11 +91,45 @@ const ArticleHooks = () => {
         return [articles, loading];
       };
 
+      const getAllMyArticles = () => {
+        const { myMedia, setMyMedia } = useContext(MediaContext);
+        const [loading, setLoading] = useState(true);
+        useEffect(() => {
+          fetchGetUrl(apiUrl + 'media/user').then((json) => {
+            setMyMedia(json);
+            setLoading(false);
+          });
+        }, []);
+        return [myMedia, loading];
+      };
+
+      const deleteArticle = async (file, setMyMedia, setMedia, navigation) => {
+        return fetchDeleteUrl('media/' + file.file_id).then((json) => {
+          console.log('delete', json);
+          setMedia([]);
+          setMyMedia([]);
+          setTimeout(() => {
+            reloadAllMedia(setMedia, setMyMedia);
+            navigation.navigate('Profile');
+            Alert.alert(
+              'File Deleted',
+              'Reloading user files',
+              [
+                { text: 'OK', onPress: () => navigation.navigate('MyFiles') },
+              ],
+              { cancelable: false },
+            );
+          }, 2000);
+        });
+      };
+
       return {
           getAllMedia,
           getThumbnail,
           useFetch,
           getArticleDesc,
+          getAllMyArticles,
+          deleteArticle,
       };
 }
 
