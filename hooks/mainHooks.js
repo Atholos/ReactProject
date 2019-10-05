@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
 import useFetch from './FetchHooks';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
@@ -41,8 +43,9 @@ const appHooks = () => {
       'full_name': inputs.full_name,
     };
     const json = await fetchPostUrl('users', data);
+    console.log(json);
     if (!json.error) {
-      signIn(inputs, props);
+      return (json);
     }
   };
   //function for checking username availability
@@ -92,6 +95,14 @@ const appHooks = () => {
     console.log('USEROBJ', result);
     return JSON.stringify(result.username)
   };
+  const getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
 
   return {
     bootstrapAsync,
@@ -101,6 +112,7 @@ const appHooks = () => {
     signOut,
     checkUser,
     getUser,
+    getPermissionAsync,
   };
 };
 export default appHooks;
