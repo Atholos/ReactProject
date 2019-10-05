@@ -134,7 +134,7 @@ const useUploadForm = () => {
       file_id: json.file_id,
       tag: 'Avatar'+userID,
     };
-    console.log(tag);
+    console.log(tagAvatarData);
     console.log(json);
 
     const tagUserAvatar = await fetch('http://media.mw.metropolia.fi/wbma/tags', {

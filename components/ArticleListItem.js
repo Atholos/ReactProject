@@ -38,14 +38,12 @@ const ArticleListItem = (props) => {
 
     return (
 
-    <ListItem thumbnail>
+    <ListItem thumbnail onPress={() => {navigation.push("Article", {
+      file: singleMedia,
+      filedesc: desc.text,
+     });
+    }}>
         <Card style={{flex: 1}}>
-        <TouchableOpacity
-        onPress={() => {navigation.push("Article", {
-          file: singleMedia,
-          filedesc: desc.text,
-         });
-        }}>
             <CardItem>
               <Body>
                 <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320 }} style={{height: 200, width: '100%', flex: 1}}/>
@@ -59,7 +57,6 @@ const ArticleListItem = (props) => {
                   </Text>
                 </Body>
             </CardItem>
-            </TouchableOpacity>
           </Card>
     </ListItem>
     );

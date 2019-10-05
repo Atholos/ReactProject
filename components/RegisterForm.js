@@ -27,7 +27,8 @@ const RegisterForm = (props) => {
     handleEmailChange,
     handleFullnameChange,
   } = useLogRegForm();
-  const [image, setImage] = useState({});
+  const craftAvatar = 'C:\Users\Rnki\Desktop\ReactNativeCourse\FirstApp\ReactNativeProject\ReactProject\assets\craftbeer.jpg';
+  const [image, setImage] = useState({selected: craftAvatar});
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,

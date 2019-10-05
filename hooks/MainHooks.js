@@ -6,7 +6,7 @@ import * as Permissions from 'expo-permissions';
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
-  
+
   const bootstrapAsync = async props => {
     const { navigation } = props;
     const getToken = async () => {
