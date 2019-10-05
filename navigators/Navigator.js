@@ -16,22 +16,18 @@ import { Icon } from 'native-base';
 
 const GuestTabNavigator = createBottomTabNavigator(
   {
-    Test,
-    Login,
     Main,
+    Login,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: () => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'Test') {
+        if (routeName === 'Main') {
           iconName = 'home';
         } else if (routeName === 'Login') {
           iconName = 'person';
-        } else if ( routeName === 'Main') {
-          iconName = 'home';
-        }
         // You can return any component that you like here!
         return <Icon name={iconName} size={25} />;
       }
@@ -65,7 +61,7 @@ const LoggedTabNavigator = createBottomTabNavigator(
 );
 
 const LoggedStackNavigator = createStackNavigator({
-  Test: {
+  Main: {
     screen: LoggedTabNavigator,
     navigationOptions: {
       header: null // this will hide the header
@@ -83,7 +79,7 @@ const LoggedStackNavigator = createStackNavigator({
 });
 
 const GuestStackNavigator = createStackNavigator({
-  Test: {
+  Main: {
     screen: GuestTabNavigator,
     navigationOptions: {
       header: null // this will hide the header
@@ -91,9 +87,6 @@ const GuestStackNavigator = createStackNavigator({
   },
   Article: {
     screen: Article
-  },
-  Main: {
-    screen: Main
   },
 });
 

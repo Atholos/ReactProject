@@ -7,7 +7,8 @@ import appHooks from './MainHooks';
 
 const appValidation = () => {
   const { register, signIn } = appHooks();
-  const registerValidate = async (inputs, props) => {
+
+  const registerValidate = async (inputs, props, image) => {
     const constraints = RegisterValidation;
     const emailError = validate({ email: inputs.email }, constraints);
     const passwordError = validate({ password: inputs.password }, constraints);
@@ -16,8 +17,10 @@ const appValidation = () => {
 
     console.log(emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword);
     if (!emailError.email && !passwordError.password && !usernameError.username && !passconfError.confirmPassword) {
-      register(inputs, props);
+      const uid = register(inputs, props);
+
       console.log('Registered Succesfully');
+      signIn(inputs, props);
     } else {
       const errorArr = [emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword];
       for (let i = 0; i < errorArr.length; i++) {

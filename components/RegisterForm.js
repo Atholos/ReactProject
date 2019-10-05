@@ -112,7 +112,7 @@ const RegisterForm = (props) => {
             />
           </Item>
           <Item>
-            <Button onPress={() => registerValidate(inputs, props)}>
+            <Button onPress={() => registerValidate(inputs, props, image.selected)}>
               <Text>Register</Text>
             </Button>
           </Item>

@@ -102,18 +102,6 @@ const appHooks = () => {
       }
     }
   };
-  const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-    console.log(result);
-    setImage(
-      {
-        selected: result.uri,
-      });
-  };
 
   return {
     bootstrapAsync,
@@ -124,7 +112,6 @@ const appHooks = () => {
     checkUser,
     getUser,
     getPermissionAsync,
-    pickImage,
   };
 };
 export default appHooks;
