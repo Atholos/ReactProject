@@ -28,11 +28,12 @@ const GuestTabNavigator = createBottomTabNavigator(
           iconName = 'home';
         } else if (routeName === 'Login') {
           iconName = 'person';
+        };
         // You can return any component that you like here!
         return <Icon name={iconName} size={25} />;
       }
-    })
-  }
+    }),
+  },
 );
 const LoggedTabNavigator = createBottomTabNavigator(
   {
