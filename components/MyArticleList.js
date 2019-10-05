@@ -8,12 +8,12 @@ import ArticleHooks from '../hooks/ArticleHooks';
 const MyArticleList = (props) => {
   const {navigation} = props;
   const {getAllMyArticles} = ArticleHooks();
-  const [myMedia, loading] = getAllMyArticles();
+  const [myArticles, loading] = getAllMyArticles();
   console.log(loading);
-  console.log('media', myMedia);
+  console.log('media', myArticles);
   return (
     <List
-      dataArray={myMedia}
+      dataArray={myArticles}
       renderRow={(item) =>
         <MyArticleListItem navigation={navigation} singleMedia={item} />}
       keyExtractor={(item, index) => index.toString()}

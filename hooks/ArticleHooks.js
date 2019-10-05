@@ -18,6 +18,19 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
     return json;
   };
 
+  const fetchURL = async (url) => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log('fetchGetUrl', url);
+    const response = await fetch(url, {
+      headers: {
+        'x-access-token': userToken,
+      },
+    });
+    const json = await response.json();
+    console.log('fetchUrl json', json);
+    return json;
+  };
+
   const getTagFiles = async () => {
     console.log('TAGISSA ON KÄYTY')
     const tagresult = await fetchGetUrl(apiUrl + 'tags/craftersguild')
@@ -90,24 +103,24 @@ const ArticleHooks = () => {
       };
 
       const getAllMyArticles = () => {
-        const { myMedia, setMyMedia } = useContext(MediaContext);
+        const { myArticles, setMyArticles } = useContext(AppContext);
         const [loading, setLoading] = useState(true);
         useEffect(() => {
-          fetchGetUrl(apiUrl + 'media/user').then((json) => {
-            setMyMedia(json);
+          fetchURL(apiUrl + 'media/user').then((json) => {
+            setMyArticles(json);
             setLoading(false);
           });
         }, []);
-        return [myMedia, loading];
+        return [myArticles, loading];
       };
 
-      const deleteArticle = async (file, setMyMedia, setMedia, navigation) => {
+      const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
         return fetchDeleteUrl('media/' + file.file_id).then((json) => {
           console.log('delete', json);
-          setMedia([]);
-          setMyMedia([]);
+          setArticle([]);
+          setMyArticle([]);
           setTimeout(() => {
-            reloadAllMedia(setMedia, setMyMedia);
+            // reloadAllMedia(setArticle, setMyArticle);
             navigation.navigate('Profile');
             Alert.alert(
               'File Deleted',

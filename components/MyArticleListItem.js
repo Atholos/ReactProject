@@ -1,22 +1,29 @@
 /* eslint-disable max-len */
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Alert} from 'react-native';
 import {
   ListItem,
-  Button,
   Left,
-  Thumbnail,
   Body,
   Right,
-  H2,
+  Thumbnail,
+  CardItem,
   Text,
+  Card,
+  Header,
+  Button,
+  Icon
 } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
 import {MediaContext} from '../contexts/MediaContext';
+import { AppContext } from '../contexts/AppContext';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Image } from 'react-native';
 
-const MyFilesListItem = (props) => {
-  const {setMedia, setMyMedia} = useContext(MediaContext);
+const MyArticleListItem = (props) => {
+  const [desc, setDesc] = useState({});
+  const {setArticle, setMyArticle} = useContext(AppContext);
   const {navigation, singleMedia} = props;
   const {getThumbnail, deleteMedia} = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
@@ -49,9 +56,9 @@ const MyFilesListItem = (props) => {
   );
 };
 
-MyFilesListItem.propTypes = {
+MyArticleListItem.propTypes = {
   singleMedia: PropTypes.object,
   navigation: PropTypes.object,
 };
 
-export default MyFilesListItem;
+export default MyArticleListItem;
