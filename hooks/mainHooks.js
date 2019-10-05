@@ -48,7 +48,7 @@ const appHooks = () => {
     }
   };
   //function for checking username availability
-  const userCheck = async (uname) => {
+  const usernameCheck = async (uname) => {
     const { checkAvailability } = useFetch();
     const json = await checkAvailability(uname);
     console.log(json);
@@ -107,7 +107,7 @@ const appHooks = () => {
     bootstrapAsync,
     signIn,
     register,
-    userCheck,
+    usernameCheck,
     signOut,
     checkUser,
     getUser,
