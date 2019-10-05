@@ -19,6 +19,7 @@ const useFetch = () => {
   const fetchPostUrl = async (url, data) => {
     console.log(url);
     console.log('fetchPostUrl data', data);
+    console.log('LoginURL: ', fetchUrl+url);
     const response = await fetch(fetchUrl+url, {
       method: 'POST',
       headers: {

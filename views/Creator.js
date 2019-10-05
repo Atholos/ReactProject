@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label } from 'native-base';
+import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import appHooks from '../hooks/MainHooks';
+import {AppContext} from '../contexts/AppContext';
+
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
 // const idUrl = 'http://media.mw.metropolia.fi/wbma/media/';
@@ -12,10 +15,12 @@ import appHooks from '../hooks/MainHooks';
 
 const Creator = (props) => {
   const [image, setImage] = useState({});
-  // const [media, setMedia] = useContext(AppContext);
+  const  {articles, setArticles} = useContext(AppContext);
   const {
     getPermissionAsync,
+    reloadAllArticles,
   } = appHooks();
+
   const {
     upload,
     handleTitleChange,
@@ -49,9 +54,7 @@ const Creator = (props) => {
       <Header />
       <Content>
         <Thumbnail
-          square
-          large
-          source={{ uri: image.selected }} />
+          source={{ uri: image.selected }} style={{width: '100%', height: 200, alignSelf: 'center'}} />
         <Form>
           <Item floatingLabel>
             <Label>Title </Label>
@@ -88,8 +91,11 @@ const Creator = (props) => {
           <Item>
             <Button onPress={() => {
               handleUpload(image.selected, upload.title, upload.desc);
-              // handleUpload(image.selected).then(
-              //   props.navigation.navigate('Home')
+              clearForm();
+              setImage({});
+               setTimeout(() =>{
+                props.navigation.navigate('Home');
+      }, 2000);
             }}>
               <Text>Upload</Text>
             </Button>
@@ -98,6 +104,7 @@ const Creator = (props) => {
             <Button
               onPress={() => {
                 clearForm();
+                setImage();
               }}
             >
               <Text>Reset</Text>
@@ -107,6 +114,10 @@ const Creator = (props) => {
       </Content>
     </Container>
   );
+};
+
+Creator.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default Creator;

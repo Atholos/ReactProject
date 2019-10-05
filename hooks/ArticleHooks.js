@@ -1,6 +1,7 @@
 import {useEffect, useContext, useState} from "react";
 import { AsyncStorage } from "react-native";
 import {AppContext} from '../contexts/AppContext';
+import {MediaContext} from '../contexts/MediaContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -14,6 +15,19 @@ const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
     });
     const json = await response.json();
     //console.log('fetchUrl json', json);
+    return json;
+  };
+
+  const fetchURL = async (url) => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log('fetchGetUrl', url);
+    const response = await fetch(url, {
+      headers: {
+        'x-access-token': userToken,
+      },
+    });
+    const json = await response.json();
+    console.log('fetchUrl json', json);
     return json;
   };
 
@@ -88,11 +102,45 @@ const ArticleHooks = () => {
         return [articles, loading];
       };
 
+      const getAllMyArticles = () => {
+        const { myArticles, setMyArticles } = useContext(AppContext);
+        const [loading, setLoading] = useState(true);
+        useEffect(() => {
+          fetchURL(apiUrl + 'media/user').then((json) => {
+            setMyArticles(json);
+            setLoading(false);
+          });
+        }, []);
+        return [myArticles, loading];
+      };
+
+      const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
+        return fetchDeleteUrl('media/' + file.file_id).then((json) => {
+          console.log('delete', json);
+          setArticle([]);
+          setMyArticle([]);
+          setTimeout(() => {
+            // reloadAllMedia(setArticle, setMyArticle);
+            navigation.navigate('Profile');
+            Alert.alert(
+              'File Deleted',
+              'Reloading user files',
+              [
+                { text: 'OK', onPress: () => navigation.navigate('MyFiles') },
+              ],
+              { cancelable: false },
+            );
+          }, 2000);
+        });
+      };
+
       return {
           getAllMedia,
           getThumbnail,
           useFetch,
           getArticleDesc,
+          getAllMyArticles,
+          deleteArticle,
       };
 }
 

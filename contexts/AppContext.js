@@ -44,4 +44,3 @@ AppProvider.defaultProps = {
 };
 
 export {AppContext, AppProvider};
-

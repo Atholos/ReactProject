@@ -1,5 +1,7 @@
-import React,{useState, useEffect} from 'react';
+/* eslint-disable max-len */
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
+import {Alert} from 'react-native';
 import {
   ListItem,
   Left,
@@ -13,33 +15,22 @@ import {
   Button,
   Icon
 } from 'native-base';
-import {Image } from 'react-native';
 import ArticleHooks from '../hooks/ArticleHooks';
+import {MediaContext} from '../contexts/MediaContext';
+import { AppContext } from '../contexts/AppContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Image } from 'react-native';
 
-
-const ArticleListItem = (props) => {
+const MyArticleListItem = (props) => {
   const [desc, setDesc] = useState({});
-  const { navigation, singleMedia } = props;
-  const {
-    getThumbnail,
-    getArticleDesc,
-  } = ArticleHooks();
-
+  const {setArticle, setMyArticle} = useContext(AppContext);
+  const {navigation, singleMedia} = props;
+  const {getThumbnail, deleteMedia} = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
-
-  useEffect(() => {
-    getArticleDesc(singleMedia.file_id).then((json) => {
-        setDesc({text: json});
-      }).catch((error) => {
-        console.log(console.error);
-      });
-    }, []);
-
-    return (
-
+  console.log('thumbnails', tn);
+  return (
     <ListItem thumbnail>
-        <Card style={{flex: 1}}>
+      <Card style={{flex: 1}}>
         <TouchableOpacity
         onPress={() => {navigation.push("Article", {
           file: singleMedia,
@@ -62,11 +53,12 @@ const ArticleListItem = (props) => {
             </TouchableOpacity>
           </Card>
     </ListItem>
-    );
+  );
 };
 
-ArticleListItem.propTypes = {
-  singleMedia: PropTypes.object
+MyArticleListItem.propTypes = {
+  singleMedia: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
-export default ArticleListItem;
+export default MyArticleListItem;
