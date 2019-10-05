@@ -78,21 +78,25 @@ const ArticleHooks = () => {
     const {articles, setArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     const fetchUrl = async () => {
+      // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles();
-      console.log('TAGFILES', tagfiles[1]);
+      // Alustetaan array johon kerätään file_id tageusta
       const tagFileId = [];
       const taggedFilesList = [];
-      for (i=0; i < tagfiles.length; i++) {
+      for (let i=0; i < tagfiles.length; i++) {
+        //pusketaan haettujen tagimatchien file_id:t arrayhyn
         tagFileId.push(tagfiles[i].file_id);
       }
-      // console.log('tagFileID', tagFileId[1])
+      //Haetaan mediafilet äsken kerätyillä file_id:llä
       for (let i=0; i < tagFileId.length; i++) {
         console.log('rullaa');
         const response = await fetch(url + tagFileId[i]);
         const json = await response.json();
+        //Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
       console.log('TAGGED FILES LIST', taggedFilesList);
+      //Laitetaan artikkeiliksi haetut, karsitut, mediat
       setArticles(taggedFilesList);
       setLoading(false);
     };
