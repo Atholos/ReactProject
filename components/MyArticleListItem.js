@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Alert} from 'react-native';
 import {
-  ListItem as BaseListItem,
+  ListItem,
   Button,
   Left,
   Thumbnail,
@@ -22,46 +22,30 @@ const MyFilesListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
   console.log('thumbnails', tn);
   return (
-    <BaseListItem thumbnail>
-      <Left>
-        {tn && <Thumbnail square large source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160}} />
-        }
-      </Left>
-      <Body>
-        <H2>{singleMedia.title}</H2>
-        <Text numberOfLines={2}>{singleMedia.description}</Text>
-      </Body>
-      <Right>
-        <Button
-          onPress={
-            () => {
-              console.log('klik');
-              navigation.push('Single', {file: singleMedia});
-            }
-          }
-        >
-          <Text>View</Text>
-        </Button>
-        <Button
-          onPress={
-            () => {
-              console.log('press');
-              deleteMedia(singleMedia, setMyMedia, setMedia);
-              navigation.navigate('Creator');
-              Alert.alert(
-                  'Success',
-                  'The file has been deleted!',
-                  [
-                    {text: 'OK', onPress: () => props.navigation.push('MyArticles')},
-                  ],
-                  {cancelable: false});
-            }
-          }
-        >
-          <Text>Delete</Text>
-        </Button>
-      </Right>
-    </BaseListItem>
+    <ListItem thumbnail>
+      <Card style={{flex: 1}}>
+        <TouchableOpacity
+        onPress={() => {navigation.push("Article", {
+          file: singleMedia,
+          filedesc: desc.text,
+         });
+        }}>
+            <CardItem>
+              <Body>
+                <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320 }} style={{height: 200, width: '100%', flex: 1}}/>
+              </Body>
+            </CardItem>
+            <CardItem>
+            <Body>
+                  <Text>{singleMedia.title}</Text>
+                  <Text note numberOfLines={3}>
+                  {desc.text}
+                  </Text>
+                </Body>
+            </CardItem>
+            </TouchableOpacity>
+          </Card>
+    </ListItem>
   );
 };
 
