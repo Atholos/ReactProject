@@ -6,7 +6,7 @@ import appHooks from './MainHooks';
 
 
 const appValidation = () => {
-  const {register, signIn} = appHooks();
+  const { register, signIn } = appHooks();
   const registerValidate = async (inputs, props) => {
     const constraints = RegisterValidation;
     const emailError = validate({ email: inputs.email }, constraints);
