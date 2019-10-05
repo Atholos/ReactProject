@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
 import appValidation from '../hooks/ValidationHooks';
@@ -12,13 +12,13 @@ import {
   Button,
   Text,
   Thumbnail,
-} from "native-base";
+} from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 
-//Component for Register form that is then imported in Login View as a tab
+// Component for Register form that is then imported in Login View as a tab
 const RegisterForm = (props) => {
-  const { registerValidate } = appValidation();
-  const { usernameCheck, getPermissionAsync } = appHooks();
+  const {registerValidate} = appValidation();
+  const {usernameCheck, getPermissionAsync} = appHooks();
   const {
     inputs,
     handleUsernameChange,
@@ -27,7 +27,8 @@ const RegisterForm = (props) => {
     handleEmailChange,
     handleFullnameChange,
   } = useLogRegForm();
-  const craftAvatar = 'C:\Users\Rnki\Desktop\ReactNativeCourse\FirstApp\ReactNativeProject\ReactProject\assets\craftbeer.jpg';
+  // const craftAvatar = 'C:\Users\Rnki\Desktop\ReactNativeCourse\FirstApp\ReactNativeProject\ReactProject\assets\craftbeer.jpg';
+  const craftAvatar = 'https://www.catholicnewsagency.com/images/Beer_Credit_Africa_Studio_Shutterstock_CNA.jpg?w=760';
   const [image, setImage] = useState({selected: craftAvatar});
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -37,14 +38,14 @@ const RegisterForm = (props) => {
     });
     console.log(result);
     setImage(
-      {
-        selected: result.uri,
-      });
+        {
+          selected: result.uri,
+        });
   };
   useEffect(() => {
     getPermissionAsync();
   }
-    , []);
+  , []);
   return (
     <Container>
       <Content>
@@ -58,7 +59,7 @@ const RegisterForm = (props) => {
             <Thumbnail
               square
               large
-              source={{ uri: image.selected }} />
+              source={{uri: image.selected}} />
           </Item>
           <Item floatingLabel>
             <Label>Username</Label>
