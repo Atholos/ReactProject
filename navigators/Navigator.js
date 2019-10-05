@@ -40,7 +40,6 @@ const LoggedTabNavigator = createBottomTabNavigator(
     Main,
     Creator,
     User,
-    MyArticles,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -53,15 +52,12 @@ const LoggedTabNavigator = createBottomTabNavigator(
           iconName = 'person';
         } else if (routeName === 'Creator') {
           iconName = 'md-cloud-upload';
-        } else if (routeName === 'MyArticles') {
-          iconName = 'md-nuclear';
-        }
-
+        };
         // You can return any component that you like here!
         return <Icon name={iconName} size={25} />;
       }
-    })
-  }
+    }),
+  },
 );
 
 const LoggedStackNavigator = createStackNavigator({
@@ -77,9 +73,6 @@ const LoggedStackNavigator = createStackNavigator({
   Logout: {
     screen: Login
   },
-  MyArticles: {
-    screen: MyArticles
-  }
 });
 
 const GuestStackNavigator = createStackNavigator({
