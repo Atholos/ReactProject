@@ -107,8 +107,9 @@ const useUploadForm = () => {
     console.log(tagProjectJson);
   };
   const avatarUpload = async (file, uid) => {
-    const gotToken = await AsyncStorage.getItem('userToken');
-   // const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
+    const userID = uid;
+    //const gotToken = await AsyncStorage.getItem('userToken');
+    const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
     const localUri = file;
     const filename = localUri.split('/').pop();
     const match = /\.(\w+)$/.exec(filename);
@@ -118,7 +119,6 @@ const useUploadForm = () => {
     formData.append('title', upload.title);
     formData.append('description', upload.desc);
     console.log('formdata', formData);
-
 
     // Kuvan uppaaminen
     const response = await fetch('http://media.mw.metropolia.fi/wbma/media', {
@@ -130,6 +130,12 @@ const useUploadForm = () => {
       body: formData,
     });
     const json = await response.json();
+
+    const tagAvatarData = {
+      file_id: json.file_id,
+      tag: 'Avatar'+userID,
+    };
+
     console.log(json);
 
     const tagUserAvatar = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
@@ -138,10 +144,11 @@ const useUploadForm = () => {
         'Content-Type': 'application/json',
         'x-access-token': gotToken,
       },
-      body: JSON.stringify(tagProjectData),
+      body: JSON.stringify(tagAvatarData),
     });
     const tagAvatar = await tagUserAvatar.json();
-    console.log(tagProjectJson);
+    console.log(tagAvatar);
+    return tagAvatar;
   };
 
   const clearForm = () => {
@@ -155,6 +162,7 @@ const useUploadForm = () => {
     handleUpload,
     upload,
     clearForm,
+    avatarUpload,
   };
 };
 

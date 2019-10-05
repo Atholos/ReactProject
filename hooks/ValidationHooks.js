@@ -3,10 +3,12 @@ import validate from 'validate.js';
 import LoginValidation from '../validations/LoginValidation';
 import RegisterValidation from '../validations/RegisterValidation';
 import appHooks from './MainHooks';
+import useUploadForm from './UploadHooks';
 
 
 const appValidation = () => {
   const { register, signIn } = appHooks();
+  const { avatarUpload } = useUploadForm();
 
   const registerValidate = async (inputs, props, image) => {
     const constraints = RegisterValidation;
@@ -17,10 +19,10 @@ const appValidation = () => {
 
     console.log(emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword);
     if (!emailError.email && !passwordError.password && !usernameError.username && !passconfError.confirmPassword) {
-      const uid = register(inputs, props);
-
+      const uid = await register(inputs, props);
+      await avatarUpload(image, uid)
       console.log('Registered Succesfully');
-      signIn(inputs, props);
+      await signIn(inputs, props);
     } else {
       const errorArr = [emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword];
       for (let i = 0; i < errorArr.length; i++) {

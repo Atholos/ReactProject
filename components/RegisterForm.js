@@ -18,7 +18,7 @@ import * as ImagePicker from 'expo-image-picker';
 //Component for Register form that is then imported in Login View as a tab
 const RegisterForm = (props) => {
   const { registerValidate } = appValidation();
-  const { userCheck, getPermissionAsync } = appHooks();
+  const { usernameCheck, getPermissionAsync } = appHooks();
   const {
     inputs,
     handleUsernameChange,
@@ -69,7 +69,7 @@ const RegisterForm = (props) => {
               onEndEditing={(evt) => {
                 const username = evt.nativeEvent.text;
                 console.log(username);
-                userCheck(username);
+                usernameCheck(username);
               }}
             />
           </Item>
