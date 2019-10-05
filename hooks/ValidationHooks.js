@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import validate from 'validate.js';
 import LoginValidation from '../validations/LoginValidation';
 import RegisterValidation from '../validations/RegisterValidation';
@@ -16,7 +16,6 @@ const appValidation = () => {
     const passwordError = validate({ password: inputs.password }, constraints);
     const passconfError = validate({ password: inputs.password, confirmPassword: inputs.cpw }, constraints);
     const usernameError = validate({ username: inputs.username }, constraints);
-
     console.log(emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword);
     if (!emailError.email && !passwordError.password && !usernameError.username && !passconfError.confirmPassword) {
       const uid = await register(inputs, props);

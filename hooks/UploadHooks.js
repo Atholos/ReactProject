@@ -108,7 +108,6 @@ const useUploadForm = () => {
   };
   const avatarUpload = async (file, uid) => {
     const userID = uid;
-    //const gotToken = await AsyncStorage.getItem('userToken');
     const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
     const localUri = file;
     const filename = localUri.split('/').pop();
@@ -135,7 +134,7 @@ const useUploadForm = () => {
       file_id: json.file_id,
       tag: 'Avatar'+userID,
     };
-
+    console.log(tag);
     console.log(json);
 
     const tagUserAvatar = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
