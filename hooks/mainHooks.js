@@ -42,9 +42,9 @@ const appHooks = () => {
       'full_name': inputs.full_name,
     };
     const json = await fetchPostUrl('users', data);
-    console.log(json);
+    console.log(json.user_id);
     if (!json.error) {
-      return (json);
+      return (json.user_id);
     }
   };
   //function for checking username availability
