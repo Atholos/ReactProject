@@ -53,7 +53,7 @@ const useUploadForm = () => {
     const json = await response.json();
     console.log(json);
 
-    // Tagin bodytext sisältö, käyttää upatin kuvan file iideetä
+    // Tagin bodytext sisältö, käyttää upatun kuvan file iideetä
     const tagDescData = {
       file_id: json.file_id,
       tag: upload.body,

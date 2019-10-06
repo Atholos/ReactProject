@@ -37,6 +37,38 @@ const getTagFiles = async () => {
   return tagresult;
 };
 
+const getArticleTags = (url) => {
+    const {articles, setArticles} = useContext(AppContext);
+    const [loading, setLoading] = useState(true);
+    const fetchUrl = async () => {
+      // Hakee projektitagilla kaikki tiedostot
+      const tagfiles = await getTagFiles();
+      // Alustetaan array johon kerätään file_id tageusta
+      const tagFileId = [];
+      const taggedFilesList = [];
+      for (let i=0; i < tagfiles.length; i++) {
+        //pusketaan haettujen tagimatchien file_id:t arrayhyn
+        tagFileId.push(tagfiles[i].file_id);
+      }
+      //Haetaan mediafilet äsken kerätyillä file_id:llä
+      for (let i=0; i < tagFileId.length; i++) {
+        console.log('rullaa');
+        const response = await fetch(url + tagFileId[i]);
+        const json = await response.json();
+        //Pusketaan taggedFilesList arrayhyn haetut mediat
+        taggedFilesList.push(json);
+      }
+      console.log('TAGGED FILES LIST', taggedFilesList);
+      //Laitetaan artikkeiliksi haetut, karsitut, mediat
+      setArticles(taggedFilesList);
+      setLoading(false);
+    };
+    useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [articles, loading];
+}
+
 const ArticleHooks = () => {
 
   const getArticleDesc = async (fileid) => {
@@ -75,43 +107,11 @@ const ArticleHooks = () => {
   };
 
   const useFetch = (url) => {
-    const {articles, setArticles} = useContext(AppContext);
-    const [loading, setLoading] = useState(true);
-    const fetchUrl = async () => {
-      const tagfiles = await getTagFiles();
-      console.log('TAGFILES', tagfiles[1]);
-      const tagFileId = [];
-      const taggedFilesList = [];
-      for (i=0; i < tagfiles.length; i++) {
-        tagFileId.push(tagfiles[i].file_id);
-      }
-      // console.log('tagFileID', tagFileId[1])
-      for (let i=0; i < tagFileId.length; i++) {
-        console.log('rullaa');
-        const response = await fetch(url + tagFileId[i]);
-        const json = await response.json();
-        taggedFilesList.push(json);
-      }
-      console.log('TAGGED FILES LIST', taggedFilesList);
-      setArticles(taggedFilesList);
-      setLoading(false);
-    };
-    useEffect(() => {
-      fetchUrl();
-    }, []);
-    return [articles, loading];
+    return(getArticleTags(url))
   };
 
   const getAllMyArticles = () => {
-    const {myArticles, setMyArticles} = useContext(AppContext);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-      fetchURL(apiUrl + 'media/user').then((json) => {
-        setMyArticles(json);
-        setLoading(false);
-      });
-    }, []);
-    return [myArticles, loading];
+    return(getArticleTags('http://media.mw.metropolia.fi/wbma/media/user'));
   };
 
   const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
