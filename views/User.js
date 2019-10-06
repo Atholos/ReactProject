@@ -4,17 +4,23 @@ import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Button, Thumbnail} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import UpdatePasswordForm from '../components/UpdatePasswordForm';
+import ArticleHooks from '../hooks/ArticleHooks';
 
 const User = (props) => {
   const {
     signOut,
     getUser,
   } = appHooks();
+  const {
+    getAvatarTag,
+  } = ArticleHooks();
 
   const [uinfo, setUinfo] = useState({});
+  const avatar = getAvatarTag(uinfo.id);
+
 
   const togglePassword = () => {
-    console.log('toggle')
+    console.log('toggle');
     if (uinfo.form === 0 || !uinfo.form) {
       setUinfo({form: 1});
     } else {
@@ -25,7 +31,7 @@ const User = (props) => {
   useEffect(() => {
     getUser().then((json) => {
       console.log('USER DATA IN USER.JS', json);
-      console.log(uinfo.form)
+      console.log(uinfo.form);
       const parsedJson = JSON.parse(json);
       const date = parsedJson.time_created.split('T');
       setUinfo(
@@ -42,7 +48,6 @@ const User = (props) => {
     });
   }, [uinfo.form]);
 
-
   return (
     <Container style={styles.container}>
       <Content>
@@ -50,7 +55,7 @@ const User = (props) => {
         <Thumbnail
           square
           large
-          source={{uri: 'http://media.mw.metropolia.fi/wbma/tags/Avatar' + uinfo.id}} />
+          source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
         <Text>Welcome {uinfo.name}</Text>
         <Text>Email {uinfo.email}</Text>
         <Text>Member since {uinfo.doc}</Text>
