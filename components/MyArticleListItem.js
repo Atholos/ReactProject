@@ -18,7 +18,6 @@ import {
 import ArticleHooks from '../hooks/ArticleHooks';
 import { MediaContext } from '../contexts/MediaContext';
 import { AppContext } from '../contexts/AppContext';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Image } from 'react-native';
 
 const MyArticleListItem = (props) => {
