@@ -38,6 +38,7 @@ const appValidation = () => {
     console.log(emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword);
     if (!emailError.email && !passwordError.password && !usernameError.username && !passconfError.confirmPassword) {
       const uid = await register(inputs, props);
+      console.log('IMAGE JA UID', image, uid);
       await avatarUpload(image, uid);
       console.log('Registered Succesfully');
       await signIn(inputs, props);
