@@ -43,7 +43,7 @@ const getAvatarTag = async (uid) =>{
   console.log('AVATAR RESULT', avatarResult[0]);
   const avatarID = avatarResult[0].file_id;
   const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-  console.log(apiUrl + 'media/' + avatarID);
+  console.log(apiUrl + 'uploads/' + avatarID);
   console.log('USERAVATAR', avatarFile);
   return avatarFile.thumbnails.w320;
 };
