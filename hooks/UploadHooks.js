@@ -117,7 +117,7 @@ const useUploadForm = () => {
     formData.append('file', { uri: localUri, name: filename, type });
     formData.append('title', 'Avatar for '+uid);
     formData.append('description', 'Avatar for '+uid);
-    console.log('formdata', formData);
+    //console.log('formdata', formData);
 
     // Kuvan uppaaminen
     const response = await fetch('http://media.mw.metropolia.fi/wbma/media', {
