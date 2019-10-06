@@ -16,7 +16,6 @@ import {
   Icon
 } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
-import { MediaContext } from '../contexts/MediaContext';
 import { AppContext } from '../contexts/AppContext';
 import { Image } from 'react-native';
 
