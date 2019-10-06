@@ -39,6 +39,8 @@ const getTagFiles = async (tag) => {
 
 const avatarTag = async (uid) =>
 
+{};
+
 const getArticleTags = (url) => {
   const {articles, setArticles} = useContext(AppContext);
   const [loading, setLoading] = useState(true);
