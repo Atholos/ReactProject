@@ -43,7 +43,7 @@ const getAvatarTag = async (uid) =>{
   console.log('AVATAR RESULT', avatarResult[0]);
   const avatarID = avatarResult[0].file_id;
   const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-  console.log(apiUrl + 'uploads/' + avatarID);
+  console.log(apiUrl + 'media/' + avatarID);
   console.log('USERAVATAR', avatarFile);
   return avatarFile.thumbnails.w320;
 };
@@ -123,9 +123,13 @@ const ArticleHooks = () => {
   const getAllMyArticles = (userID) => {
     const allArticles = getArticleTags('http://media.mw.metropolia.fi/wbma/media/user');
     console.log('My articles', userID);
-    const myArticles = []
-
-    return allArticles;
+    const myArticles = [];
+    for (let i=0; i < allArticles.length; i++) {
+      if (allArticles.user_id == userID) {
+        myArticles.push(allArticles[i]);
+      }
+    }
+    return myArticles;
   };
 
   const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
