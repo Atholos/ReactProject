@@ -27,8 +27,8 @@ const RegisterForm = (props) => {
     handleEmailChange,
     handleFullnameChange,
   } = useLogRegForm();
-  const craftAvatar = 'https://www.catholicnewsagency.com/images/Beer_Credit_Africa_Studio_Shutterstock_CNA.jpg?w=760';
-  const [image, setImage] = useState({selected: craftAvatar});
+  const dummyURL = 'https://www.catholicnewsagency.com/images/Beer_Credit_Africa_Studio_Shutterstock_CNA.jpg?w=760';
+  const [image, setImage] = useState({selected: dummyURL});
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
