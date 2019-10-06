@@ -38,7 +38,8 @@ const ArticleListItem = (props) => {
 
     return (
 
-    <ListItem thumbnail onPress={() => {navigation.push("Article", {
+    <ListItem thumbnail onPress={() => {
+      navigation.push('Article', {
       file: singleMedia,
       filedesc: desc.text,
      });

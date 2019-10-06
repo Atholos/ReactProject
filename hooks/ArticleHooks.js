@@ -1,7 +1,6 @@
 import {useEffect, useContext, useState} from 'react';
 import {AsyncStorage} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
-import {MediaContext} from '../contexts/MediaContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -69,6 +68,42 @@ const getArticleTags = (url) => {
     return [articles, loading];
 }
 
+const getMyArticleTags = (url) => {
+  const {myArticles, setMyArticles} = useContext(AppContext);
+  const [loading, setLoading] = useState(true);
+  const fetchUrl = async () => {
+    // Hakee userin tiedostot
+    const userArticles = await fetchURL(apiUrl + 'media/user');
+    // Hakee projektitagilla kaikki tiedostot
+    const tagfiles = await getTagFiles();
+    // Alustetaan array johon kerätään file_id tageusta
+    const tagFileId = [];
+    const taggedFilesList = [];
+    for (let i=0; i < tagfiles.length; i++) {
+      //pusketaan haettujen tagimatchien file_id:t arrayhyn
+      tagFileId.push(tagfiles[i].file_id);
+    }
+    //Haetaan mediafilet äsken kerätyillä file_id:llä
+    for (let i=0; i < tagFileId.length; i++) {
+      console.log('rullaa');
+      const response = await fetch(url + tagFileId[i]);
+      const json = await response.json();
+      //Pusketaan taggedFilesList arrayhyn haetut mediat
+      if (userArticles===true){
+      taggedFilesList.push(json);
+      }
+    }
+    console.log('TAGGED FILES LIST', taggedFilesList);
+    //Laitetaan artikkeiliksi haetut, karsitut, mediat
+    setMyArticles(taggedFilesList);
+    setLoading(false);
+  };
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+  return [myArticles, loading];
+}
+
 const ArticleHooks = () => {
 
   const getArticleDesc = async (fileid) => {
@@ -111,7 +146,15 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = () => {
-    return(getArticleTags('http://media.mw.metropolia.fi/wbma/media/user'));
+    const {myArticles, setMyArticles} = useContext(AppContext);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      fetchGetUrl(apiUrl + 'media/user').then((json) => {
+        setMyArticles(json);
+        setLoading(false);
+      });
+    }, []);
+    return [myArticles, loading];
   };
 
   const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {

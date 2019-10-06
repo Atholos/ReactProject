@@ -11,6 +11,7 @@ const MyArticleList = (props) => {
   const [myArticles, loading] = getAllMyArticles();
   console.log(loading);
   console.log('media', myArticles);
+  
   return (
     <List
       dataArray={myArticles}
