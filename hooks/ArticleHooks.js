@@ -1,7 +1,6 @@
 import {useEffect, useContext, useState} from 'react';
 import {AsyncStorage} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
-import {MediaContext} from '../contexts/MediaContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
