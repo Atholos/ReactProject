@@ -28,8 +28,6 @@ const MyArticleList = (props) => {
   }, []);
 
   const [myArticles, loading] = getAllMyArticles(user.id);
-  console.log ('MyArticeList.JS !!!!!!!!!!', myArticles)
-
 
   return (
     <List
