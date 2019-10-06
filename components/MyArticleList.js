@@ -12,8 +12,6 @@ const MyArticleList = (props) => {
   const {navigation} = props;
   const {getAllMyArticles} = ArticleHooks();
   const [user, setUser] = useState({});
-  console.log(loading);
-  console.log('media', myArticles);
 
 
   useEffect(() => {
@@ -30,6 +28,7 @@ const MyArticleList = (props) => {
   }, []);
 
   const [myArticles, loading] = getAllMyArticles(user.id);
+  console.log ('MyArticeList.JS !!!!!!!!!!', myArticles)
 
 
   return (
@@ -41,8 +40,6 @@ const MyArticleList = (props) => {
     />
   );
 };
-
-
 
 MyArticleList.propTypes = {
   navigation: PropTypes.object,

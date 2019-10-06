@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
-import { AsyncStorage, Alert } from 'react-native';
+import React, {useEffect} from 'react';
+import {AsyncStorage, Alert} from 'react-native';
 import useFetch from './FetchHooks';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
-
-  const bootstrapAsync = async props => {
-    const { navigation } = props;
+  const bootstrapAsync = async (props) => {
+    const {navigation} = props;
     const getToken = async () => {
       const userToken = await AsyncStorage.getItem('userToken');
       // This will switch to the Logged in User screen or Guest screen
@@ -22,8 +21,8 @@ const appHooks = () => {
   };
   // function used to sign in
   const signIn = async (inputs, props) => {
-    const { navigation } = props;
-    const { fetchPostUrl } = useFetch();
+    const {navigation} = props;
+    const {fetchPostUrl} = useFetch();
     const data = {
       'username': inputs.username,
       'password': inputs.password,
@@ -33,9 +32,9 @@ const appHooks = () => {
     await AsyncStorage.setItem('user', JSON.stringify(json.user));
     navigation.navigate('User');
   };
-  //function for registering a user
+  // function for registering a user
   const register = async (inputs, props) => {
-    const { fetchPostUrl } = useFetch();
+    const {fetchPostUrl} = useFetch();
     const data = {
       'username': inputs.username,
       'password': inputs.password,
@@ -43,37 +42,37 @@ const appHooks = () => {
       'full_name': inputs.full_name,
     };
     const json = await fetchPostUrl('users', data);
-    console.log(json.user_id);
+    // console.log(json.user_id);
     if (!json.error) {
       return (json.user_id);
     }
   };
-  //function for checking username availability
+  // function for checking username availability
   const usernameCheck = async (uname) => {
-    const { checkAvailability } = useFetch();
+    const {checkAvailability} = useFetch();
     const json = await checkAvailability(uname);
-    console.log(json);
+    // console.log(json);
     if (!json) {
       Alert.alert(
-        'Error',
-        'Username already taken',
-        [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ],
-        { cancelable: false },
+          'Error',
+          'Username already taken',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
       );
-    };
+    }
   };
-  //function for user signing out
+  // function for user signing out
   const signOut = async (props) => {
-    const { navigation } = props;
+    const {navigation} = props;
     await AsyncStorage.clear();
     navigation.navigate('Guest');
   };
 
   const getUser = async () => {
     const gotuser = await AsyncStorage.getItem('user');
-    return gotuser
+    return gotuser;
   };
 
   const checkUser = async (props) => {
@@ -92,12 +91,12 @@ const appHooks = () => {
       console.error(error);
     });
     const result = await response.json();
-    console.log('USEROBJ', result);
-    return JSON.stringify(result.username)
+    //console.log('USEROBJ', result);
+    return JSON.stringify(result.username);
   };
   const getPermissionAsync = async () => {
     if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== 'granted') {
         alert('Sorry, we need camera roll permissions to make this work!');
       }
