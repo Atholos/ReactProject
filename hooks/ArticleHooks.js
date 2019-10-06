@@ -120,8 +120,12 @@ const ArticleHooks = () => {
     return (getArticleTags(url));
   };
 
-  const getAllMyArticles = () => {
-    return (getArticleTags('http://media.mw.metropolia.fi/wbma/media/user'));
+  const getAllMyArticles = (userID) => {
+    const allArticles = getArticleTags('http://media.mw.metropolia.fi/wbma/media/user');
+    console.log('My articles', userID);
+    const myArticles = []
+
+    return allArticles;
   };
 
   const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
