@@ -19,7 +19,6 @@ import * as ImagePicker from 'expo-image-picker';
 const RegisterForm = (props) => {
   const {registerValidate} = appValidation();
   const {usernameCheck, getPermissionAsync} = appHooks();
-  const dummyURL = 'https://www.catholicnewsagency.com/images/Beer_Credit_Africa_Studio_Shutterstock_CNA.jpg?w=760';
   const {
     inputs,
     handleUsernameChange,
