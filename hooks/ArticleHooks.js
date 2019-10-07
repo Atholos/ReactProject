@@ -120,7 +120,7 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = (userID) => {
-    const [myArticles, setMyArticles] = useContext(AppContext);
+    const {myArticles, setMyArticles} = useContext(AppContext);
     const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
     const allArticles = [articles];
     //console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
@@ -132,7 +132,7 @@ const ArticleHooks = () => {
         filteredArticles.push(allArticles[0][i]);
       }
     }
-    setMyArticles(filteredArticles)
+    //setMyArticles(filteredArticles)
     console.log('MYARTICLES !! ! ! ! ! ! ! ! !  ', myArticles);
     return [myArticles, loading];
   };
