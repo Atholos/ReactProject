@@ -160,14 +160,7 @@ const ArticleHooks = () => {
     useEffect(() => {
       fetchUrl();
     }, []);
-<<<<<<< HEAD
-
-    // console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
-    console.log('MYARTICLES !! ! ! ! ! ! ! ! !  ', filteredArticles);
-    return filteredArticles;
-=======
     return [myArticles, loading];
->>>>>>> 5fd5f2c7c29602f7849b15716ae1ee2a6b74316b
   };
 
   const fetchDeleteUrl = async (url, token = '') => {
