@@ -27,7 +27,7 @@ const MyArticleList = (props) => {
     });
   }, []);
 
-  const [myArticles, loading] = getAllMyArticles(user.id);
+  const myArticles = getAllMyArticles(user.id);
 
   return (
     <List
