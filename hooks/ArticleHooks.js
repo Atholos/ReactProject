@@ -119,15 +119,18 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = (userID) => {
+    console.log('1. userid', userID);
     return getMyArticleTags('http://media.mw.metropolia.fi/wbma/media/', userID);
   };
   const getMyArticleTags = (url, userID) => {
+    console.log('2. userid', userID);
     const { myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my articles fetching')
-    const fetchUrl = async () => {
+    const fetchUrl = () => {
+      console.log('3. userid');
       // Hakee projektitagilla kaikki tiedostot
-      const tagfiles = await getTagFiles('craftersguild');
+      const tagfiles = getTagFiles('craftersguild');
       // Alustetaan array johon kerätään file_id tageusta
       const tagFileId = [];
       const taggedFilesList = [];
@@ -139,15 +142,16 @@ const ArticleHooks = () => {
       // Haetaan mediafilet äsken kerätyillä file_id:llä
       for (let i = 0; i < tagFileId.length; i++) {
         // console.log('rullaa');
-        const response = await fetch(url + tagFileId[i]);
-        const json = await response.json();
+        const response = fetch(url + tagFileId[i]);
+        const json = response.json();
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
       // haetaan käyttäjäkohtaiset artikkelit
-      console.log(taggedFilesList)
+      // console.log(taggedFilesList)
       for (let i = 0; i < taggedFilesList.length; i++) {
-        //console.log('tsekkaus toimii')
+        console.log('tsekkaus toimii')
+        // console.log(taggedFilesList[i]);
         if (taggedFilesList[i].user_id == userID) {
           console.log('mätsi paikassa', i)
           filteredArticles.push(taggedFilesList[i]);
