@@ -7,18 +7,21 @@ import useUploadForm from './UploadHooks';
 
 
 const appValidation = () => {
-  const {register, signIn, updatePassword} = appHooks();
+  const {register, signIn} = appHooks();
   const {avatarUpload} = useUploadForm();
 
   const updatePasswordValidate = async (inputs) => {
+    const {updateInfo} = appHooks();
     console.log('updatePasswordValidate');
     const constraints = RegisterValidation;
     const passwordError = validate({password: inputs.password}, constraints);
     const passconfError = validate({password: inputs.password, confirmPassword: inputs.cpw}, constraints);
     if (!passwordError.password && !passconfError.confirmPassword) {
-      // Tee updatePassword funktio appHooksiin
-      // const uid = await updatePassword(inputs);
-      alert('Password updated successfully');
+      console.log('salasana vaihtuu');
+      const data = {
+        password: inputs.password,
+      };
+      updateInfo(data);
     } else {
       const errorArr = [passwordError.password, passconfError.confirmPassword];
       for (let i = 0; i < errorArr.length; i++) {
@@ -30,18 +33,20 @@ const appValidation = () => {
   };
 
   const updateEmailValidate = async (inputs) => {
+    const {updateInfo} = appHooks();
     console.log('updateEmailValidate');
     const constraints = RegisterValidation;
     const emailError = validate({email: inputs.email}, constraints);
     if (!emailError.email) {
-      // Tee updatePassword funktio appHooksiin
-      // const uid = await updatePassword(inputs);
-      alert('Email updated successfully');
+      const data = {
+        email: inputs.email,
+      };
+      updateInfo(data);
+      // alert('Email updated successfully');
     } else {
       alert(emailError.email);
     }
   };
-
 
   const registerValidate = async (inputs, props, image) => {
     const constraints = RegisterValidation;
