@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
-import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
+import React, {useEffect, useState, useContext} from 'react';
+import {StyleSheet, Image, Alert} from 'react-native';
+import {Container, Content, Button, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
+import ArticleHooks from '../hooks/ArticleHooks';
+import {AppContext} from '../contexts/AppContext';
 
 const UserArticle = (props) => {
+  const {setArticles, setMyArticles} = useContext(AppContext);
   const {checkUser} = appHooks();
-  const {navigation} = props;
+  const {navigation, singleMedia} = props;
+  const {deleteArticle} = ArticleHooks();
   const media = navigation.getParam('file', 'WRONG');
   const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
@@ -33,15 +37,23 @@ const UserArticle = (props) => {
           onPress={
             () => {
               console.log('press');
-              deleteMedia(singleMedia, setMyMedia, setMedia);
-              navigation.navigate('Profile');
+              
               Alert.alert(
-                  'Success',
-                  'The file has been deleted!',
-                  [
-                    {text: 'OK', onPress: () => props.navigation.push('MyFiles')},
-                  ],
-                  {cancelable: false});
+                'DELETE',
+                'You are deleting this file for good "OK" to proceed or "Cancel" to retract.',
+                [
+                  {
+                    text: 'OK',
+                    onPress: () => {console.log('OK Pressed'),
+                    deleteArticle(media, setMyArticles, setArticles);
+                  },
+                  },
+                  {text: 'Cancel',
+                   onPress: () => console.log('Cancel Pressed'),
+                   style: 'cancel',},
+                ],
+                {cancelable: false},
+              );
             }
           }
         >

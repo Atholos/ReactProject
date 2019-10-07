@@ -31,19 +31,19 @@ const fetchURL = async (url) => {
 };
 
 const getTagFiles = async (tag) => {
-  console.log('TAGISSA ON KÄYTY', tag);
+  //console.log('TAGISSA ON KÄYTY', tag);
   const tagresult = await fetchGetUrl(apiUrl + 'tags/' +tag);
-  console.log('TAGRESULT', tagresult)
+  //console.log('TAGRESULT', tagresult)
   return tagresult;
 };
 
 const getAvatarTag = async (uid) =>{
   const avatarResult = await getTagFiles('Avatar'+uid);
-  console.log('AVATAR RESULT', avatarResult[0]);
+  //console.log('AVATAR RESULT', avatarResult[0]);
   const avatarID = avatarResult[0].file_id;
   const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-  console.log(apiUrl + 'media/' + avatarID);
-  console.log('USERAVATAR', avatarFile);
+  //console.log(apiUrl + 'media/' + avatarID);
+  //console.log('USERAVATAR', avatarFile);
   return avatarFile.thumbnails.w320;
 };
 
@@ -119,23 +119,49 @@ const ArticleHooks = () => {
     return (getArticleTags(url));
   };
 
-  const getAllMyArticles = () => {
-    return (getArticleTags('http://media.mw.metropolia.fi/wbma/media/user'));
+  const getAllMyArticles = (userID) => {
+    const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
+    const allArticles = [articles];
+    //console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
+    const myArticles = [];
+    for (let i=0; i < allArticles[0].length; i++) {
+      //console.log('tsekkaus toimii')
+      if (allArticles[0][i].user_id == userID) {
+        console.log('mätsi paikassa', i)
+        myArticles.push(allArticles[0][i]);
+      }
+    }
+    console.log('MYARTICLES !! ! ! ! ! ! ! ! !  ', myArticles);
+    return [myArticles, loading];
   };
 
-  const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
-    return fetchDeleteUrl('media/' + file.file_id).then((json) => {
-      // console.log('delete', json);
-      setArticle([]);
-      setMyArticle([]);
+  const fetchDeleteUrl = async (url, token = '') => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log('fetchDeleteUrl', url, userToken);
+    const response = await fetch(apiUrl + url, {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': userToken,
+      },
+    });
+    const json = await response.json();
+    console.log('fetchDeleteUrl json', json);
+    return json;
+  };
+
+  const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
+    return fetchDeleteUrl('media/' + article.file_id).then((json) => {
+       console.log('delete', json);
+      setArticles([]);
+      setMyArticles([]);
       setTimeout(() => {
         // reloadAllMedia(setArticle, setMyArticle);
         navigation.navigate('Profile');
         Alert.alert(
-            'File Deleted',
-            'Reloading user files',
+            'Article Deleted',
+            'Reloading user Articles',
             [
-              {text: 'OK', onPress: () => navigation.navigate('MyFiles')},
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
             ],
             {cancelable: false},
         );

@@ -74,6 +74,9 @@ const LoggedStackNavigator = createStackNavigator({
   Logout: {
     screen: Login
   },
+  UserArticle: {
+    screen: UserArticle,
+  },
 });
 
 const GuestStackNavigator = createStackNavigator({

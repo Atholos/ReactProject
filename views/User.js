@@ -16,8 +16,7 @@ const User = (props) => {
   } = ArticleHooks();
 
   const [uinfo, setUinfo] = useState({});
-  const avatar = getAvatarTag(uinfo.id);
-
+  const [avatar, setAvatar] = useState({});
 
   const togglePassword = () => {
     console.log('toggle');
@@ -47,6 +46,9 @@ const User = (props) => {
       console.log(error);
     });
   }, [uinfo.form]);
+  getAvatarTag(uinfo.id).then(result => {
+    setAvatar(result);
+  });
 
   return (
     <Container style={styles.container}>
