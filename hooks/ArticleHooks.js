@@ -186,10 +186,7 @@ const ArticleHooks = () => {
   };
 
   const reloadAllArticles = (setArticles) => {
-    fetchGetUrl(apiUrl + 'media').then((json) => {
-      console.log('ReloadAllMedia: ',json)
-      setArticles(json);
-    });
+    //setArticle
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
@@ -198,7 +195,7 @@ const ArticleHooks = () => {
       setArticles([]);
       setMyArticles([]);
       setTimeout(() => {
-        reloadAllArticles(setArticles);
+        //reloadAllArticles(setArticles);
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
