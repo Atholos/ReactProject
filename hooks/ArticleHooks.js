@@ -186,7 +186,6 @@ const ArticleHooks = () => {
   };
 
   const reloadAllArticles = (setArticles) => {
-    const [loading, setLoading] = useState(true);
     const fetchUrl = async () => {
       const url = 'http://media.mw.metropolia.fi/wbma/media/'
       // Hakee projektitagilla kaikki tiedostot
@@ -208,12 +207,9 @@ const ArticleHooks = () => {
       }
       // console.log('TAGGED FILES LIST', taggedFilesList);
       // Laitetaan artikkeiliksi haetut, karsitut, mediat
-      setLoading(false);
       return taggedFilesList
     };
-    fetchUrl().then((json) => {
-      setArticles(json);
-    });
+    return fetchUrl()
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
@@ -222,7 +218,9 @@ const ArticleHooks = () => {
       setArticles([]);
       setMyArticles([]);
       setTimeout(() => {
-        reloadAllArticles(setMyArticles);
+        reloadAllArticles().then((json) => {
+          setArticles(json);
+        });
         Alert.alert(
           'Article Deleted',
           'Reloading user Articles',
