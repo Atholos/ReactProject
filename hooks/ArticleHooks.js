@@ -1,5 +1,5 @@
 import {useEffect, useContext, useState} from 'react';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, Alert} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
@@ -187,7 +187,6 @@ const ArticleHooks = () => {
       setMyArticles([]);
       setTimeout(() => {
         // reloadAllMedia(setArticle, setMyArticle);
-        navigation.navigate('Profile');
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
