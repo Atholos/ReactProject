@@ -125,6 +125,7 @@ const ArticleHooks = () => {
   const getMyArticleTags = (url, userID) => {
     const { myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
+    console.log('Starting my articles fetching')
     const fetchUrl = async () => {
       // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles('craftersguild');
@@ -146,12 +147,12 @@ const ArticleHooks = () => {
       }
       // haetaan käyttäjäkohtaiset artikkelit
       console.log(taggedFilesList)
-      const userFilesList = taggedFilesList
-      for (let i = 0; i < userFilesList.length; i++) {
+      taggedFilesList
+      for (let i = 0; i < taggedFilesList.length; i++) {
         //console.log('tsekkaus toimii')
-        if (userFilesList[i].user_id == userID) {
+        if (taggedFilesList[i].user_id == userID) {
           console.log('mätsi paikassa', i)
-          filteredArticles.push(userFilesList[i]);
+          filteredArticles.push(taggedFilesList[i]);
         }
       }
       //asetetaan käyttäjäkohtaiset artikkelit
