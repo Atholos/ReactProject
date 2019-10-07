@@ -294,12 +294,9 @@ const ArticleHooks = () => {
     getAllMyArticles,
     deleteArticle,
     getMyArticleTags,
-<<<<<<< HEAD
     getArticleComments,
-=======
     reloadMyArticles,
     reloadAllArticles,
->>>>>>> b85f7d2fa6ab93da4ea6db454fa4a2dcd1a8e3ed
   };
 };
 
