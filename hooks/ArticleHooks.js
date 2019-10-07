@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import {useEffect, useContext, useState} from 'react';
-import {AsyncStorage, Alert} from 'react-native';
-import {AppContext} from '../contexts/AppContext';
-=======
 import { useEffect, useContext, useState } from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import { AppContext } from '../contexts/AppContext';
->>>>>>> 7e5e8a8e900d7f4615b274defc7b7fd45d2b0def
-
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -87,6 +80,7 @@ const getArticleTags = (url) => {
 };
 
 const ArticleHooks = () => {
+
   const getArticleDesc = async (fileid) => {
     const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid);
     // console.log(descResult);
@@ -169,21 +163,12 @@ const ArticleHooks = () => {
       setTimeout(() => {
         // reloadAllMedia(setArticle, setMyArticle);
         Alert.alert(
-<<<<<<< HEAD
-            'Article Deleted',
-            'Reloading user Articles',
-            [
-              {text: 'OK', onPress: () => {navigation.navigate('Creator')}},
-            ],
-            {cancelable: false},
-=======
           'Article Deleted',
           'Reloading user Articles',
           [
-            { text: 'OK', onPress: () => navigation.navigate('Creator') },
+            { text: 'OK', onPress: () => console.log('OK pressed')},
           ],
           { cancelable: false },
->>>>>>> 7e5e8a8e900d7f4615b274defc7b7fd45d2b0def
         );
       }, 2000);
     });

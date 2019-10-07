@@ -8,7 +8,7 @@ import {AppContext} from '../contexts/AppContext';
 const UserArticle = (props) => {
   const {setArticles, setMyArticles} = useContext(AppContext);
   const {checkUser} = appHooks();
-  const {navigation, singleMedia} = props;
+  const {navigation} = props;
   const {deleteArticle} = ArticleHooks();
   const media = navigation.getParam('file', 'WRONG');
   const mediaDesc = navigation.getParam('filedesc', 'WRONG');
@@ -46,6 +46,7 @@ const UserArticle = (props) => {
                     text: 'OK',
                     onPress: () => {console.log('OK Pressed'),
                     deleteArticle(media, setMyArticles, setArticles);
+                    //navigation.navigate('Creator');
                   },
                   },
                   {text: 'Cancel',
