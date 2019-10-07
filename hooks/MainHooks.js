@@ -133,8 +133,6 @@ const appHooks = () => {
     const result = await response.json();
     console.log('UPDATE INFO', result);
     return JSON.stringify(result.username);
-
-
   }
 
   return {

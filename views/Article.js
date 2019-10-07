@@ -13,7 +13,7 @@ const Article = (props) => {
   const [uname, setUname] = useState({});
 
   useEffect(() => {
-    console.log('Articlemedia!!!', media);
+    console.log('Articlemedia!!!', media.file_id);
     checkUser(props).then((json) => {
       setUname({name: json});
     }).catch((error) => {
