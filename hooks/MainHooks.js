@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {AsyncStorage, Alert} from 'react-native';
 import useFetch from './FetchHooks';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import {AppContext} from '../contexts/AppContext'
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
@@ -70,6 +71,19 @@ const appHooks = () => {
     navigation.navigate('Guest');
   };
 
+  const userToContext = async () => { // Call this when app starts (= Home.js)
+    const { user, setUser } = useContext(AppContext);
+    const getFromStorage = async () => {
+      const storageUser = JSON.parse(await AsyncStorage.getItem('user'));
+      console.log('storage', storageUser);
+      setUser(storageUser);
+    }
+    useEffect(() => {
+      getFromStorage();
+    }, []);
+    return [user];
+  };
+
   const getUser = async () => {
     const gotuser = await AsyncStorage.getItem('user');
     return gotuser;
@@ -112,6 +126,7 @@ const appHooks = () => {
     checkUser,
     getUser,
     getPermissionAsync,
+    userToContext,
   };
 };
 export default appHooks;
