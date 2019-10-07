@@ -148,10 +148,16 @@ const ArticleHooks = () => {
         taggedFilesList.push(json);
       }
       // haetaan käyttäjäkohtaiset artikkelit
+<<<<<<< HEAD
       // console.log(taggedFilesList)
       for (let i = 0; i < taggedFilesList.length; i++) {
         console.log('tsekkaus toimii')
         // console.log(taggedFilesList[i]);
+=======
+      console.log(userID);
+      for (let i = 0; i < taggedFilesList.length; i++) {
+        console.log('tsekkaus toimii', taggedFilesList[i].user_id)
+>>>>>>> d695ca18b4f33527bc16c6b6841960238639aa21
         if (taggedFilesList[i].user_id == userID) {
           console.log('mätsi paikassa', i)
           filteredArticles.push(taggedFilesList[i]);
