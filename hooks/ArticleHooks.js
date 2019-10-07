@@ -195,19 +195,15 @@ const ArticleHooks = () => {
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
       console.log('delete', json);
-      //setArticles([]);
-      //setMyArticles([]);
+      setArticles([]);
+      setMyArticles([]);
       setTimeout(() => {
-<<<<<<< HEAD
-        // reloadAllMedia(setArticle, setMyArticle);
-=======
-        //reloadAllArticles(setArticle, setMyArticle);
->>>>>>> f70a006fea99c653f964cc3aa9abda572a01b7d2
+        reloadAllArticles(setArticles);
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
             [
-              {text: 'OK', onPress: () => console.log('OK pressed')},
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
             ],
             {cancelable: false},
         );
