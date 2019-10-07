@@ -10,7 +10,7 @@ import appHooks from '../hooks/MainHooks';
 const MyArticleList = (props) => {
   const { getUser } = appHooks();
   const { navigation } = props;
-  const { getAllMyArticles } = ArticleHooks();
+  const { getMyArticleTags } = ArticleHooks();
   const [user, setUser] = useState({});
 
 
@@ -27,7 +27,7 @@ const MyArticleList = (props) => {
     });
   }, []);
 
-  const [myArticles, loading] = getAllMyArticles(user.id);
+  const [myArticles, loading] = getMyArticleTags();
 
   return (
     <List

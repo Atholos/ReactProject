@@ -119,16 +119,18 @@ const ArticleHooks = () => {
     return (getArticleTags(url));
   };
 
-  const getAllMyArticles = (userID) => {
-    return getMyArticleTags('http://media.mw.metropolia.fi/wbma/media/', userID);
-  };
-  const getMyArticleTags = (url, userID) => {
+  const getMyArticleTags = () => {
+    const myurl = 'http://media.mw.metropolia.fi/wbma/media/'
     const { myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my articles fetching')
     const fetchUrl = async () => {
+      const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
+      const userID = gotuser.user_id;
+      console.log('3. userid', userID);
       // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles('craftersguild');
+      // console.log('tagfiles', tagfiles);
       // Alustetaan array johon kerätään file_id tageusta
       const tagFileId = [];
       const taggedFilesList = [];
@@ -138,19 +140,20 @@ const ArticleHooks = () => {
         tagFileId.push(tagfiles[i].file_id);
       }
       // Haetaan mediafilet äsken kerätyillä file_id:llä
+      //console.log('TAGTAGTAGTAGTAG', tagFileId);
       for (let i = 0; i < tagFileId.length; i++) {
-        // console.log('rullaa');
-        const response = await fetch(url + tagFileId[i]);
+        console.log('rullaa');
+        const response = await fetch(myurl + tagFileId[i]);
         const json = await response.json();
+        console.log('JAASONI', json);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
       // haetaan käyttäjäkohtaiset artikkelit
-      console.log(taggedFilesList)
       for (let i = 0; i < taggedFilesList.length; i++) {
-        //console.log('tsekkaus toimii')
+        console.log('tsekkaus toimii', taggedFilesList[i].user_id)
         if (taggedFilesList[i].user_id == userID) {
-          console.log('mätsi paikassa', i)
+          console.log('mätsi paikassa', i);
           filteredArticles.push(taggedFilesList[i]);
         }
       }
@@ -210,7 +213,7 @@ const ArticleHooks = () => {
     getAvatarTag,
     useFetch,
     getArticleDesc,
-    getAllMyArticles,
+    getMyArticleTags,
     deleteArticle,
   };
 };
