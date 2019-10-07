@@ -11,7 +11,7 @@ const appValidation = () => {
   const {avatarUpload} = useUploadForm();
 
   const updatePasswordValidate = async (inputs) => {
-    console.log('updatePasswordValidate')
+    console.log('updatePasswordValidate');
     const constraints = RegisterValidation;
     const passwordError = validate({password: inputs.password}, constraints);
     const passconfError = validate({password: inputs.password, confirmPassword: inputs.cpw}, constraints);
@@ -28,6 +28,20 @@ const appValidation = () => {
       }
     }
   };
+
+  const updateEmailValidate = async (inputs) => {
+    console.log('updateEmailValidate');
+    const constraints = RegisterValidation;
+    const emailError = validate({email: inputs.email}, constraints);
+    if (!emailError.email) {
+      // Tee updatePassword funktio appHooksiin
+      // const uid = await updatePassword(inputs);
+      alert('Email updated successfully');
+    } else {
+      alert(emailError.email);
+    }
+  };
+
 
   const registerValidate = async (inputs, props, image) => {
     const constraints = RegisterValidation;
@@ -73,6 +87,7 @@ const appValidation = () => {
     loginValidate,
     registerValidate,
     updatePasswordValidate,
+    updateEmailValidate,
   };
 };
 export default appValidation;

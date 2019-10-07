@@ -2,16 +2,10 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   ListItem,
-  Left,
   Body,
-  Right,
-  Thumbnail,
   CardItem,
   Text,
   Card,
-  Header,
-  Button,
-  Icon,
 } from 'native-base';
 import {Image} from 'react-native';
 import ArticleHooks from '../hooks/ArticleHooks';

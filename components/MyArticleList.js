@@ -1,16 +1,16 @@
 /* eslint-disable linebreak-style */
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {List} from 'native-base';
+import { List } from 'native-base';
 import MyArticleListItem from './MyArticleListItem';
 import ArticleHooks from '../hooks/ArticleHooks';
 import appHooks from '../hooks/MainHooks';
 
 
 const MyArticleList = (props) => {
-  const {getUser} = appHooks();
-  const {navigation} = props;
-  const {getAllMyArticles} = ArticleHooks();
+  const { getUser } = appHooks();
+  const { navigation } = props;
+  const { getAllMyArticles } = ArticleHooks();
   const [user, setUser] = useState({});
 
 
@@ -18,16 +18,16 @@ const MyArticleList = (props) => {
     getUser().then((json) => {
       const parsedJson = JSON.parse(json);
       setUser(
-          {
-            id: parsedJson.user_id,
-          }
+        {
+          id: parsedJson.user_id,
+        }
       );
     }).catch((error) => {
       console.log(error);
     });
   }, []);
 
-  const myArticles = getAllMyArticles(user.id);
+  const [myArticles, loading] = getAllMyArticles(user.id);
 
   return (
     <List

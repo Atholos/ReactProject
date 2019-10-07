@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AsyncStorage} from 'react-native';
+import {useState} from 'react';
+import {AsyncStorage} from 'react-native';
 
 const useUploadForm = () => {
   const [upload, setUpload] = useState({});
@@ -35,10 +35,10 @@ const useUploadForm = () => {
     const match = /\.(\w+)$/.exec(filename);
     const type = match ? `image/${match[1]}` : `image`;
     const formData = new FormData();
-    formData.append('file', { uri: localUri, name: filename, type });
+    formData.append('file', {uri: localUri, name: filename, type});
     formData.append('title', upload.title);
     formData.append('description', upload.desc);
-    //console.log('formdata', formData);
+    // console.log('formdata', formData);
 
 
     // Kuvan uppaaminen
@@ -51,7 +51,7 @@ const useUploadForm = () => {
       body: formData,
     });
     const json = await response.json();
-    //console.log(json);
+    // console.log(json);
 
     // Tagin bodytext sisältö, käyttää upatun kuvan file iideetä
     const tagDescData = {
@@ -69,7 +69,7 @@ const useUploadForm = () => {
       body: JSON.stringify(tagDescData),
     });
     const tagJson = await tagDesc.json();
-    //console.log(tagJson);
+    // console.log(tagJson);
 
 
     // Lisätään kategoria tagina. TEE KATEGORIASTA ITSE VALITTAVA!!
@@ -88,7 +88,7 @@ const useUploadForm = () => {
       body: JSON.stringify(tagCatData),
     });
     const tagCatJson = await tagCategory.json();
-    //console.log(tagCatJson);
+    // console.log(tagCatJson);
 
     const tagProjectData = {
       file_id: json.file_id,
@@ -104,7 +104,7 @@ const useUploadForm = () => {
       body: JSON.stringify(tagProjectData),
     });
     const tagProjectJson = await tagProject.json();
-    //console.log(tagProjectJson);
+    // console.log(tagProjectJson);
   };
   const avatarUpload = async (file, uid) => {
     const userID = uid;
@@ -114,10 +114,10 @@ const useUploadForm = () => {
     const match = /\.(\w+)$/.exec(filename);
     const type = match ? `image/${match[1]}` : `image`;
     const formData = new FormData();
-    formData.append('file', { uri: localUri, name: filename, type });
+    formData.append('file', {uri: localUri, name: filename, type});
     formData.append('title', 'Avatar for '+uid);
     formData.append('description', 'Avatar for '+uid);
-    //console.log('formdata', formData);
+    // console.log('formdata', formData);
 
     // Kuvan uppaaminen
     const response = await fetch('http://media.mw.metropolia.fi/wbma/media', {
@@ -134,8 +134,8 @@ const useUploadForm = () => {
       file_id: json.file_id,
       tag: 'Avatar'+userID,
     };
-    //console.log(tagAvatarData);
-    //console.log(json);
+    // console.log(tagAvatarData);
+    // console.log(json);
 
     const tagUserAvatar = await fetch('http://media.mw.metropolia.fi/wbma/tags', {
       method: 'POST',
@@ -146,7 +146,7 @@ const useUploadForm = () => {
       body: JSON.stringify(tagAvatarData),
     });
     const tagAvatar = await tagUserAvatar.json();
-    //console.log(tagAvatar);
+    // console.log(tagAvatar);
     return tagAvatar;
   };
 

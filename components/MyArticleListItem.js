@@ -1,29 +1,23 @@
 /* eslint-disable max-len */
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-native';
 import {
   ListItem,
-  Left,
   Body,
-  Right,
   Thumbnail,
   CardItem,
   Text,
   Card,
-  Header,
-  Button,
-  Icon
 } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
-import { AppContext } from '../contexts/AppContext';
-import { Image } from 'react-native';
+import {AppContext} from '../contexts/AppContext';
+import {Image} from 'react-native';
 
 const MyArticleListItem = (props) => {
   const [desc, setDesc] = useState({});
-  const { setArticle, setMyArticle } = useContext(AppContext);
-  const { navigation, singleMedia } = props;
-  const { getThumbnail, deleteMedia } = ArticleHooks();
+  const {setArticle, setMyArticle} = useContext(AppContext);
+  const {navigation, singleMedia} = props;
+  const {getThumbnail, deleteMedia} = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
   console.log('thumbnails', tn);
   return (
@@ -34,10 +28,10 @@ const MyArticleListItem = (props) => {
           filedesc: desc.text,
         });
       }}>
-      <Card style={{ flex: 1 }}>
+      <Card style={{flex: 1}}>
         <CardItem>
           <Body>
-            {tn && <Thumbnail square large source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160 }} style={{height: 100, width: '100%', flex: 1}} />}
+            {tn && <Thumbnail square large source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160}} style={{height: 100, width: '100%', flex: 1}} />}
           </Body>
         </CardItem>
         <CardItem>
