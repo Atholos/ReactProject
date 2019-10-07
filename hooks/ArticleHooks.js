@@ -119,17 +119,6 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = (userID) => {
-<<<<<<< HEAD
-    const {myArticles, setMyArticles} = useContext(AppContext);
-    const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
-    const allArticles = [articles];
-    const filteredArticles = [];
-    for (let i = 0; i < allArticles[0].length; i++) {
-      // console.log('tsekkaus toimii')
-      if (allArticles[0][i].user_id == userID) {
-        console.log('mätsi paikassa', i);
-        filteredArticles.push(allArticles[0][i]);
-=======
     return getMyArticleTags('http://media.mw.metropolia.fi/wbma/media/', userID);
   };
   const getMyArticleTags = (url, userID) => {
@@ -145,7 +134,6 @@ const ArticleHooks = () => {
       for (let i = 0; i < tagfiles.length; i++) {
         // pusketaan haettujen tagimatchien file_id:t arrayhyn
         tagFileId.push(tagfiles[i].file_id);
->>>>>>> 5fd5f2c7c29602f7849b15716ae1ee2a6b74316b
       }
       // Haetaan mediafilet äsken kerätyillä file_id:llä
       for (let i = 0; i < tagFileId.length; i++) {
