@@ -120,17 +120,19 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = (userID) => {
+    const [myArticles, setMyArticles] = useContext(AppContext);
     const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
     const allArticles = [articles];
     //console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
-    const myArticles = [];
+    const filteredArticles = [];
     for (let i=0; i < allArticles[0].length; i++) {
       //console.log('tsekkaus toimii')
       if (allArticles[0][i].user_id == userID) {
         console.log('mätsi paikassa', i)
-        myArticles.push(allArticles[0][i]);
+        filteredArticles.push(allArticles[0][i]);
       }
     }
+    setMyArticles(filteredArticles)
     console.log('MYARTICLES !! ! ! ! ! ! ! ! !  ', myArticles);
     return [myArticles, loading];
   };
