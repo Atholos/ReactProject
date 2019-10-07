@@ -30,7 +30,7 @@ const MyArticleListItem = (props) => {
   return (
     <ListItem thumbnail
       onPress={() => {
-        navigation.push('Article', {
+        navigation.push('UserArticle', {
           file: singleMedia,
           filedesc: desc.text,
         });
