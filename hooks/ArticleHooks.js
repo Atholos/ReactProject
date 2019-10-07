@@ -120,24 +120,48 @@ const ArticleHooks = () => {
   };
 
   const getAllMyArticles = (userID) => {
-    const { myArticles, setMyArticles } = useContext(AppContext);
-    const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
-    const allArticles = [articles];
-    const filteredArticles = [];
-    for (let i = 0; i < allArticles[0].length; i++) {
-      //console.log('tsekkaus toimii')
-      if (allArticles[0][i].user_id == userID) {
-        console.log('mätsi paikassa', i)
-        filteredArticles.push(allArticles[0][i]);
+    return getMyArticleTags('http://media.mw.metropolia.fi/wbma/media/', userID);
+  };
+  const getMyArticleTags = (url, userID) => {
+    const { myArticles, setMyArticles} = useContext(AppContext);
+    const [loading, setLoading] = useState(true);
+    const fetchUrl = async () => {
+      // Hakee projektitagilla kaikki tiedostot
+      const tagfiles = await getTagFiles('craftersguild');
+      // Alustetaan array johon kerätään file_id tageusta
+      const tagFileId = [];
+      const taggedFilesList = [];
+      const filteredArticles = [];
+      for (let i = 0; i < tagfiles.length; i++) {
+        // pusketaan haettujen tagimatchien file_id:t arrayhyn
+        tagFileId.push(tagfiles[i].file_id);
       }
-    }
-    useEffect((filteredArticles) => {
+      // Haetaan mediafilet äsken kerätyillä file_id:llä
+      for (let i = 0; i < tagFileId.length; i++) {
+        // console.log('rullaa');
+        const response = await fetch(url + tagFileId[i]);
+        const json = await response.json();
+        // Pusketaan taggedFilesList arrayhyn haetut mediat
+        taggedFilesList.push(json);
+      }
+      // haetaan käyttäjäkohtaiset artikkelit
+      console.log(taggedFilesList)
+      const userFilesList = taggedFilesList
+      for (let i = 0; i < userFilesList.length; i++) {
+        //console.log('tsekkaus toimii')
+        if (userFilesList[i].user_id == userID) {
+          console.log('mätsi paikassa', i)
+          filteredArticles.push(userFilesList[i]);
+        }
+      }
+      //asetetaan käyttäjäkohtaiset artikkelit
       setMyArticles(filteredArticles);
+      setLoading(false);
+    };
+    useEffect(() => {
+      fetchUrl();
     }, []);
-
-    //console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
-    console.log('MYARTICLES !! ! ! ! ! ! ! ! !  ', filteredArticles);
-    return filteredArticles;
+    return [myArticles, loading];
   };
 
   const fetchDeleteUrl = async (url, token = '') => {
