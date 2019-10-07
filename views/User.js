@@ -64,10 +64,12 @@ const User = (props) => {
     <Container style={styles.container}>
       <Content>
         <Text style={styles.title}>Profile</Text>
+        {avatar &&
         <Thumbnail
           square
           large
           source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
+        }
         <Text>Welcome {uinfo.name}</Text>
         <Text>Email {uinfo.email}</Text>
         <Text>Member since {uinfo.doc}</Text>
