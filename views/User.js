@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Button, Thumbnail} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import UpdatePasswordForm from '../components/UpdatePasswordForm';
+import UpdateEmailForm from '../components/UpdateEmailForm';
 import ArticleHooks from '../hooks/ArticleHooks';
 
 const User = (props) => {
@@ -22,6 +23,15 @@ const User = (props) => {
     console.log('toggle');
     if (uinfo.form === 0 || !uinfo.form) {
       setUinfo({form: 1});
+    } else {
+      setUinfo({form: 0});
+    }
+  };
+
+  const toggleEmail = () => {
+    console.log('toggle');
+    if (uinfo.form === 0 || !uinfo.form) {
+      setUinfo({form: 2});
     } else {
       setUinfo({form: 0});
     }
@@ -46,7 +56,7 @@ const User = (props) => {
       console.log(error);
     });
   }, [uinfo.form]);
-  getAvatarTag(uinfo.id).then(result => {
+  getAvatarTag(uinfo.id).then((result) => {
     setAvatar(result);
   });
 
@@ -65,9 +75,10 @@ const User = (props) => {
           <Text>Change password</Text>
         </Button>
         {uinfo.form === 1 && <UpdatePasswordForm />}
-        <Button onPress={() => signOut(props)}>
+        <Button onPress={() => toggleEmail()}>
           <Text>Change email</Text>
         </Button>
+        {uinfo.form === 2 && <UpdateEmailForm />}
         <Button onPress={() => signOut(props)}>
           <Text>Logout!</Text>
         </Button>

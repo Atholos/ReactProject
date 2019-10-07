@@ -91,7 +91,7 @@ const appHooks = () => {
       console.error(error);
     });
     const result = await response.json();
-    //console.log('USEROBJ', result);
+    // console.log('USEROBJ', result);
     return JSON.stringify(result.username);
   };
   const getPermissionAsync = async () => {
