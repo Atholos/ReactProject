@@ -194,11 +194,7 @@ const ArticleHooks = () => {
       //setArticles([]);
       //setMyArticles([]);
       setTimeout(() => {
-<<<<<<< HEAD
-        // reloadAllMedia(setArticle, setMyArticle);
-=======
         //reloadAllArticles(setArticle, setMyArticle);
->>>>>>> 408b4b54f4103a8bf20ff1be13cd35f124d8ba0c
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
