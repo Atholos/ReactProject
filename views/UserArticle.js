@@ -37,7 +37,7 @@ const UserArticle = (props) => {
           onPress={
             () => {
               console.log('press');
-              
+
               Alert.alert(
                 'DELETE',
                 'You are deleting this file for good "OK" to proceed or "Cancel" to retract.',
@@ -45,7 +45,7 @@ const UserArticle = (props) => {
                   {
                     text: 'OK',
                     onPress: () => {console.log('OK Pressed'),
-                    deleteArticle(media, setMyArticles, setArticles);
+                    deleteArticle(media, setMyArticles, setArticles, navigation);
                   },
                   },
                   {text: 'Cancel',

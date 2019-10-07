@@ -1,6 +1,7 @@
 import {useEffect, useContext, useState} from 'react';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, Alert} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
+
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -118,6 +119,9 @@ const ArticleHooks = () => {
     return (getArticleTags(url));
   };
 
+  const getAllMyArticles = (userID) => {
+    return getMyArticleTags();
+  };
   const getMyArticleTags = () => {
     const myurl = 'http://media.mw.metropolia.fi/wbma/media/'
     const { myArticles, setMyArticles} = useContext(AppContext);
@@ -187,7 +191,6 @@ const ArticleHooks = () => {
       setMyArticles([]);
       setTimeout(() => {
         // reloadAllMedia(setArticle, setMyArticle);
-        navigation.navigate('Profile');
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
@@ -206,8 +209,9 @@ const ArticleHooks = () => {
     getAvatarTag,
     useFetch,
     getArticleDesc,
-    getMyArticleTags,
+    getAllMyArticles,
     deleteArticle,
+    getMyArticleTags,
   };
 };
 

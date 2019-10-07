@@ -27,7 +27,7 @@ const MyArticleList = (props) => {
     });
   }, []);
 
-  const [myArticles, loading] = getMyArticleTags(user.id);
+  const [myArticles, loading] = getMyArticleTags();
 
   return (
     <List
