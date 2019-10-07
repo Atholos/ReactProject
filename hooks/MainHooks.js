@@ -117,6 +117,24 @@ const appHooks = () => {
     }
   };
 
+  const updateInfo = async (data) => {
+    const gotToken = await AsyncStorage.getItem('userToken');
+    console.log('updatedata', data);
+    const response = await fetch('http://media.mw.metropolia.fi/wbma/users/', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(data),
+    }).catch((error) => {
+      console.error(error);
+    });
+    const result = await response.json();
+    console.log('UPDATE INFO', result);
+    return JSON.stringify(result.username);
+  }
+
   return {
     bootstrapAsync,
     signIn,
@@ -127,6 +145,7 @@ const appHooks = () => {
     getUser,
     getPermissionAsync,
     userToContext,
+    updateInfo,
   };
 };
 export default appHooks;
