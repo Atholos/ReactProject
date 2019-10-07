@@ -122,7 +122,7 @@ const ArticleHooks = () => {
   const getAllMyArticles = (userID) => {
     const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
     const allArticles = [articles];
-    console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
+    //console.log('ALL MY ARTICLES', allArticles[0][19].user_id, userID);
     const myArticles = [];
     for (let i=0; i < allArticles[0].length; i++) {
       //console.log('tsekkaus toimii')
@@ -135,19 +135,33 @@ const ArticleHooks = () => {
     return [myArticles, loading];
   };
 
-  const deleteArticle = async (file, setMyArticle, setArticle, navigation) => {
-    return fetchDeleteUrl('media/' + file.file_id).then((json) => {
-      // console.log('delete', json);
-      setArticle([]);
-      setMyArticle([]);
+  const fetchDeleteUrl = async (url, token = '') => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log('fetchDeleteUrl', url, userToken);
+    const response = await fetch(apiUrl + url, {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': userToken,
+      },
+    });
+    const json = await response.json();
+    console.log('fetchDeleteUrl json', json);
+    return json;
+  };
+
+  const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
+    return fetchDeleteUrl('media/' + article.file_id).then((json) => {
+       console.log('delete', json);
+      setArticles([]);
+      setMyArticles([]);
       setTimeout(() => {
         // reloadAllMedia(setArticle, setMyArticle);
         navigation.navigate('Profile');
         Alert.alert(
-            'File Deleted',
-            'Reloading user files',
+            'Article Deleted',
+            'Reloading user Articles',
             [
-              {text: 'OK', onPress: () => navigation.navigate('MyFiles')},
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
             ],
             {cancelable: false},
         );

@@ -15,7 +15,6 @@ import {
 } from 'native-base';
 import {Image} from 'react-native';
 import ArticleHooks from '../hooks/ArticleHooks';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 
 const ArticleListItem = (props) => {

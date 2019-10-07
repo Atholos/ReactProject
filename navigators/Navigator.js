@@ -9,6 +9,7 @@ import Article from '../views/Article';
 import Creator from '../views/Creator';
 import Auth from '../views/Auth';
 import Login from '../views/Login';
+import UserArticle from '../views/UserArticle';
 import MyArticles from '../views/MyArticles';
 import { Icon } from 'native-base';
 
@@ -72,6 +73,9 @@ const LoggedStackNavigator = createStackNavigator({
   },
   Logout: {
     screen: Login
+  },
+  UserArticle: {
+    screen: UserArticle,
   },
 });
 

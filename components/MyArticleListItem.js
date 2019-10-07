@@ -29,7 +29,7 @@ const MyArticleListItem = (props) => {
   return (
     <ListItem thumbnail
       onPress={() => {
-        navigation.push("Article", {
+        navigation.push('UserArticle', {
           file: singleMedia,
           filedesc: desc.text,
         });
@@ -37,7 +37,7 @@ const MyArticleListItem = (props) => {
       <Card style={{ flex: 1 }}>
         <CardItem>
           <Body>
-            <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320 }} style={{ height: 200, width: '100%', flex: 1 }} />
+            {tn && <Thumbnail square large source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160 }} style={{height: 100, width: '100%', flex: 1}} />}
           </Body>
         </CardItem>
         <CardItem>
