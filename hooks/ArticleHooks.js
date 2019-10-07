@@ -146,7 +146,6 @@ const ArticleHooks = () => {
       }
       // haetaan käyttäjäkohtaiset artikkelit
       console.log(taggedFilesList)
-      taggedFilesList
       for (let i = 0; i < taggedFilesList.length; i++) {
         //console.log('tsekkaus toimii')
         if (taggedFilesList[i].user_id == userID) {
