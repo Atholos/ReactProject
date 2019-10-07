@@ -14,7 +14,7 @@ const AppProvider = (props) => {
   const [articles, setArticles] = useState(initialArticle);
   const [user, setUser] = useState(initialUser);
   const [myArticles, setMyArticles] = useState(initialMyArticle);
-  const [categories, setCategories] = useState(initialCategories)
+  const [categories, setCategories] = useState(initialCategories);
 
   const applicationContext = {
     user,

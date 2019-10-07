@@ -1,6 +1,6 @@
-import { useEffect, useContext, useState } from 'react';
-import { AsyncStorage } from 'react-native';
-import { AppContext } from '../contexts/AppContext';
+import {useEffect, useContext, useState} from 'react';
+import {AsyncStorage} from 'react-native';
+import {AppContext} from '../contexts/AppContext';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -31,24 +31,24 @@ const fetchURL = async (url) => {
 };
 
 const getTagFiles = async (tag) => {
-  //console.log('TAGISSA ON KÄYTY', tag);
+  // console.log('TAGISSA ON KÄYTY', tag);
   const tagresult = await fetchGetUrl(apiUrl + 'tags/' + tag);
-  //console.log('TAGRESULT', tagresult)
+  // console.log('TAGRESULT', tagresult)
   return tagresult;
 };
 
 const getAvatarTag = async (uid) => {
   const avatarResult = await getTagFiles('Avatar' + uid);
-  //console.log('AVATAR RESULT', avatarResult[0]);
+  // console.log('AVATAR RESULT', avatarResult[0]);
   const avatarID = avatarResult[0].file_id;
   const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-  //console.log(apiUrl + 'media/' + avatarID);
-  //console.log('USERAVATAR', avatarFile);
+  // console.log(apiUrl + 'media/' + avatarID);
+  // console.log('USERAVATAR', avatarFile);
   return avatarFile.thumbnails.w320;
 };
 
 const getArticleTags = (url) => {
-  const { articles, setArticles } = useContext(AppContext);
+  const {articles, setArticles} = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const fetchUrl = async () => {
     // Hakee projektitagilla kaikki tiedostot
@@ -86,7 +86,6 @@ const ArticleHooks = () => {
     for (let i = 0; i < descResult.length; i++) {
       if (descResult[i].tag.length > 30) {
         return descResult[i].tag;
-        console.log('JACKPOT', descResult[i].tag);
       }
     }
     return 'Description not found';
@@ -188,12 +187,12 @@ const ArticleHooks = () => {
         // reloadAllMedia(setArticle, setMyArticle);
         navigation.navigate('Profile');
         Alert.alert(
-          'Article Deleted',
-          'Reloading user Articles',
-          [
-            { text: 'OK', onPress: () => navigation.navigate('Creator') },
-          ],
-          { cancelable: false },
+            'Article Deleted',
+            'Reloading user Articles',
+            [
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
+            ],
+            {cancelable: false},
         );
       }, 2000);
     });
