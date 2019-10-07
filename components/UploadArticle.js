@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import appHooks from '../hooks/MainHooks';
+import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
 
 
@@ -18,8 +19,8 @@ const UploadArticle = (props) => {
   const  {articles, setArticles} = useContext(AppContext);
   const {
     getPermissionAsync,
-    reloadAllArticles,
   } = appHooks();
+  const {reloadAllArticles} = ArticleHooks();
 
   const {
     upload,
@@ -93,9 +94,12 @@ const UploadArticle = (props) => {
               handleUpload(image.selected, upload.title, upload.desc);
               clearForm();
               setImage({});
+              setArticles([]);
+              
                setTimeout(() =>{
-                props.navigation.navigate('Home');
-      }, 2000);
+                //reloadAllArticles(articles);
+                props.navigation.navigate('Main');
+                }, 2000);
             }}>
               <Text>Upload</Text>
             </Button>
