@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
 import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
+import CommentList from '../components/CommenList';
 
 const Article = (props) => {
   const {checkUser} = appHooks();
@@ -9,6 +10,7 @@ const Article = (props) => {
   const media = navigation.getParam('file', 'WRONG');
   const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
+  const fileID = media.file_id;
 
   const [uname, setUname] = useState({});
 
@@ -24,6 +26,7 @@ const Article = (props) => {
   return (
     <Container>
       <Content>
+        <CommentList fid={fileID} />
         <Text style={styles.title}>{title}</Text>
         <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
         {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}

@@ -82,6 +82,14 @@ const getArticleTags = (url) => {
 
 const ArticleHooks = () => {
 
+  const getArticleComments = async (fileID) => {
+    console.log('comment start', fileID);
+    const response = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
+    console.log('RESPONS', response[0].comment);
+    // for i < reponse.length ...
+    return JSON.stringify(response[0].comment);
+  };
+
   const getArticleDesc = async (fileid) => {
     const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid);
     // console.log(descResult);
@@ -217,6 +225,7 @@ const ArticleHooks = () => {
     getAllMyArticles,
     deleteArticle,
     getMyArticleTags,
+    getArticleComments,
   };
 };
 
