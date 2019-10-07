@@ -191,10 +191,10 @@ const ArticleHooks = () => {
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
       console.log('delete', json);
-      setArticles([]);
-      setMyArticles([]);
+      //setArticles([]);
+      //setMyArticles([]);
       setTimeout(() => {
-        reloadAllArticles(setArticle, setMyArticle);
+        //reloadAllArticles(setArticle, setMyArticle);
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
