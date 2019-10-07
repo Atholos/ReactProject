@@ -2,6 +2,7 @@ import {useEffect, useContext, useState} from 'react';
 import {AsyncStorage, Alert} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
 
+
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
 const fetchGetUrl = async (url) => {
@@ -119,6 +120,9 @@ const ArticleHooks = () => {
     return (getArticleTags(url));
   };
 
+  const getAllMyArticles = (userID) => {
+    return getMyArticleTags();
+  };
   const getMyArticleTags = () => {
     const myurl = 'http://media.mw.metropolia.fi/wbma/media/'
     const { myArticles, setMyArticles} = useContext(AppContext);
@@ -182,24 +186,21 @@ const ArticleHooks = () => {
   };
 
   const reloadAllArticles = (setArticles) => {
-    fetchGetUrl(apiUrl + 'media').then((json) => {
-      console.log('ReloadAllMedia: ',json)
-      setArticles(json);
-    });
+    //setArticle
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
       console.log('delete', json);
-      //setArticles([]);
-      //setMyArticles([]);
+      setArticles([]);
+      setMyArticles([]);
       setTimeout(() => {
-        //reloadAllArticles(setArticle, setMyArticle);
+        //reloadAllArticles(setArticles);
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
             [
-              {text: 'OK', onPress: () => console.log('OK pressed')},
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
             ],
             {cancelable: false},
         );
@@ -213,8 +214,9 @@ const ArticleHooks = () => {
     getAvatarTag,
     useFetch,
     getArticleDesc,
-    getMyArticleTags,
+    getAllMyArticles,
     deleteArticle,
+    getMyArticleTags,
   };
 };
 
