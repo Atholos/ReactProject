@@ -93,6 +93,19 @@ const ArticleHooks = () => {
     return 'Description not found';
   };
 
+  const getAllMedia = () => {
+    // console.log('getAllMedia');
+    const [articles, setArticles] = useContext(AppContext);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      fetchGetUrl(apiUrl + 'media').then((json) => {
+        setArticles(json);
+        setLoading(false);
+      });
+    }, []);
+    return [articles, loading];
+  };
+
   const getThumbnail = (url) => {
     const [thumbnails, setThumbnails] = useState({});
     useEffect(() => {
@@ -159,6 +172,7 @@ const ArticleHooks = () => {
   };
 
   return {
+    getAllMedia,
     getThumbnail,
     getAvatarTag,
     useFetch,
