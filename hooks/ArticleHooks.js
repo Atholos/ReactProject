@@ -286,6 +286,8 @@ const ArticleHooks = () => {
     getAllMyArticles,
     deleteArticle,
     getMyArticleTags,
+    reloadMyArticles,
+    reloadAllArticles,
   };
 };
 
