@@ -80,6 +80,7 @@ const getArticleTags = (url) => {
 };
 
 const ArticleHooks = () => {
+
   const getArticleDesc = async (fileid) => {
     const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid);
     // console.log(descResult);
@@ -180,18 +181,29 @@ const ArticleHooks = () => {
     return json;
   };
 
+  const reloadAllArticles = (setArticles) => {
+    fetchGetUrl(apiUrl + 'media').then((json) => {
+      console.log('ReloadAllMedia: ',json)
+      setArticles(json);
+    });
+  };
+
   const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
       console.log('delete', json);
-      setArticles([]);
-      setMyArticles([]);
+      //setArticles([]);
+      //setMyArticles([]);
       setTimeout(() => {
+<<<<<<< HEAD
         // reloadAllMedia(setArticle, setMyArticle);
+=======
+        //reloadAllArticles(setArticle, setMyArticle);
+>>>>>>> 408b4b54f4103a8bf20ff1be13cd35f124d8ba0c
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
             [
-              {text: 'OK', onPress: () => navigation.navigate('Creator')},
+              {text: 'OK', onPress: () => console.log('OK pressed')},
             ],
             {cancelable: false},
         );
