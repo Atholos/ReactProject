@@ -1,8 +1,9 @@
 import React, {keyExtractor} from "react";
 import PropTypes from "prop-types";
 import ArticleListItem from "./ArticleListItem";
-import { List } from 'native-base';
+import { List, Content } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
+import Filter from './Filter'
 
 
 const ArticleList = (props) => {
