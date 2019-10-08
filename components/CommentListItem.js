@@ -29,7 +29,7 @@ const CommentListItem = (props) => {
       <Card style={{flex: 1}}>
         <CardItem>
           <Body>
-            <Text>{singleComment.comment}</Text>
+            <Text>{singleComment.username}: {singleComment.comment}</Text>
           </Body>
         </CardItem>
       </Card>

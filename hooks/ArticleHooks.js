@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { AsyncStorage, Alert } from 'react-native';
 import { AppContext } from '../contexts/AppContext';
+import appHooks from '../hooks/MainHooks';
 
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
@@ -82,6 +83,7 @@ const getArticleTags = (url) => {
 
 const ArticleHooks = () => {
   const getArticleComments = (fileID) => {
+    const {checkCommentUser} = appHooks();
     const { myComments, setMyComments } = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my comments fetching');
@@ -89,7 +91,11 @@ const ArticleHooks = () => {
       console.log('fetchaa commentteja');
       console.log('failiiidee', fileID);
       const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
-      console.log('VASTAUKSIA KONSOLIIN', result);
+      for (let i=0; i < result.length; i++) {
+        console.log('usereita tseKKAILLAAN')
+        result[i].username = await checkCommentUser(result[i].user_id);
+        console.log(result[i].username);
+      }
       setMyComments(result);
       setLoading(false);
     };
