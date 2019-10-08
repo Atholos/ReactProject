@@ -4,8 +4,8 @@ import {Container, Content, Button, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
-import CommentList from '../components/CommenList';
-
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 const UserArticle = (props) => {
   const {setArticles, setMyArticles} = useContext(AppContext);
@@ -38,26 +38,28 @@ const UserArticle = (props) => {
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
         <CommentList fid={fileID} />
+        <CommentForm fid={fileID} />
         <Button
           onPress={
             () => {
               console.log('press');
 
               Alert.alert(
-                'DELETE',
-                'You are deleting this file for good "OK" to proceed or "Cancel" to retract.',
-                [
-                  {
-                    text: 'OK',
-                    onPress: () => {console.log('OK Pressed'),
-                    deleteArticle(media, setMyArticles, setArticles, navigation);
-                  },
-                  },
-                  {text: 'Cancel',
-                   onPress: () => console.log('Cancel Pressed'),
-                   style: 'cancel',},
-                ],
-                {cancelable: false},
+                  'DELETE',
+                  'You are deleting this file for good "OK" to proceed or "Cancel" to retract.',
+                  [
+                    {
+                      text: 'OK',
+                      onPress: () => {
+                        console.log('OK Pressed'),
+                        deleteArticle(media, setMyArticles, setArticles, navigation);
+                      },
+                    },
+                    {text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel'},
+                  ],
+                  {cancelable: false},
               );
             }
           }

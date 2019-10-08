@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
 import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
-import CommentList from '../components/CommenList';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
+
 
 const Article = (props) => {
   const {checkUser} = appHooks();
@@ -31,6 +33,7 @@ const Article = (props) => {
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
         <CommentList fid={fileID} />
+        <CommentForm fid={fileID} />
       </Content>
     </Container>
   );

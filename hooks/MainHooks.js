@@ -151,7 +151,26 @@ const appHooks = () => {
     const result = await response.json();
     console.log('UPDATE INFO', result);
     return JSON.stringify(result.username);
-  }
+  };
+
+  const postComment = async (fileID, comment) => {
+    const data = {
+      file_id: fileID,
+      comment: comment,
+    };
+    const gotToken = await AsyncStorage.getItem('userToken');
+
+    const response = await fetch('http://media.mw.metropolia.fi/wbma/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    console.log('POST COMMENT', result);
+  };
 
   return {
     bootstrapAsync,
@@ -165,6 +184,7 @@ const appHooks = () => {
     getPermissionAsync,
     userToContext,
     updateInfo,
+    postComment,
   };
 };
 export default appHooks;
