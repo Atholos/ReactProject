@@ -9,7 +9,7 @@ const Filter = () => {
 
   return (
     <Header searchBar rounded>
-      {/* <Item>
+      <Item>
         <Icon name="ios-search" />
         <Input placeholder="Search" onChangeText={text => handleSearch(text)} value={search.params} />
         <Icon name="ios-people" />

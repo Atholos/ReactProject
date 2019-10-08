@@ -25,12 +25,12 @@ const Article = (props) => {
   return (
     <Container>
       <Content>
-        <CommentList fid={fileID} />
         <Text style={styles.title}>{title}</Text>
         <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
         {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
+        <CommentList fid={fileID} />
       </Content>
     </Container>
   );
