@@ -81,13 +81,22 @@ const getArticleTags = (url) => {
 };
 
 const ArticleHooks = () => {
-
-  const getArticleComments = async (fileID) => {
-    console.log('comment start', fileID);
-    const response = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
-    console.log('RESPONS', response[0].comment);
-    // for i < reponse.length ...
-    return JSON.stringify(response[0].comment);
+  const getArticleComments = (fileID) => {
+    const { myComments, setMyComments } = useContext(AppContext);
+    const [loading, setLoading] = useState(true);
+    console.log('Starting my comments fetching');
+    const fetchUrl = async () => {
+      console.log('fetchaa commentteja');
+      console.log('failiiidee', fileID);
+      const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
+      console.log('VASTAUKSIA KONSOLIIN', result);
+      setMyComments(result);
+      setLoading(false);
+    };
+    useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [myComments, loading];
   };
 
   const getArticleDesc = async (fileid) => {

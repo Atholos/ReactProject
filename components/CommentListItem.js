@@ -13,42 +13,23 @@ import ArticleHooks from '../hooks/ArticleHooks';
 
 const CommentListItem = (props) => {
   const [desc, setDesc] = useState({});
-  const {navigation, singleMedia} = props;
-  const {
-    getThumbnail,
-    getArticleDesc,
-  } = ArticleHooks();
+  const {navigation, singleComment} = props;
+  console.log('commentlistitem');
 
-  const tn = getThumbnail(singleMedia.file_id);
-
-  useEffect(() => {
-    getArticleDesc(singleMedia.file_id).then((json) => {
-      setDesc({text: json});
-    }).catch((error) => {
-      console.log(console.error);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getArticleDesc(singleMedia.file_id).then((json) => {
+  //     setDesc({text: json});
+  //   }).catch((error) => {
+  //     console.log(console.error);
+  //   });
+  // }, []);
 
   return (
-
-    <ListItem thumbnail onPress={() => {
-      navigation.push('Article', {
-        file: singleMedia,
-        filedesc: desc.text,
-      });
-    }}>
+    <ListItem>
       <Card style={{flex: 1}}>
         <CardItem>
           <Body>
-            {tn &&<Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320}} style={{height: 200, width: '100%', flex: 1}}/>}
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Body>
-            <Text>{singleMedia.title}</Text>
-            <Text note numberOfLines={3}>
-              {desc.text}
-            </Text>
+            <Text>{singleComment.comment}</Text>
           </Body>
         </CardItem>
       </Card>

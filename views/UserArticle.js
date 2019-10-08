@@ -4,6 +4,8 @@ import {Container, Content, Button, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
+import CommentList from '../components/CommenList';
+
 
 const UserArticle = (props) => {
   const {setArticles, setMyArticles} = useContext(AppContext);
@@ -13,6 +15,8 @@ const UserArticle = (props) => {
   const media = navigation.getParam('file', 'WRONG');
   const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
+  const fileID = media.file_id;
+
 
   const [uname, setUname] = useState({});
 
@@ -33,6 +37,7 @@ const UserArticle = (props) => {
         {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
+        <CommentList fid={fileID} />
         <Button
           onPress={
             () => {

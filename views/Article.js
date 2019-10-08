@@ -22,7 +22,6 @@ const Article = (props) => {
       console.log(error);
     });
   }, []);
-//<CommentList fid={fileID} />
   return (
     <Container>
       <Content>
@@ -31,6 +30,7 @@ const Article = (props) => {
         {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
+        <CommentList fid={fileID} />
       </Content>
     </Container>
   );
