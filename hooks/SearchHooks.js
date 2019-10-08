@@ -15,7 +15,11 @@ const useSearch = () => {
         params: text,
       }));
   };
-  searchFilterFunction = () => {
+  const searchFilterFunction = () => {
+    setArticles([]);
+    reloadAllArticles().then((json) => {
+      setArticles(json);
+    });
 
     const newData = articles.filter(item => {
       const itemData = `${item.title.toUpperCase()} ${item.description.toUpperCase()}`;
