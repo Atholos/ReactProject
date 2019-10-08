@@ -37,10 +37,18 @@ const useLogRegForm = () => {
         full_name: text,
       }));
   };
+  const handleCommentChange = (text) => {
+    setInputs((inputs) =>
+      ({
+        ...inputs,
+        comment: text,
+      }));
+  };
   return {
     handleUsernameChange,
     handlePasswordChange,
     handleEmailChange,
+    handleCommentChange,
     handleFullnameChange,
     handleConfirmPwChange,
     inputs,

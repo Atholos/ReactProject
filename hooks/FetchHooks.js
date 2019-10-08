@@ -17,9 +17,9 @@ const useFetch = () => {
     return exists;
   };
   const fetchPostUrl = async (url, data) => {
-    console.log(url);
-    console.log('fetchPostUrl data', data);
-    console.log('LoginURL: ', fetchUrl+url);
+    // console.log(url);
+    // console.log('fetchPostUrl data', data);
+    // console.log('LoginURL: ', fetchUrl+url);
     const response = await fetch(fetchUrl+url, {
       method: 'POST',
       headers: {
@@ -28,7 +28,7 @@ const useFetch = () => {
       body: JSON.stringify(data),
     });
     const json = await response.json();
-    console.log('fetchPostUrl json', json);
+    // console.log('fetchPostUrl json', json);
     return json;
   };
   return {

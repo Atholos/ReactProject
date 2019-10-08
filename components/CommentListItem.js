@@ -14,7 +14,7 @@ import ArticleHooks from '../hooks/ArticleHooks';
 const CommentListItem = (props) => {
   const [desc, setDesc] = useState({});
   const {navigation, singleComment} = props;
-  console.log('commentlistitem');
+  // console.log('commentlistitem');
 
   // useEffect(() => {
   //   getArticleDesc(singleMedia.file_id).then((json) => {
