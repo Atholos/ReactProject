@@ -18,7 +18,7 @@ const CommentList = (props) => {
   // const [comment, setComment] = useState({});
   // const [comments, loading] = getArticleComments(fid);
   const [comments, loading] = getArticleComments(fid);
-  console.log('kommentteja', comments);
+  // console.log('kommentteja', comments);
 
   // console.log('comments', comments);
 
