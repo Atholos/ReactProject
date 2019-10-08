@@ -32,7 +32,6 @@ const CommentList = (props) => {
 
   return (
     <Content>
-      <Text>Tässä on id: {fid}</Text>
       <List
         dataArray={comments}
         renderRow={(item) => (
