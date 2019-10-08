@@ -16,17 +16,18 @@ const useSearch = () => {
       }));
   };
   const searchFilterFunction = () => {
+    const setNewData = () => {
+      const newData = articles.filter(item => {
+        const itemData = `${item.title.toUpperCase()} ${item.description.toUpperCase()}`;
+        const textData = search.params.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setArticles(newData);
+    }
     setArticles([]);
     reloadAllArticles().then((json) => {
       setArticles(json);
-    });
-
-    const newData = articles.filter(item => {
-      const itemData = `${item.title.toUpperCase()} ${item.description.toUpperCase()}`;
-      const textData = search.params.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-    setArticles(newData);
+    }).then(()=> {setNewData()});
   };
   return {
     searchFilterFunction,
