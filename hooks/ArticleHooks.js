@@ -42,11 +42,11 @@ const getTagFiles = async (tag) => {
 const getAvatarTag = async (uid) => {
   const avatarResult = await getTagFiles('Avatar' + uid);
   // console.log('AVATAR RESULT', avatarResult[0]);
-  const avatarID = avatarResult[0].file_id;
-  const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-  // console.log(apiUrl + 'media/' + avatarID);
-  // console.log('USERAVATAR', avatarFile);
-  return avatarFile.thumbnails.w320;
+    const avatarID = avatarResult[0].file_id;
+    const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
+    // console.log(apiUrl + 'media/' + avatarID);
+    // console.log('USERAVATAR', avatarFile);
+    return avatarFile.thumbnails.w320;
 };
 
 const getArticleDesc = async (fileid) => {
@@ -76,7 +76,7 @@ const getArticleTags = (url) => {
     // Haetaan mediafilet äsken kerätyillä file_id:llä
     for (let i = 0; i < tagFileId.length; i++) {
       // console.log('rullaa');
-      const response = await fetch(url + tagFileId[i])
+      const response = await fetch(url + tagFileId[i]);
       const json = await response.json();
       json.body = await getArticleDesc(tagFileId[i]);
       // console.log('JAAAAASON', json);
@@ -96,7 +96,6 @@ const getArticleTags = (url) => {
 };
 
 const ArticleHooks = () => {
-
   // const getArticle = () => {
   //   const [articles, loading] = getArticleTags('http://media.mw.metropolia.fi/wbma/media/');
   //   const result = await articles;
@@ -303,9 +302,10 @@ const ArticleHooks = () => {
     };
     console.log('fetchurling');
     fetchUrl().then((json) => {
-setMyComments(json);
+      setMyComments(json);
       console.log('Settingmycomments')
-;});
+      ;
+});
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
