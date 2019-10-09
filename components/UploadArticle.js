@@ -108,7 +108,7 @@ const UploadArticle = (props) => {
             <Button
               onPress={() => {
                 clearForm();
-                setImage();
+                setImage({});
               }}
             >
               <Text>Reset</Text>
