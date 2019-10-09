@@ -107,6 +107,7 @@ const useUploadForm = () => {
     });
     const tagProjectJson = await tagProject.json();
     //console.log(tagProjectJson);
+    clearForm();
   };
   const avatarUpload = async (file, uid) => {
     const userID = uid;
