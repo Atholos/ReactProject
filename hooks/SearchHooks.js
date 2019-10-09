@@ -6,7 +6,6 @@ import { Alert } from 'react-native'
 
 const useSearch = () => {
   const [search, setSearch] = useState({});
-  const { reloadAllArticles } = ArticleHooks();
 
   const handleSearch = (text) => {
     setSearch((search) =>
@@ -15,11 +14,11 @@ const useSearch = () => {
         params: text,
       }));
   };
-  const searchFilterFunction = (articles, setArticles) => {
+  const searchFilterFunction = ( text, setArticles, allArticles) => {
     const setNewData = () => {
-      const newData = articles.filter(item => {
+      const newData = allArticles.filter(item => {
         const itemData = `${item.title.toUpperCase()} ${item.description.toUpperCase()}`;
-        const textData = search.params.toUpperCase();
+        const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
      setArticles(newData);

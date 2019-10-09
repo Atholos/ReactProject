@@ -98,6 +98,7 @@ const UploadArticle = (props) => {
               setTimeout(() => {
                 reloadAllArticles().then((json) => {
                   setArticles(json);
+                  setAllArticles(json);
                 });
                 reloadMyArticles().then((json) => {
                   setMyArticles(json);

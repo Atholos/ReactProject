@@ -5,8 +5,8 @@ import useSearch from '../hooks/SearchHooks';
 import { AppContext } from '../contexts/AppContext'
 
 const Filter = () => {
-  const { articles, setArticles } = useContext(AppContext);
-  const { handleSearch, searchFilterFunction, search } = useSearch();
+  const { setArticles, allArticles } = useContext(AppContext);
+  const { searchFilterFunction } = useSearch();
 
   return (
     <Header searchBar rounded>
@@ -14,20 +14,13 @@ const Filter = () => {
         <Icon name="ios-search" />
         <Input
           placeholder="Search"
-          onChangeText={text => handleSearch(text)}
-          value={search.params}
-          onEndEditing={() => {
-            reloadAllArticles().then((json) => {
-              setArticles(json);
-            });
-          }} />
+          onChangeText={text => searchFilterFunction(text, setArticles, allArticles)}
+          />
         <Icon name="ios-people" />
       </Item>
-      <Item>
-        <Button transparent small rounded onPress={() => searchFilterFunction(articles, setArticles)}>
+        <Button transparent small rounded>
           <Text>Search</Text>
         </Button>
-      </Item>
     </Header>
   );
 };

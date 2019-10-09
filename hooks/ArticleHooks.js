@@ -50,7 +50,7 @@ const getAvatarTag = async (uid) => {
 };
 
 const getArticleTags = (url) => {
-  const { articles, setArticles } = useContext(AppContext);
+  const { articles, setArticles, setAllArticles } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const fetchUrl = async () => {
     // Hakee projektitagilla kaikki tiedostot
@@ -73,6 +73,7 @@ const getArticleTags = (url) => {
     // console.log('TAGGED FILES LIST', taggedFilesList);
     // Laitetaan artikkeiliksi haetut, karsitut, mediat
     setArticles(taggedFilesList);
+    setAllArticles(taggedFilesList);
     setLoading(false);
   };
   useEffect(() => {
