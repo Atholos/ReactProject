@@ -4,7 +4,7 @@ const LoginValidation = {
       message: '^Please enter a password',
     },
     length: {
-      minimum: 5,
+      minimum: 3,
       message: '^Your password must be at least 5 characters',
     },
   },
