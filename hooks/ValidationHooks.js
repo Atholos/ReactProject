@@ -91,14 +91,14 @@ const appValidation = () => {
       }
     }
   };
-  const uploadValidate = (inputs, setArticles, setAllArticles, setMyArticles, navigation, file) => {
+  const uploadValidate = (upload, setArticles, setAllArticles, setMyArticles, navigation, file) => {
     const constraints = UploadValidation;
-    const titleError = validate({ title: inputs.title }, constraints);
+    const titleError = validate({ title: upload.title }, constraints);
     const descError = validate(
-      { description: inputs.body },
+      { description: upload.body },
       constraints
     );
-    const bodyError = validate({ body: inputs.desc }, constraints);
+    const bodyError = validate({ body: upload.desc }, constraints);
     const fileError = validate({ file: file }, constraints);
 
     if (!titleError.title && !descError.description && !bodyError.body && !fileError.file) {
