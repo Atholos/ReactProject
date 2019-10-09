@@ -54,8 +54,8 @@ const UploadArticle = (props) => {
     <Container>
       <Header />
       <Content>
-        <Thumbnail
-          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />
+        {image.selected && <Thumbnail
+          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
         <Form>
           <Item floatingLabel>
             <Label>Title </Label>
@@ -114,7 +114,7 @@ const UploadArticle = (props) => {
             <Button
               onPress={() => {
                 clearForm();
-                setImage();
+                setImage({});
               }}
             >
               <Text>Reset</Text>

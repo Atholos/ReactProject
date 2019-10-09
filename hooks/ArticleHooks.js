@@ -168,7 +168,7 @@ const ArticleHooks = () => {
     const fetchUrl = async () => {
       const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
       const userID = gotuser.user_id;
-      console.log('3. userid', userID);
+      // console.log('3. userid', userID);
       // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles('craftersguild');
       // console.log('tagfiles', tagfiles);
@@ -183,18 +183,18 @@ const ArticleHooks = () => {
       // Haetaan mediafilet äsken kerätyillä file_id:llä
       // console.log('TAGTAGTAGTAGTAG', tagFileId);
       for (let i = 0; i < tagFileId.length; i++) {
-        console.log('rullaa');
+        // console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
         const json = await response.json();
-        console.log('JAASONI', json);
+        // console.log('JAASONI', json);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
       // haetaan käyttäjäkohtaiset artikkelit
       for (let i = 0; i < taggedFilesList.length; i++) {
-        console.log('tsekkaus toimii', taggedFilesList[i].user_id);
+        // console.log('tsekkaus toimii', taggedFilesList[i].user_id);
         if (taggedFilesList[i].user_id == userID) {
-          console.log('mätsi paikassa', i);
+          // console.log('mätsi paikassa', i);
           filteredArticles.push(taggedFilesList[i]);
         }
       }
@@ -269,18 +269,18 @@ const ArticleHooks = () => {
       // Haetaan mediafilet äsken kerätyillä file_id:llä
       // console.log('TAGTAGTAGTAGTAG', tagFileId);
       for (let i = 0; i < tagFileId.length; i++) {
-        console.log('rullaa');
+        // console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
         const json = await response.json();
-        console.log('JAASONI', json);
+        // console.log('JAASONI', json);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
       // haetaan käyttäjäkohtaiset artikkelit
       for (let i = 0; i < taggedFilesList.length; i++) {
-        console.log('tsekkaus toimii', taggedFilesList[i].user_id);
+        // console.log('tsekkaus toimii', taggedFilesList[i].user_id);
         if (taggedFilesList[i].user_id == userID) {
-          console.log('mätsi paikassa', i);
+          // console.log('mätsi paikassa', i);
           filteredArticles.push(taggedFilesList[i]);
         }
       }
@@ -294,9 +294,9 @@ const ArticleHooks = () => {
     const fetchUrl = async () => {
       const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
       for (let i=0; i < result.length; i++) {
-        console.log('checking dem users again');
+        // console.log('checking dem users again');
         result[i].username = await checkCommentUser(result[i].user_id);
-        console.log(result[i].username);
+        // console.log(result[i].username);
       }
       return result;
     };
