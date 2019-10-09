@@ -276,6 +276,24 @@ const ArticleHooks = () => {
     };
     return fetchUrl();
   }
+  const reloadArticleComments = (fileID, setMyComments) => {
+    const {checkCommentUser} = appHooks();
+    console.log('Reloading comments');
+    const fetchUrl = async () => {
+      console.log('fetcing them again');
+      console.log('failingdee', fileID);
+      const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
+      for (let i=0; i < result.length; i++) {
+        console.log('checking dem users again')
+        result[i].username = await checkCommentUser(result[i].user_id);
+        console.log(result[i].username);
+      }
+      return result;
+    };
+    console.log('fetchurling')
+    fetchUrl().then((json) => {setMyComments(json)
+    console.log('Settingmycomments')});
+  };
 
   const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
@@ -314,6 +332,7 @@ const ArticleHooks = () => {
     getArticleComments,
     reloadMyArticles,
     reloadAllArticles,
+    reloadArticleComments,
   };
 };
 

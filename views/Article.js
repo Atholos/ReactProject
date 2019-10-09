@@ -33,7 +33,7 @@ const Article = (props) => {
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Text style ={styles.bodytext}>{media.description}</Text>
         <CommentList fid={fileID} />
-        <CommentForm fid={fileID} />
+        <CommentForm fid={fileID} navigation={navigation} />
       </Content>
     </Container>
   );
