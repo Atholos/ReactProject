@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import validate from 'validate.js';
 import LoginValidation from '../validations/LoginValidation';
 import RegisterValidation from '../validations/RegisterValidation';
+import UploadValidation from '../validations/UploadValidation'
+import ArticleHooks from './ArticleHooks'
 import appHooks from './MainHooks';
 import useUploadForm from './UploadHooks';
 
 
 const appValidation = () => {
-  const {register, signIn} = appHooks();
-  const {avatarUpload} = useUploadForm();
+  const { register, signIn } = appHooks();
+  const { avatarUpload, handleUpload, clearForm } = useUploadForm();
+  const { reloadAllArticles, reloadMyArticles } = ArticleHooks();
 
   const updatePasswordValidate = async (inputs) => {
-    const {updateInfo} = appHooks();
+    const { updateInfo } = appHooks();
     console.log('updatePasswordValidate');
     const constraints = RegisterValidation;
-    const passwordError = validate({password: inputs.password}, constraints);
-    const passconfError = validate({password: inputs.password, confirmPassword: inputs.cpw}, constraints);
+    const passwordError = validate({ password: inputs.password }, constraints);
+    const passconfError = validate({ password: inputs.password, confirmPassword: inputs.cpw }, constraints);
     if (!passwordError.password && !passconfError.confirmPassword) {
       console.log('salasana vaihtuu');
       const data = {
@@ -33,10 +36,10 @@ const appValidation = () => {
   };
 
   const updateEmailValidate = async (inputs) => {
-    const {updateInfo} = appHooks();
+    const { updateInfo } = appHooks();
     console.log('updateEmailValidate');
     const constraints = RegisterValidation;
-    const emailError = validate({email: inputs.email}, constraints);
+    const emailError = validate({ email: inputs.email }, constraints);
     if (!emailError.email) {
       const data = {
         email: inputs.email,
@@ -50,10 +53,10 @@ const appValidation = () => {
 
   const registerValidate = async (inputs, props, image) => {
     const constraints = RegisterValidation;
-    const emailError = validate({email: inputs.email}, constraints);
-    const passwordError = validate({password: inputs.password}, constraints);
-    const passconfError = validate({password: inputs.password, confirmPassword: inputs.cpw}, constraints);
-    const usernameError = validate({username: inputs.username}, constraints);
+    const emailError = validate({ email: inputs.email }, constraints);
+    const passwordError = validate({ password: inputs.password }, constraints);
+    const passconfError = validate({ password: inputs.password, confirmPassword: inputs.cpw }, constraints);
+    const usernameError = validate({ username: inputs.username }, constraints);
     console.log(emailError.email, passwordError.password, usernameError.username, passconfError.confirmPassword);
     if (!emailError.email && !passwordError.password && !usernameError.username && !passconfError.confirmPassword) {
       const uid = await register(inputs, props);
@@ -72,8 +75,8 @@ const appValidation = () => {
   };
   const loginValidate = async (inputs, props) => {
     const constraints = LoginValidation;
-    const passwordError = validate({password: inputs.password}, constraints);
-    const usernameError = validate({username: inputs.username}, constraints);
+    const passwordError = validate({ password: inputs.password }, constraints);
+    const usernameError = validate({ username: inputs.username }, constraints);
 
     console.log(passwordError.password, usernameError.username);
     if (!passwordError.password && !usernameError.username) {
@@ -88,11 +91,46 @@ const appValidation = () => {
       }
     }
   };
+  const uploadValidate = (inputs, setArticles, setAllArticles, setMyArticles, navigation, file) => {
+    const constraints = UploadValidation;
+    const titleError = validate({ title: inputs.title }, constraints);
+    const descError = validate(
+      { description: inputs.body },
+      constraints
+    );
+    const bodyError = validate({ body: inputs.desc }, constraints);
+    const fileError = validate({ file: file }, constraints);
+
+    if (!titleError.title && !descError.description && !bodyError.body && !fileError.file) {
+      handleUpload(file).then(() => {
+        clearForm();
+        setTimeout(() => {
+          reloadAllArticles().then((json) => {
+            setArticles(json);
+            setAllArticles(json);
+          });
+          reloadMyArticles().then((json) => {
+            setMyArticles(json);
+          });
+          navigation.navigate('Main');
+        }, 2000);
+      });
+    } else {
+      const errorArray = [titleError.title, descError.description, bodyError.body];
+      for (let i = 0; i < errorArray.length; i++) {
+        if (errorArray[i]) {
+          console.log('alert:', errorArray[i][0]);
+          alert(errorArray[i][0]);
+        }
+      }
+    }
+  };
   return {
     loginValidate,
     registerValidate,
     updatePasswordValidate,
     updateEmailValidate,
+    uploadValidate,
   };
 };
 export default appValidation;
