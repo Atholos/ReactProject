@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   ListItem,
@@ -7,27 +7,23 @@ import {
   Text,
   Card,
 } from 'native-base';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 import ArticleHooks from '../hooks/ArticleHooks';
 
 
 const ArticleListItem = (props) => {
   const [desc, setDesc] = useState({});
-  const [tn, setTn] = useState({});
-  const { navigation, singleMedia } = props;
+  const {navigation, singleMedia} = props;
   const {
     getThumbnail,
     getArticleDesc,
   } = ArticleHooks();
 
-  useEffect(() => {
-    getThumbnail(singleMedia.file_id).then((json) => {
-      setTn(json);
-    });
-  }, []);
+  const tn = getThumbnail(singleMedia.file_id);
+
   useEffect(() => {
     getArticleDesc(singleMedia.file_id).then((json) => {
-      setDesc({ text: json });
+      setDesc({text: json});
     }).catch((error) => {
       console.log(console.error);
     });
@@ -41,10 +37,10 @@ const ArticleListItem = (props) => {
         filedesc: desc.text,
       });
     }}>
-      <Card style={{ flex: 1 }}>
+      <Card style={{flex: 1}}>
         <CardItem>
           <Body>
-            {tn && <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320 }} style={{ height: 200, width: '100%', flex: 1 }} />}
+            {tn &&<Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w320}} style={{height: 200, width: '100%', flex: 1}}/>}
           </Body>
         </CardItem>
         <CardItem>
