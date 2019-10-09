@@ -16,7 +16,7 @@ import { AppContext } from '../contexts/AppContext';
 
 const UploadArticle = (props) => {
   const [image, setImage] = useState({});
-  const { articles, setArticles, myArticles, setMyArticles } = useContext(AppContext);
+  const { articles, setArticles, myArticles, setMyArticles, setAllArticles } = useContext(AppContext);
   const {
     getPermissionAsync,
   } = appHooks();

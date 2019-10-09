@@ -8,7 +8,7 @@ import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 const UserArticle = (props) => {
-  const {setArticles, setMyArticles} = useContext(AppContext);
+  const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
   const {checkUser} = appHooks();
   const {navigation} = props;
   const {deleteArticle} = ArticleHooks();
@@ -52,7 +52,7 @@ const UserArticle = (props) => {
                       text: 'OK',
                       onPress: () => {
                         console.log('OK Pressed'),
-                        deleteArticle(media, setMyArticles, setArticles, navigation);
+                        deleteArticle(media, setMyArticles, setArticles, setAllArticles, navigation);
                       },
                     },
                     {text: 'Cancel',

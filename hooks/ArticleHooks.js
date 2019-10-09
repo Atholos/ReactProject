@@ -73,7 +73,7 @@ const getArticleTags = (url) => {
     // console.log('TAGGED FILES LIST', taggedFilesList);
     // Laitetaan artikkeiliksi haetut, karsitut, mediat
     setArticles(taggedFilesList);
-    setAllArticles(taggedFilesList);
+    setAllArticles(taggedFilesList)
     setLoading(false);
   };
   useEffect(() => {
@@ -277,7 +277,7 @@ const ArticleHooks = () => {
     return fetchUrl();
   }
 
-  const deleteArticle = async (article, setMyArticles, setArticles, navigation) => {
+  const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
       console.log('delete', json);
       setArticles([]);
@@ -285,6 +285,7 @@ const ArticleHooks = () => {
       setTimeout(() => {
         reloadAllArticles().then((json) => {
           setArticles(json);
+          setAllArticles(json)
         });
         reloadMyArticles().then((json) => {
           setMyArticles(json);

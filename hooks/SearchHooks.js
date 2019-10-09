@@ -5,15 +5,6 @@ import { Alert } from 'react-native'
 
 
 const useSearch = () => {
-  const [search, setSearch] = useState({});
-
-  const handleSearch = (text) => {
-    setSearch((search) =>
-      ({
-        search,
-        params: text,
-      }));
-  };
   const searchFilterFunction = ( text, setArticles, allArticles) => {
     const setNewData = () => {
       const newData = allArticles.filter(item => {
@@ -22,14 +13,12 @@ const useSearch = () => {
         return itemData.indexOf(textData) > -1;
       });
      setArticles(newData);
-
+     console.log(newData);
     };
     setNewData();
   };
   return {
     searchFilterFunction,
-    handleSearch,
-    search,
   };
 };
 
