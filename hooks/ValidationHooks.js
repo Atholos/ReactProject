@@ -91,7 +91,7 @@ const appValidation = () => {
       }
     }
   };
-  const uploadValidate = (upload, setArticles, setAllArticles, setMyArticles, navigation, file) => {
+  const uploadValidate = ( file, upload, navigation, setAllArticles, setArticles, setMyArticles) => {
     const constraints = UploadValidation;
     const titleError = validate({ title: upload.title }, constraints);
     const descError = validate(
