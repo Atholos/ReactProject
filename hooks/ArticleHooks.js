@@ -1,6 +1,6 @@
-import { useEffect, useContext, useState } from 'react';
-import { AsyncStorage, Alert } from 'react-native';
-import { AppContext } from '../contexts/AppContext';
+import {useEffect, useContext, useState} from 'react';
+import {AsyncStorage, Alert} from 'react-native';
+import {AppContext} from '../contexts/AppContext';
 import appHooks from '../hooks/MainHooks';
 
 
@@ -49,8 +49,19 @@ const getAvatarTag = async (uid) => {
   return avatarFile.thumbnails.w320;
 };
 
+const getArticleDesc = async (fileid) => {
+  const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid);
+  // console.log(descResult);
+  for (let i = 0; i < descResult.length; i++) {
+    if (descResult[i].tag.length > 30) {
+      return descResult[i].tag;
+    }
+  }
+  return 'Description not found';
+};
+
 const getArticleTags = (url) => {
-  const { articles, setArticles, setAllArticles } = useContext(AppContext);
+  const {articles, setArticles, setAllArticles} = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const fetchUrl = async () => {
     // Hakee projektitagilla kaikki tiedostot
@@ -65,15 +76,17 @@ const getArticleTags = (url) => {
     // Haetaan mediafilet äsken kerätyillä file_id:llä
     for (let i = 0; i < tagFileId.length; i++) {
       // console.log('rullaa');
-      const response = await fetch(url + tagFileId[i]);
+      const response = await fetch(url + tagFileId[i])
       const json = await response.json();
+      json.body = await getArticleDesc(tagFileId[i]);
+      // console.log('JAAAAASON', json);
       // Pusketaan taggedFilesList arrayhyn haetut mediat
       taggedFilesList.push(json);
     }
     // console.log('TAGGED FILES LIST', taggedFilesList);
     // Laitetaan artikkeiliksi haetut, karsitut, mediat
     setArticles(taggedFilesList);
-    setAllArticles(taggedFilesList)
+    setAllArticles(taggedFilesList);
     setLoading(false);
   };
   useEffect(() => {
@@ -83,9 +96,21 @@ const getArticleTags = (url) => {
 };
 
 const ArticleHooks = () => {
+
+  // const getArticle = () => {
+  //   const [articles, loading] = getArticleTags('http://media.mw.metropolia.fi/wbma/media/');
+  //   const result = await articles;
+  //   // const gotDesc = getArticleDesc();
+  //   // const gotThumb = getThumbnail();
+  //   console.log('GOT SOME', result);
+  //   // console.log('GOT DESC', gotDesc);
+  //   // console.log('GOT THUMB', gotThumb);
+  // };
+
+
   const getArticleComments = (fileID) => {
     const {checkCommentUser} = appHooks();
-    const { myComments, setMyComments } = useContext(AppContext);
+    const {myComments, setMyComments} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my comments fetching');
     const fetchUrl = async () => {
@@ -93,7 +118,7 @@ const ArticleHooks = () => {
       console.log('failiiidee', fileID);
       const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
       for (let i=0; i < result.length; i++) {
-        console.log('usereita tseKKAILLAAN')
+        console.log('usereita tseKKAILLAAN');
         result[i].username = await checkCommentUser(result[i].user_id);
         console.log(result[i].username);
       }
@@ -104,17 +129,6 @@ const ArticleHooks = () => {
       fetchUrl();
     }, []);
     return [myComments, loading];
-  };
-
-  const getArticleDesc = async (fileid) => {
-    const descResult = await fetchGetUrl(apiUrl + 'tags/file/' + fileid);
-    // console.log(descResult);
-    for (let i = 0; i < descResult.length; i++) {
-      if (descResult[i].tag.length > 30) {
-        return descResult[i].tag;
-      }
-    }
-    return 'Description not found';
   };
 
   const getAllMedia = () => {
@@ -148,10 +162,10 @@ const ArticleHooks = () => {
     return getMyArticleTags();
   };
   const getMyArticleTags = () => {
-    const myurl = 'http://media.mw.metropolia.fi/wbma/media/'
-    const { myArticles, setMyArticles } = useContext(AppContext);
+    const myurl = 'http://media.mw.metropolia.fi/wbma/media/';
+    const {myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
-    console.log('Starting my articles fetching')
+    console.log('Starting my articles fetching');
     const fetchUrl = async () => {
       const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
       const userID = gotuser.user_id;
@@ -168,7 +182,7 @@ const ArticleHooks = () => {
         tagFileId.push(tagfiles[i].file_id);
       }
       // Haetaan mediafilet äsken kerätyillä file_id:llä
-      //console.log('TAGTAGTAGTAGTAG', tagFileId);
+      // console.log('TAGTAGTAGTAGTAG', tagFileId);
       for (let i = 0; i < tagFileId.length; i++) {
         console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
@@ -179,13 +193,13 @@ const ArticleHooks = () => {
       }
       // haetaan käyttäjäkohtaiset artikkelit
       for (let i = 0; i < taggedFilesList.length; i++) {
-        console.log('tsekkaus toimii', taggedFilesList[i].user_id)
+        console.log('tsekkaus toimii', taggedFilesList[i].user_id);
         if (taggedFilesList[i].user_id == userID) {
           console.log('mätsi paikassa', i);
           filteredArticles.push(taggedFilesList[i]);
         }
       }
-      //asetetaan käyttäjäkohtaiset artikkelit
+      // asetetaan käyttäjäkohtaiset artikkelit
       setMyArticles(filteredArticles);
       setLoading(false);
     };
@@ -211,7 +225,7 @@ const ArticleHooks = () => {
 
   const reloadAllArticles = () => {
     const fetchUrl = async () => {
-      const url = 'http://media.mw.metropolia.fi/wbma/media/'
+      const url = 'http://media.mw.metropolia.fi/wbma/media/';
       // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles('craftersguild');
       // Alustetaan array johon kerätään file_id tageusta
@@ -231,13 +245,13 @@ const ArticleHooks = () => {
       }
       // console.log('TAGGED FILES LIST', taggedFilesList);
       // Laitetaan artikkeiliksi haetut, karsitut, mediat
-      return taggedFilesList
+      return taggedFilesList;
     };
-    return fetchUrl()
+    return fetchUrl();
   };
   const reloadMyArticles = () => {
-    const myurl = 'http://media.mw.metropolia.fi/wbma/media/'
-    console.log('Starting my articles fetching')
+    const myurl = 'http://media.mw.metropolia.fi/wbma/media/';
+    console.log('Starting my articles fetching');
     const fetchUrl = async () => {
       const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
       const userID = gotuser.user_id;
@@ -254,7 +268,7 @@ const ArticleHooks = () => {
         tagFileId.push(tagfiles[i].file_id);
       }
       // Haetaan mediafilet äsken kerätyillä file_id:llä
-      //console.log('TAGTAGTAGTAGTAG', tagFileId);
+      // console.log('TAGTAGTAGTAGTAG', tagFileId);
       for (let i = 0; i < tagFileId.length; i++) {
         console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
@@ -265,34 +279,33 @@ const ArticleHooks = () => {
       }
       // haetaan käyttäjäkohtaiset artikkelit
       for (let i = 0; i < taggedFilesList.length; i++) {
-        console.log('tsekkaus toimii', taggedFilesList[i].user_id)
+        console.log('tsekkaus toimii', taggedFilesList[i].user_id);
         if (taggedFilesList[i].user_id == userID) {
           console.log('mätsi paikassa', i);
           filteredArticles.push(taggedFilesList[i]);
         }
       }
-      //asetetaan käyttäjäkohtaiset artikkelit
+      // asetetaan käyttäjäkohtaiset artikkelit
       return filteredArticles;
     };
     return fetchUrl();
-  }
+  };
   const reloadArticleComments = (fileID, setMyComments) => {
     const {checkCommentUser} = appHooks();
-    //console.log('Reloading comments');
     const fetchUrl = async () => {
-      //console.log('fetcing them again');
-      //console.log('failingdee', fileID);
       const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
       for (let i=0; i < result.length; i++) {
-        //console.log('checking dem users again')
+        console.log('checking dem users again');
         result[i].username = await checkCommentUser(result[i].user_id);
-        //console.log(result[i].username);
+        console.log(result[i].username);
       }
       return result;
     };
-    //console.log('fetchurling')
-    fetchUrl().then((json) => {setMyComments(json)
-    console.log('Settingmycomments')});
+    console.log('fetchurling');
+    fetchUrl().then((json) => {
+setMyComments(json);
+      console.log('Settingmycomments')
+;});
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
@@ -303,18 +316,18 @@ const ArticleHooks = () => {
       setTimeout(() => {
         reloadAllArticles().then((json) => {
           setArticles(json);
-          setAllArticles(json)
+          setAllArticles(json);
         });
         reloadMyArticles().then((json) => {
           setMyArticles(json);
         });
         Alert.alert(
-          'Article Deleted',
-          'Reloading user Articles',
-          [
-            { text: 'OK', onPress: () => navigation.navigate('Creator') },
-          ],
-          { cancelable: false },
+            'Article Deleted',
+            'Reloading user Articles',
+            [
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
+            ],
+            {cancelable: false},
         );
       }, 2000);
     });

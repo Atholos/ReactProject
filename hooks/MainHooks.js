@@ -4,10 +4,10 @@ import useFetch from './FetchHooks';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import {AppContext} from '../contexts/AppContext'
-import ArticleHooks from './ArticleHooks';
 
 // MainHooks function was changed to appHooks because its not a constructor thus it cannot start with upper case.
 const appHooks = () => {
+
   const bootstrapAsync = async (props) => {
     const {navigation} = props;
     const getToken = async () => {
