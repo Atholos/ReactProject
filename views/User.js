@@ -70,6 +70,7 @@ const User = (props) => {
             </Right>
             <Left>
               <Text style={{fontSize: 40}}>Profile</Text>
+              </Left>
           </CardItem>
           <CardItem>
             <Left>
