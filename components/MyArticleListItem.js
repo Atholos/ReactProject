@@ -20,24 +20,23 @@ const MyArticleListItem = (props) => {
   const {getThumbnail, deleteMedia} = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
   return (
-    <ListItem style ={styles.item} thumbnail
-      onPress={() => {
-        navigation.push('UserArticle', {
-          file: singleMedia,
-          filedesc: desc.text,
-        });
-      }}>
+    <ListItem style={styles.item} thumbnail onPress={() => {
+      navigation.push('Article', {
+        file: singleMedia,
+        filedesc: desc.text,
+      });
+    }}>
       <Card style={{flex: 1}}>
         <CardItem>
           <Body>
-            {tn && <Thumbnail square large source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + tn.w160}} style={{height: 100, width: '100%', flex: 1}} />}
+            <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style={styles.title}>{singleMedia.title}</Text>
+            <Text style ={styles.title}>{singleMedia.title}</Text>
             <Text style={styles.desc} note numberOfLines={3}>
-              {desc.text}
+              {singleMedia.body}
             </Text>
           </Body>
         </CardItem>

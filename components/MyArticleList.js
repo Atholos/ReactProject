@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'native-base';
+import {List} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MyArticleListItem from './MyArticleListItem';
 import ArticleHooks from '../hooks/ArticleHooks';
@@ -9,9 +9,9 @@ import appHooks from '../hooks/MainHooks';
 
 
 const MyArticleList = (props) => {
-  const { getUser } = appHooks();
-  const { navigation } = props;
-  const { getMyArticleTags } = ArticleHooks();
+  const {getUser} = appHooks();
+  const {navigation} = props;
+  const {getMyArticleTags} = ArticleHooks();
   const [user, setUser] = useState({});
 
 
@@ -19,9 +19,9 @@ const MyArticleList = (props) => {
     getUser().then((json) => {
       const parsedJson = JSON.parse(json);
       setUser(
-        {
-          id: parsedJson.user_id,
-        }
+          {
+            id: parsedJson.user_id,
+          }
       );
     }).catch((error) => {
       console.log(error);
@@ -32,7 +32,7 @@ const MyArticleList = (props) => {
 
   return (
     <List
-    style={styles.back}
+      style={styles.back}
       dataArray={myArticles}
       renderRow={(item) =>
         <MyArticleListItem navigation={navigation} singleMedia={item} />}
