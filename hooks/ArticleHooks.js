@@ -240,6 +240,7 @@ const ArticleHooks = () => {
         // console.log('rullaa');
         const response = await fetch(url + tagFileId[i]);
         const json = await response.json();
+        json.body = await getArticleDesc(tagFileId[i]);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
       }
@@ -273,6 +274,7 @@ const ArticleHooks = () => {
         // console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
         const json = await response.json();
+        json.body = await getArticleDesc(tagFileId[i]);
         // console.log('JAASONI', json);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
