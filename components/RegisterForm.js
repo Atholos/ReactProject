@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
 import appValidation from '../hooks/ValidationHooks';
+import {StyleSheet} from 'react-native';
 import {
   Container,
   Content,
@@ -50,15 +51,13 @@ const RegisterForm = (props) => {
       <Content>
         <Form>
           <Item>
-            <Button onPress={() => pickImage()}>
-              <Text>Select Avatar</Text>
-            </Button>
-          </Item>
-          <Item>
             <Thumbnail
               square
               large
               source={{uri: image.selected}} />
+            <Button style={styles.buttonImage} onPress={() => pickImage()}>
+              <Text>Select Avatar</Text>
+            </Button>
           </Item>
           <Item floatingLabel>
             <Label>Username</Label>
@@ -112,14 +111,34 @@ const RegisterForm = (props) => {
               value={inputs.fullname} required
             />
           </Item>
-          <Item>
-            <Button onPress={() => registerValidate(inputs, props, image.selected)}>
-              <Text>Register</Text>
-            </Button>
-          </Item>
         </Form>
+        <Button style={styles.button} onPress={() => registerValidate(inputs, props, image.selected)}>
+          <Text>Register</Text>
+        </Button>
       </Content>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  form: {
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 30,
+  },
+  button: {
+    justifyContent: 'center',
+    height: 40,
+    width: 150,
+    marginLeft: '30%',
+    marginTop: 25,
+  },
+  buttonImage: {
+    justifyContent: 'center',
+    height: 40,
+    width: 140,
+    marginLeft: 35,
+  },
+});
+
 export default RegisterForm;

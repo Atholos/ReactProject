@@ -21,7 +21,7 @@ const ArticleList = (props) => {
       style={styles.back}
       dataArray={articles}
       renderRow={(item) => (
-        <ArticleListItem navigation={navigation} singleMedia={item} />
+        <ArticleListItem style={styles.item} navigation={navigation} singleMedia={item} />
       )}
       keyExtractor={(item, index) => index.toString()}
     />

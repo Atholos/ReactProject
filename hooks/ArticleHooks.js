@@ -115,8 +115,8 @@ const ArticleHooks = () => {
     const fetchUrl = async () => {
       console.log('fetchaa commentteja');
       console.log('failiiidee', fileID);
-      const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
-      for (let i=0; i < result.length; i++) {
+      const result = await fetchGetUrl(apiUrl + 'comments/file/' + fileID);
+      for (let i = 0; i < result.length; i++) {
         console.log('usereita tseKKAILLAAN');
         result[i].username = await checkCommentUser(result[i].user_id);
         console.log(result[i].username);
@@ -295,8 +295,8 @@ const ArticleHooks = () => {
   const reloadArticleComments = (fileID, setMyComments) => {
     const {checkCommentUser} = appHooks();
     const fetchUrl = async () => {
-      const result = await fetchGetUrl(apiUrl+'comments/file/'+fileID);
-      for (let i=0; i < result.length; i++) {
+      const result = await fetchGetUrl(apiUrl + 'comments/file/' + fileID);
+      for (let i = 0; i < result.length; i++) {
         // console.log('checking dem users again');
         result[i].username = await checkCommentUser(result[i].user_id);
         // console.log(result[i].username);
@@ -311,8 +311,13 @@ const ArticleHooks = () => {
     });
   };
 
+<<<<<<< HEAD
   const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + article.file_id).then((json) => {
+=======
+  const deleteArticle = async (fileID, setMyArticles, setArticles, setAllArticles, navigation) => {
+    return fetchDeleteUrl('media/' + fileID).then((json) => {
+>>>>>>> 3f24aece8a18db7d0a0e48c98ecfad80d0181110
       console.log('delete', json);
       setArticles([]);
       setMyArticles([]);
@@ -324,6 +329,7 @@ const ArticleHooks = () => {
         reloadMyArticles().then((json) => {
           setMyArticles(json);
         });
+        navigation.navigate('Main');
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
@@ -335,7 +341,6 @@ const ArticleHooks = () => {
       }, 2000);
     });
   };
-
 
 
   return {

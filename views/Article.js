@@ -28,7 +28,7 @@ const Article = (props) => {
     <Container style={styles.container}>
       <Content>
         <Card style={styles.card}>
-        <CardItem>
+          <CardItem>
             <Body>
               <Text style={styles.title}>{title}</Text>
             </Body>
@@ -37,6 +37,11 @@ const Article = (props) => {
             <Body>
               <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
             </Body>
+          </CardItem>
+        </Card>
+        <Card style={styles.card}>
+          <CardItem>
+            <Text>{media.body}</Text>
           </CardItem>
         </Card>
         <Text style ={styles.bodytext}>{media.description}</Text>
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   bodytext: {
+    marginTop: 5,
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1,

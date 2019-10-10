@@ -61,8 +61,7 @@ const UploadArticle = (props) => {
                   {image.selected && <Thumbnail
                     source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
                 </Item>
-                <Item floatingLabel last rounded style={{ margin: 10 }}>
-                  <Label>Title </Label>
+                <Item last rounded style={{ margin: 10 }}>
                   <Input
                     autoCapitalize='none'
                     placeholder='Title'
@@ -70,8 +69,7 @@ const UploadArticle = (props) => {
                     value={upload.title} required
                   />
                 </Item>
-                <Item floatingLabel last rounded style={{ margin: 10 }}>
-                  <Label>File Description</Label>
+                <Item last rounded style={{ margin: 10 }}>
                   <Input
                     rowSpan={10}
                     autoCapitalize='none'

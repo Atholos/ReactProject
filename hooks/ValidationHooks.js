@@ -126,12 +126,15 @@ const appValidation = () => {
       }
     }
   };
+<<<<<<< HEAD
 
   const updateValidate = ( file, fileID, update, navigation, setAllArticles, setArticles, setMyArticles) => {
+=======
+  const updateValidate = ( fileID, update, navigation, setAllArticles, setArticles, setMyArticles) => {
+>>>>>>> 3f24aece8a18db7d0a0e48c98ecfad80d0181110
     const constraints = UploadValidation;
     const titleError = validate({ title: update.title }, constraints);
     const bodyError = validate({ body: update.body }, constraints);
-    console.log('file', file);
     console.log('update', update);
     if (!titleError.title && !bodyError.body) {
       const data = {
