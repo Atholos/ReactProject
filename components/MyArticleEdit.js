@@ -86,7 +86,7 @@ const MyArticleEdit = (props) => {
                       text: 'OK',
                       onPress: () => {
                         console.log('OK Pressed'),
-                        updateValidate('http://media.mw.metropolia.fi/wbma/media/'+fileID, update, navigation, setAllArticles, setArticles, setMyArticles);
+                        updateValidate(image.selected, fileID, update, navigation, setAllArticles, setArticles, setMyArticles);
                       },
                     },
                     {text: 'Cancel',

@@ -21,10 +21,11 @@ const useUpdateArticle = () => {
           body: text,
         }));
     };
-    const handleUpdate = async (data) => {
+    const handleUpdate = async (data, fileID) => {
       const gotToken = await AsyncStorage.getItem('userToken');
+      console.log('http://media.mw.metropolia.fi/wbma/media/'+ fileID)
       console.log('updatedata', data);
-      const response = await fetch('http://media.mw.metropolia.fi/wbma/media/', {
+      const response = await fetch('http://media.mw.metropolia.fi/wbma/media/'+fileID, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
