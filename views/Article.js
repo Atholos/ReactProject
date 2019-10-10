@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   bodytext: {
     marginLeft: 10,
     marginRight: 10,
-    // fontFamily: 'Times New Roman',
+    fontSize: 15,
+    fontFamily: 'Helvetica',
   },
 });
 
