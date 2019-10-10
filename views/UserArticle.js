@@ -10,7 +10,7 @@ import MyArticleView from '../components/MyArticleView';
 import MyArticleEdit from '../components/MyArticleEdit';
 
 const UserArticle = (props) => {
-  const {setArticles, setMyArticles, setAllArticles} = useContext(AppContext);
+  const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
   const {checkUser} = appHooks();
   const {navigation} = props;
   const {deleteArticle} = ArticleHooks();

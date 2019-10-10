@@ -37,18 +37,13 @@ const useUpdateArticle = () => {
       const response = await fetch('http://media.mw.metropolia.fi/wbma/media/' +file.file_id, {
         method: 'PUT',
         headers: {
+          'Content-Type': 'application/json',
           'x-access-token': gotToken,
         },
         body: formData,
       });
       const json = await response.json();
       //console.log(json);
-  
-      // Tagin bodytext sisältö, käyttää upatun kuvan file iideetä
-      const tagDescData = {
-        file_id: json.file_id,
-        tag: update.body,
-      };
 
   
       clearForm();
