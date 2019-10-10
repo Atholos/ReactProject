@@ -65,44 +65,40 @@ const User = (props) => {
       <Content>
         <Card style={{marginTop: 30}}>
           <CardItem header>
-            <Right>
-              <Icon name='person' iconSize={70}/> 
-            </Right>
-            <Left>
+              <Icon name='person' iconSize={70}/>
               <Text style={{fontSize: 40}}>Profile</Text>
-            </Left>
           </CardItem>
-           <CardItem>
+          <CardItem>
             <Left>
-            {avatar &&
+              {avatar &&
             <Thumbnail
               square
               large
               source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} style ={{width: '100%', height: 100}} />
-            }
+              }
             </Left>
             <Body>
-            <Text>Welcome {uinfo.name}</Text>
-            <Text>Email {uinfo.email}</Text>                     
-            <Text>Member since: {uinfo.doc}</Text>
+              <Text>Welcome {uinfo.name}</Text>
+              <Text>Email {uinfo.email}</Text>
+              <Text>Member since: {uinfo.doc}</Text>
             </Body>
-            </CardItem>
-            <CardItem>
-              <Right>           
-              <Button onPress={() => signOut(props)}>
-              <Text>Logout!</Text> 
-            </Button>
+          </CardItem>
+          <CardItem>
+            <Right>
             </Right>
+            <Button onPress={() => signOut(props)}>
+                <Text>Logout!</Text>
+              </Button>
           </CardItem>
         </Card>
         <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => togglePassword()}>
-                <Text>Change password</Text>
-            </Button>
-            {uinfo.form === 1 && <UpdatePasswordForm />}
-            <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => toggleEmail()}>
-              <Text>Change email</Text>
-            </Button>
-            {uinfo.form === 2 && <UpdateEmailForm />}
+          <Text>Change password</Text>
+        </Button>
+        {uinfo.form === 1 && <UpdatePasswordForm />}
+        <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => toggleEmail()}>
+          <Text>Change email</Text>
+        </Button>
+        {uinfo.form === 2 && <UpdateEmailForm />}
       </Content>
     </Container>
   );
