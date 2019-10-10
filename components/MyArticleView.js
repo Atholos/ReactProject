@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {StyleSheet, Image, Alert} from 'react-native';
+import {Platform, StyleSheet, Image, Alert} from 'react-native';
 import {Container, Content, Button, Text, Header, Tab, Tabs} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
@@ -40,29 +40,43 @@ const MyArticleView = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: 40,
-    },
-    image: {
-      borderRadius: 16,
-      height: 250,
-      width: '100%',
-      marginBottom: 10,
-    },
-    title: {
-      fontSize: 32,
-      fontWeight: '600',
-      marginBottom: 30,
-    },
-    desc: {
-      marginBottom: 30,
-      fontWeight: '500',
-    },
-    bodytext: {
-    },
-  });
-   
+  container: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 40,
+  },
+  image: {
+    borderRadius: 16,
+    height: 250,
+    width: '100%',
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '600',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  desc: {
+    marginBottom: 12,
+    fontWeight: '500',
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  bodytext: {
+    marginLeft: 10,
+    marginRight: 10,
+    fontSize: 15,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Helvetica',
+      },
+      android: {
+        fontFamily: 'serif',
+      },
+    }),
+  },
+});
+
 export default MyArticleView;
