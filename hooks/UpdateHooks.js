@@ -37,6 +37,7 @@ const useUpdateArticle = () => {
       const response = await fetch('http://media.mw.metropolia.fi/wbma/media/' +file.file_id, {
         method: 'PUT',
         headers: {
+          'Content-Type': 'application/json',
           'x-access-token': gotToken,
         },
         body: formData,

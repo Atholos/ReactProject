@@ -9,6 +9,7 @@ import CommentForm from '../components/CommentForm';
 import PropTypes from 'prop-types';
 import * as ImagePicker from 'expo-image-picker';
 import useUpdateForm from '../hooks/UpdateHooks';
+import appValidation from '../hooks/ValidationHooks';
 
 
 const MyArticleEdit = (props) => {
@@ -28,6 +29,7 @@ const MyArticleEdit = (props) => {
     handleUpdate,
     update,
   } = useUpdateForm();
+  const { updateValidate } = appValidation();
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -72,9 +74,11 @@ const MyArticleEdit = (props) => {
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Input 
         autoCapitalize='none'
+        placeholder={media.description}
         onChangeText={handleBodyChange}
         value={update.body}
-        style ={styles.bodytext}>{media.description}</Input>
+        style ={styles.bodytext}>
+        </Input>
         <Button
           onPress={
             () => {
@@ -88,7 +92,7 @@ const MyArticleEdit = (props) => {
                       text: 'OK',
                       onPress: () => {
                         console.log('OK Pressed'),
-                        deleteArticle(media, setMyArticles, setArticles, navigation);
+                        updateValidate(image.selected, update, navigation, setAllArticles, setArticles, setMyArticles);
                       },
                     },
                     {text: 'Cancel',
