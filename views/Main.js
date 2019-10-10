@@ -15,10 +15,8 @@ const Main = (props) => {
     <Container>
       <StatusBar hidden/>
       <Filter/>
-      <Content>
         <ArticleList navigation={navigation}></ArticleList>
-      </Content>
-    </Container>
+      </Container>
   );
 };
 

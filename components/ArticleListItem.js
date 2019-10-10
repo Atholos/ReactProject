@@ -29,7 +29,7 @@ const ArticleListItem = (props) => {
 
   return (
 
-    <ListItem thumbnail onPress={() => {
+    <ListItem style={styles.item} thumbnail onPress={() => {
       navigation.push('Article', {
         file: singleMedia,
         filedesc: desc.text,
@@ -61,6 +61,10 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontWeight: '500',
+  },
+  item: {
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 

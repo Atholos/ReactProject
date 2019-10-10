@@ -1,4 +1,5 @@
 import React, {keyExtractor} from "react";
+import {StyleSheet} from 'react-native';
 import PropTypes from "prop-types";
 import ArticleListItem from "./ArticleListItem";
 import { List, Content } from 'native-base';
@@ -17,6 +18,7 @@ const ArticleList = (props) => {
   const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');
   return (
     <List
+      style={styles.back}
       dataArray={articles}
       renderRow={(item) => (
         <ArticleListItem navigation={navigation} singleMedia={item} />
@@ -25,6 +27,12 @@ const ArticleList = (props) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor: '#c9d4d7',
+  },
+});
 
 ArticleList.propTypes = {
   navigation: PropTypes.object,
