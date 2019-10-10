@@ -114,18 +114,11 @@ const UserArticle = (props) => {
       </Content>
   )};
 
-if(value===1){
   return (
     <Container>
       {MyArticleView()}
     </Container>
-  );} else {
-    return (
-      <Container>
-        {MyArticleEdit()}
-      </Container>
-      )};
-
+  )
 };
 
 const styles = StyleSheet.create({
