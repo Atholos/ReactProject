@@ -9,7 +9,7 @@ const Creator = (props) => {
   const {navigation} = props;
   return (
     <Container>
-      <Header hasTabs />
+      {/* <Header hasTabs /> */}
       <Tabs>
         <Tab heading="Your Articles">
           <MyArticleList navigation={navigation} />

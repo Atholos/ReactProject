@@ -42,11 +42,11 @@ const getTagFiles = async (tag) => {
 const getAvatarTag = async (uid) => {
   const avatarResult = await getTagFiles('Avatar' + uid);
   // console.log('AVATAR RESULT', avatarResult[0]);
-    const avatarID = avatarResult[0].file_id;
-    const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
-    // console.log(apiUrl + 'media/' + avatarID);
-    // console.log('USERAVATAR', avatarFile);
-    return avatarFile.thumbnails.w320;
+  const avatarID = avatarResult[0].file_id;
+  const avatarFile = await fetchGetUrl(apiUrl + 'media/' + avatarID);
+  // console.log(apiUrl + 'media/' + avatarID);
+  // console.log('USERAVATAR', avatarFile);
+  return avatarFile.thumbnails.w320;
 };
 
 const getArticleDesc = async (fileid) => {
@@ -186,6 +186,7 @@ const ArticleHooks = () => {
         // console.log('rullaa');
         const response = await fetch(myurl + tagFileId[i]);
         const json = await response.json();
+        json.body = await getArticleDesc(tagFileId[i]);
         // console.log('JAASONI', json);
         // Pusketaan taggedFilesList arrayhyn haetut mediat
         taggedFilesList.push(json);
@@ -305,7 +306,7 @@ const ArticleHooks = () => {
       setMyComments(json);
       console.log('Settingmycomments')
       ;
-});
+    });
   };
 
   const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
@@ -332,7 +333,7 @@ const ArticleHooks = () => {
       }, 2000);
     });
   };
-  
+
 
 
   return {
