@@ -41,6 +41,11 @@ const MyArticleView = (props) => {
           </Body>
         </CardItem>
       </Card>
+      <Card style={styles.card}>
+        <CardItem>
+          <Text>{media.body}</Text>
+        </CardItem>
+      </Card>
       <Text style ={styles.bodytext}>{media.description}</Text>
       <CommentList fid={fileID} />
       <CommentForm fid={fileID} navigation={navigation} />
@@ -81,6 +86,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: 'white',
+    marginTop: 5,
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,

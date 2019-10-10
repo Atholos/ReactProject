@@ -1,6 +1,6 @@
-import { useEffect, useContext, useState } from 'react';
-import { AsyncStorage, Alert } from 'react-native';
-import { AppContext } from '../contexts/AppContext';
+import {useEffect, useContext, useState} from 'react';
+import {AsyncStorage, Alert} from 'react-native';
+import {AppContext} from '../contexts/AppContext';
 import appHooks from '../hooks/MainHooks';
 
 
@@ -61,7 +61,7 @@ const getArticleDesc = async (fileid) => {
 };
 
 const getArticleTags = (url) => {
-  const { articles, setArticles, setAllArticles } = useContext(AppContext);
+  const {articles, setArticles, setAllArticles} = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const fetchUrl = async () => {
     // Hakee projektitagilla kaikki tiedostot
@@ -108,8 +108,8 @@ const ArticleHooks = () => {
 
 
   const getArticleComments = (fileID) => {
-    const { checkCommentUser } = appHooks();
-    const { myComments, setMyComments } = useContext(AppContext);
+    const {checkCommentUser} = appHooks();
+    const {myComments, setMyComments} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my comments fetching');
     const fetchUrl = async () => {
@@ -162,7 +162,7 @@ const ArticleHooks = () => {
   };
   const getMyArticleTags = () => {
     const myurl = 'http://media.mw.metropolia.fi/wbma/media/';
-    const { myArticles, setMyArticles } = useContext(AppContext);
+    const {myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
     console.log('Starting my articles fetching');
     const fetchUrl = async () => {
@@ -293,7 +293,7 @@ const ArticleHooks = () => {
     return fetchUrl();
   };
   const reloadArticleComments = (fileID, setMyComments) => {
-    const { checkCommentUser } = appHooks();
+    const {checkCommentUser} = appHooks();
     const fetchUrl = async () => {
       const result = await fetchGetUrl(apiUrl + 'comments/file/' + fileID);
       for (let i = 0; i < result.length; i++) {
@@ -307,7 +307,7 @@ const ArticleHooks = () => {
     fetchUrl().then((json) => {
       setMyComments(json);
       console.log('Settingmycomments')
-        ;
+      ;
     });
   };
 
@@ -326,18 +326,16 @@ const ArticleHooks = () => {
         });
         navigation.navigate('Main');
         Alert.alert(
-          'Article Deleted',
-          'Reloading user Articles',
-          [
-            { text: 'OK', onPress: () => navigation.navigate('Creator') },
-          ],
-          { cancelable: false },
+            'Article Deleted',
+            'Reloading user Articles',
+            [
+              {text: 'OK', onPress: () => navigation.navigate('Creator')},
+            ],
+            {cancelable: false},
         );
-
       }, 2000);
     });
   };
-
 
 
   return {

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {Container, Content, Text, Button, Thumbnail, Card, CardItem, Right} from 'native-base';
+import {Container, Content, Text, Button, Thumbnail, Card, CardItem, Right, Left, Body, Icon} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import UpdatePasswordForm from '../components/UpdatePasswordForm';
 import UpdateEmailForm from '../components/UpdateEmailForm';
@@ -61,54 +61,52 @@ const User = (props) => {
   });
 
   return (
-    <Container style={styles.container}>
+    <Container style={{backgroundColor: '#c9d4d7'}}>
       <Content>
-        <Card>
+        <Card style={{marginTop: 30}}>
           <CardItem header>
-            <Text style={styles.title}>Profile</Text>
+            <Right>
+              <Icon name='person' iconSize={70}/> 
+            </Right>
+            <Left>
+              <Text style={{fontSize: 40}}>Profile</Text>
+            </Left>
           </CardItem>
            <CardItem>
-            <Right>
+            <Left>
             {avatar &&
             <Thumbnail
               square
               large
-              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
+              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} style ={{width: '100%', height: 100}} />
             }
-            </Right>
+            </Left>
+            <Body>
             <Text>Welcome {uinfo.name}</Text>
-            <Text>Email {uinfo.email}</Text>          
-            <Text>Email {uinfo.email}</Text>
-            <Text>Member since {uinfo.doc}</Text>            
-            <Button onPress={() => togglePassword()}>
+            <Text>Email {uinfo.email}</Text>                     
+            <Text>Member since: {uinfo.doc}</Text>
+            </Body>
+            </CardItem>
+            <CardItem>
+              <Right>           
+              <Button onPress={() => signOut(props)}>
+              <Text>Logout!</Text> 
+            </Button>
+            </Right>
+          </CardItem>
+        </Card>
+        <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => togglePassword()}>
                 <Text>Change password</Text>
             </Button>
             {uinfo.form === 1 && <UpdatePasswordForm />}
-            <Button onPress={() => toggleEmail()}>
+            <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => toggleEmail()}>
               <Text>Change email</Text>
             </Button>
             {uinfo.form === 2 && <UpdateEmailForm />}
-            <Button onPress={() => signOut(props)}>
-              <Text>Logout!</Text>
-            </Button>
-          </CardItem>
-        </Card>
       </Content>
     </Container>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: '500',
-    marginBottom: 20,
-  },
-});
 
 
 export default User;

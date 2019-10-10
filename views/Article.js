@@ -39,6 +39,11 @@ const Article = (props) => {
             </Body>
           </CardItem>
         </Card>
+        <Card style={styles.card}>
+          <CardItem>
+            <Text>{media.body}</Text>
+          </CardItem>
+        </Card>
         <Text style ={styles.bodytext}>{media.description}</Text>
         <CommentList fid={fileID} />
         <CommentForm fid={fileID} navigation={navigation} />
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   bodytext: {
+    marginTop: 5,
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1,
