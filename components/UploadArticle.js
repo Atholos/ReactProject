@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea } from 'native-base';
+import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea, Icon } from 'native-base';
 import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
@@ -61,7 +61,7 @@ const UploadArticle = (props) => {
                   {image.selected && <Thumbnail
                     source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
                 </Item>
-                <Item floatingLabel last rounded>
+                <Item floatingLabel last rounded style={{ margin: 10 }}>
                   <Label>Title </Label>
                   <Input
                     autoCapitalize='none'
@@ -70,9 +70,10 @@ const UploadArticle = (props) => {
                     value={upload.title} required
                   />
                 </Item>
-                <Item floatingLabel last rounded>
+                <Item floatingLabel last rounded style={{ margin: 10 }}>
                   <Label>File Description</Label>
                   <Input
+                    rowSpan={10}
                     autoCapitalize='none'
                     placeholder='Description'
                     onChangeText={handleBodyChange}
@@ -80,33 +81,39 @@ const UploadArticle = (props) => {
                   />
                 </Item>
                 <Label>Article</Label>
-                <Textarea rowSpan={10} bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
+                <Textarea rowSpan={10} style={{ margin: 10 }}
+                  bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
                   value={upload.desc} required />
               </Col>
 
-
-              <Row style={{ height: 20 }}>
+              <Row style={{ height: 40 }}>
                 <Col>
-                  <Button
+                  <Button style={{ margin: 10 }} iconLeft small rounded
                     onPress={() => {
                       clearForm();
                       setImage({});
                     }}
                   >
+                    <Icon name='trash' />
                     <Text>Reset</Text>
+
                   </Button>
                 </Col>
                 <Col>
-                  <Button onPress={() => {
+                  <Button style={{ margin: 10 }} iconLeft small rounded onPress={() => {
                     uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
                     setImage({});
                   }}>
-                    <Text>Upload</Text>
+                    <Icon name='paper-plane' />
+                    <Text>Create</Text>
+
                   </Button>
                 </Col>
                 <Col>
-                  <Button onPress={() => pickImage()}>
-                    <Text>Header Image</Text>
+                  <Button style={{ margin: 10 }} iconLeft small rounded onPress={() => pickImage()}>
+                    <Icon name='camera' />
+                    <Text>Image</Text>
+
                   </Button>
                 </Col>
               </Row>

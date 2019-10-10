@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Alert } from 'react-native';
+import React, {useContext} from 'react';
+import {StyleSheet} from 'react-native';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
 
@@ -15,26 +15,24 @@ import {
   Text,
 } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
-import { AppContext } from '../contexts/AppContext'
+import {AppContext} from '../contexts/AppContext';
 
 const CommentForm = (props) => {
-  const { fid, navigation } = props;
+  const {fid, navigation} = props;
 
   // const {updateEmailValidate} = appValidation();
   const {
     inputs,
     handleCommentChange,
   } = useLogRegForm();
-  const { postComment } = appHooks();
-  const { reloadArticleComments } = ArticleHooks();
-  const { setMyComments } = useContext(AppContext);
+  const {postComment} = appHooks();
+  const {reloadArticleComments} = ArticleHooks();
+  const {setMyComments} = useContext(AppContext);
 
   return (
     <Container>
-      <Content>
-        <Form>
-          <Item floatingLabel>
-            <Label>Comment</Label>
+      <Content style={styles.form}>
+          <Item>
             <Input
               autoCapitalize="none"
               placeholder="Write your comment here!"
@@ -42,16 +40,28 @@ const CommentForm = (props) => {
               value={inputs.comment} required
             />
           </Item>
-          <Item>
-            <Button onPress={() => {
-              postComment(fid, inputs.comment).then(() => reloadArticleComments(fid,setMyComments))
+            <Button style={styles.button} onPress={() => {
+              postComment(fid, inputs.comment).then(() => reloadArticleComments(fid, setMyComments));
             }}>
-                <Text>Post comment</Text>
+              <Text>Post comment</Text>
             </Button>
-          </Item>
-        </Form>
       </Content>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  form: {
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 30,
+  },
+  button: {
+    backgroundColor: 'green',
+    height: 40,
+    width: 150,
+    marginTop: 30,
+  },
+});
+
 export default CommentForm;
