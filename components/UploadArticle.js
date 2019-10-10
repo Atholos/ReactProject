@@ -96,7 +96,6 @@ const UploadArticle = (props) => {
                   >
                     <Icon name='trash' />
                     <Text>Reset</Text>
-
                   </Button>
                 </Col>
                 <Col>
@@ -106,14 +105,12 @@ const UploadArticle = (props) => {
                   }}>
                     <Icon name='paper-plane' />
                     <Text>Create</Text>
-
                   </Button>
                 </Col>
                 <Col>
                   <Button style={{ margin: 10 }} iconLeft small rounded onPress={() => pickImage()}>
                     <Icon name='camera' />
                     <Text>Image</Text>
-
                   </Button>
                 </Col>
               </Row>
