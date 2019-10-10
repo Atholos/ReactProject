@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Platform, StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
-import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
+import {Card, CardItem, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
@@ -25,12 +25,20 @@ const Article = (props) => {
     });
   }, []);
   return (
-    <Container>
+    <Container style={styles.container}>
       <Content>
-        <Text style={styles.title}>{title}</Text>
-        <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-        {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
-        <Text style ={styles.desc}>{media.body}</Text>
+        <Card style={styles.card}>
+        <CardItem>
+            <Body>
+              <Text style={styles.title}>{title}</Text>
+            </Body>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
+            </Body>
+          </CardItem>
+        </Card>
         <Text style ={styles.bodytext}>{media.description}</Text>
         <CommentList fid={fileID} />
         <CommentForm fid={fileID} navigation={navigation} />
@@ -41,10 +49,7 @@ const Article = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
+    backgroundColor: '#c9d4d7',
   },
   image: {
     borderRadius: 16,
@@ -54,10 +59,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
+  card: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
   title: {
     fontSize: 28,
     fontWeight: '600',
-    marginBottom: 30,
     marginTop: 10,
     textAlign: 'center',
   },
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1,
-    backgroundColor: '#EEF2F3',
+    backgroundColor: 'white',
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,
