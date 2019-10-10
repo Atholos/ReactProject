@@ -66,35 +66,49 @@ const User = (props) => {
         <Card style={styles.profileCard}>
           <CardItem header>
             <Right>
+<<<<<<< HEAD
               <Icon name='person' style={styles.Icon}/> 
             </Right>
             <Left>
               <Text style={styles.profileText}>Profile</Text>
             </Left>
-          </CardItem>
-           <CardItem>
+=======
+              <Icon name='person' style={{fontSize: 100, color: 'black'}}/>
+            </Right>
             <Left>
-            {avatar &&
+              <Text style={{fontSize: 40}}>Profile</Text>
+              </Left>
+>>>>>>> 84582be3dba4685d8aa27c060c1eaf68718b4918
+          </CardItem>
+          <CardItem>
+            <Left>
+              {avatar &&
             <Thumbnail
               square
               large
+<<<<<<< HEAD
               source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} style ={styles.thumbnail} />
             }
+=======
+              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} style ={{width: '100%', height: 100}} />
+              }
+>>>>>>> 84582be3dba4685d8aa27c060c1eaf68718b4918
             </Left>
             <Body>
-            <Text>Welcome {uinfo.name}</Text>
-            <Text>Email {uinfo.email}</Text>                     
-            <Text>Member since: {uinfo.doc}</Text>
+              <Text>Welcome {uinfo.name}</Text>
+              <Text>Email {uinfo.email}</Text>
+              <Text>Member since: {uinfo.doc}</Text>
             </Body>
-            </CardItem>
-            <CardItem>
-              <Right>           
-              <Button onPress={() => signOut(props)}>
-              <Text>Logout!</Text> 
-            </Button>
+          </CardItem>
+          <CardItem>
+            <Right>
             </Right>
+            <Button onPress={() => signOut(props)}>
+                <Text>Logout!</Text>
+              </Button>
           </CardItem>
         </Card>
+<<<<<<< HEAD
         <Button style={styles.linkButtons} onPress={() => togglePassword()}>
                 <Text>Change password</Text>
             </Button>
@@ -103,6 +117,16 @@ const User = (props) => {
               <Text>Change email</Text>
             </Button>
             {uinfo.form === 2 && <UpdateEmailForm />}
+=======
+        <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => togglePassword()}>
+          <Text>Change password</Text>
+        </Button>
+        {uinfo.form === 1 && <UpdatePasswordForm />}
+        <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => toggleEmail()}>
+          <Text>Change email</Text>
+        </Button>
+        {uinfo.form === 2 && <UpdateEmailForm />}
+>>>>>>> 84582be3dba4685d8aa27c060c1eaf68718b4918
       </Content>
     </Container>
   );

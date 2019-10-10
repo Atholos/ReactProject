@@ -32,19 +32,19 @@ const CommentForm = (props) => {
   return (
     <Container>
       <Content style={styles.form}>
-          <Item>
-            <Input
-              autoCapitalize="none"
-              placeholder="Write your comment here!"
-              onChangeText={handleCommentChange}
-              value={inputs.comment} required
-            />
-          </Item>
-            <Button style={styles.button} onPress={() => {
-              postComment(fid, inputs.comment).then(() => reloadArticleComments(fid, setMyComments));
-            }}>
-              <Text>Post comment</Text>
-            </Button>
+        <Item>
+          <Input
+            autoCapitalize="none"
+            placeholder="Write your comment here!"
+            onChangeText={handleCommentChange}
+            value={inputs.comment} required
+          />
+        </Item>
+        <Button style={styles.button} onPress={() => {
+          postComment(fid, inputs.comment).then(() => reloadArticleComments(fid, setMyComments));
+        }}>
+          <Text>Post comment</Text>
+        </Button>
       </Content>
     </Container>
   );
