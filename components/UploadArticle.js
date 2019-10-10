@@ -54,9 +54,11 @@ const UploadArticle = (props) => {
     <Container>
       <Content padder>
         <Form>
-          {image.selected && <Thumbnail
-            source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
-          <Item floatingLabel rounded>
+          <Item>
+            {image.selected && <Thumbnail
+              source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
+          </Item>
+          <Item floatingLabel last rounded>
             <Label>Title </Label>
             <Input
               autoCapitalize='none'
@@ -75,9 +77,8 @@ const UploadArticle = (props) => {
             />
           </Item>
           <Label>Article</Label>
-          <Textarea rowSpan={10} bordered placeholder='Article body text' onChangeText={handleDescChange}
+          <Textarea rowSpan={10} bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
             value={upload.desc} required />
-
           <Grid>
             <Row>
               <Col>

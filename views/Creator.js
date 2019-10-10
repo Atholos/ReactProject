@@ -9,7 +9,7 @@ const Creator = (props) => {
   const {navigation} = props;
   return (
     <Container>
-      <Header hasTabs>
+      <Header hasTabs/>
       <Tabs>
         <Tab heading="Your Articles">
           <MyArticleList navigation={navigation} />
@@ -18,7 +18,6 @@ const Creator = (props) => {
           <UploadArticle navigation={navigation} />
         </Tab>
       </Tabs>
-      </Header>
     </Container>
   );
 };
