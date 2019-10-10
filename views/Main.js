@@ -16,7 +16,7 @@ const Main = (props) => {
   return (
     <Container>
       <StatusBarCust />
-      <Filter style={{backgroundColor: '#c9d4d7'}}/>
+      <Filter/>
         <ArticleList navigation={navigation}></ArticleList>
       </Container>
   );

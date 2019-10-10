@@ -24,7 +24,7 @@ const Filter = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#c9d4d7',
+    backgroundColor: '#554a3c',
   },
   search: {
     backgroundColor: 'white',

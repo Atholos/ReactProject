@@ -36,7 +36,7 @@ const ArticleListItem = (props) => {
       });
     }}>
       <Card style={styles.card}>
-        <CardItem>
+        <CardItem style={styles.cardItem}>
           <Body style={styles.image}>
             <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
           </Body>
@@ -65,10 +65,12 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1,
-
   },
   desc: {
     fontWeight: '500',
+  },
+  cardItem: {
+    backgroundColor: '#65778e'
   },
   item: {
     marginLeft: 5,
