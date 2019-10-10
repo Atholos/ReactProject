@@ -332,6 +332,8 @@ const ArticleHooks = () => {
       }, 2000);
     });
   };
+  
+
 
   return {
     getAllMedia,
