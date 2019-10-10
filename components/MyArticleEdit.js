@@ -35,6 +35,8 @@ const MyArticleEdit = (props) => {
 
   useEffect(() => {
     getPermissionAsync();
+    handleTitleChange(media.title);
+    handleBodyChange(media.description);
   }
   , []);
   useEffect(() => {
@@ -60,7 +62,7 @@ const MyArticleEdit = (props) => {
                 placeholder={title}
                 onChangeText={handleTitleChange}
                 value={update.title}
-              />
+              ></Input>
             </Item>
             <Label>Article</Label>
             <Textarea rowSpan={10} style={{margin: 10}}
@@ -70,7 +72,7 @@ const MyArticleEdit = (props) => {
               placeholder={media.description}
               onChangeText={handleBodyChange}
               value={update.body}
-            />
+            ></Textarea>
 
             <Row style={{height: 40}}>
               <Col>
