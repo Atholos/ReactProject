@@ -5,15 +5,17 @@ import ArticleList from '../components/ArticleList';
 import PropTypes from 'prop-types';
 import Filter from '../components/Filter';
 import appHooks from '../hooks/MainHooks';
-import { StatusBar } from 'react-native'
+import {Platform, StatusBar } from 'react-native';
+import StatusBarCust from '../components/StatusBarCust';
 
 const Main = (props) => {
   const { navigation } = props;
   const { userToContext } = appHooks();
   userToContext();
+
   return (
     <Container>
-      <StatusBar hidden/>
+      <StatusBarCust />
       <Filter/>
         <ArticleList navigation={navigation}></ArticleList>
       </Container>
