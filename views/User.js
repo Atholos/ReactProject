@@ -61,15 +61,15 @@ const User = (props) => {
   });
 
   return (
-    <Container>
+    <Container style={{backgroundColor: '#c9d4d7'}}>
       <Content>
-        <Card>
+        <Card style={{marginTop: 30}}>
           <CardItem header>
             <Right>
-              <Icon active name='person'/> 
+              <Icon name='person' iconSize={70}/> 
             </Right>
             <Left>
-              <Text>Profile</Text>
+              <Text style={{fontSize: 40}}>Profile</Text>
             </Left>
           </CardItem>
            <CardItem>
@@ -84,20 +84,22 @@ const User = (props) => {
             <Body>
             <Text>Welcome {uinfo.name}</Text>
             <Text>Email {uinfo.email}</Text>                     
-            <Text>Member since {uinfo.doc}</Text>
+            <Text>Member since: {uinfo.doc}</Text>
             </Body>
             </CardItem>
-            <CardItem>            
-            <Button onPress={() => signOut(props)}>
-              <Text>Logout!</Text>
+            <CardItem>
+              <Right>           
+              <Button onPress={() => signOut(props)}>
+              <Text>Logout!</Text> 
             </Button>
+            </Right>
           </CardItem>
         </Card>
-        <Button onPress={() => togglePassword()}>
+        <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => togglePassword()}>
                 <Text>Change password</Text>
             </Button>
             {uinfo.form === 1 && <UpdatePasswordForm />}
-            <Button onPress={() => toggleEmail()}>
+            <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => toggleEmail()}>
               <Text>Change email</Text>
             </Button>
             {uinfo.form === 2 && <UpdateEmailForm />}

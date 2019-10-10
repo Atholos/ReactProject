@@ -311,13 +311,8 @@ const ArticleHooks = () => {
     });
   };
 
-<<<<<<< HEAD
-  const deleteArticle = async (article, setMyArticles, setArticles, setAllArticles, navigation) => {
-    return fetchDeleteUrl('media/' + article.file_id).then((json) => {
-=======
   const deleteArticle = async (fileID, setMyArticles, setArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + fileID).then((json) => {
->>>>>>> 3f24aece8a18db7d0a0e48c98ecfad80d0181110
       console.log('delete', json);
       setArticles([]);
       setMyArticles([]);
