@@ -43,12 +43,6 @@ const useUpdateArticle = () => {
       });
       const json = await response.json();
       //console.log(json);
-  
-      // Tagin bodytext sisältö, käyttää upatun kuvan file iideetä
-      const tagDescData = {
-        file_id: json.file_id,
-        tag: update.body,
-      };
 
   
       clearForm();

@@ -89,7 +89,7 @@ const UploadArticle = (props) => {
               <Col>
                 <Button onPress={() => {
                   uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
-                  setImage({});
+                  // setImage({});
                 }}>
                   <Text>Upload</Text>
                 </Button>

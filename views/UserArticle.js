@@ -21,18 +21,16 @@ const UserArticle = (props) => {
   const [uname, setUname] = useState({});
 
   return (
-  <Container>
-    {/* <Header hasTabs /> */}
-    <Tabs>
-      <Tab heading="View">
-        <MyArticleView navigation={navigation} />
-      </Tab>
-      <Tab heading="Edit">
-        <MyArticleEdit navigation={navigation} />
-      </Tab>
-    </Tabs>
-  </Container>)
-  
-}
+    <Container>
+      <Tabs>
+        <Tab heading="View">
+          <MyArticleView navigation={navigation} />
+        </Tab>
+        <Tab heading="Edit">
+          <MyArticleEdit navigation={navigation} />
+        </Tab>
+      </Tabs>
+    </Container>);
+};
 
 export default UserArticle;

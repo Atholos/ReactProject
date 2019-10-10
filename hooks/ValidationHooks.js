@@ -124,12 +124,47 @@ const appValidation = () => {
       }
     }
   };
+
+  const updateValidate = ( file, update, navigation, setAllArticles, setArticles, setMyArticles) => {
+    const constraints = UploadValidation;
+    const titleError = validate({ title: update.title }, constraints);
+    const descError = validate(
+      { description: update.body },
+      constraints
+    );
+    const bodyError = validate({ body: update.desc }, constraints);
+    const fileError = validate({ file: file }, constraints);
+
+    if (!titleError.title && !descError.description && !bodyError.body && !fileError.file) {
+      handleUpdate(file, update).then(() => {
+        setTimeout(() => {
+          reloadAllArticles().then((json) => {
+            setArticles(json);
+            setAllArticles(json);
+          });
+          reloadMyArticles().then((json) => {
+            setMyArticles(json);
+          });
+          navigation.navigate('Main');
+        }, 2000);
+      });
+    } else {
+      const errorArray = [titleError.title, descError.description, bodyError.body];
+      for (let i = 0; i < errorArray.length; i++) {
+        if (errorArray[i]) {
+          console.log('alert:', errorArray[i][0]);
+          alert(errorArray[i][0]);
+        }
+      }
+    }
+  };
   return {
     loginValidate,
     registerValidate,
     updatePasswordValidate,
     updateEmailValidate,
     uploadValidate,
+    updateValidate,
   };
 };
 export default appValidation;

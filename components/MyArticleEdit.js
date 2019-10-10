@@ -72,10 +72,9 @@ const MyArticleEdit = (props) => {
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Input 
         autoCapitalize='none'
-        placeholder={media.description}
         onChangeText={handleBodyChange}
         value={update.body}
-        style ={styles.bodytext}></Input>
+        style ={styles.bodytext}>{media.description}</Input>
         <Button
           onPress={
             () => {
@@ -89,7 +88,7 @@ const MyArticleEdit = (props) => {
                       text: 'OK',
                       onPress: () => {
                         console.log('OK Pressed'),
-                        deleteArticle(media, setMyArticles, setArticles);
+                        deleteArticle(media, setMyArticles, setArticles, navigation);
                       },
                     },
                     {text: 'Cancel',
