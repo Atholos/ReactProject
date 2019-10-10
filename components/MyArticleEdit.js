@@ -64,13 +64,7 @@ const MyArticleEdit = (props) => {
         onChangeText={handleTitleChange}
         value={update.title}
         style={styles.title}>
-        
         </Input>
-        {image.selected && <Thumbnail
-          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
-          <Button onPress={() => pickImage()}>
-              <Text>Show image</Text>
-            </Button>
         <Text style ={styles.desc}>{mediaDesc}</Text>
         <Input 
         autoCapitalize='none'
@@ -92,7 +86,7 @@ const MyArticleEdit = (props) => {
                       text: 'OK',
                       onPress: () => {
                         console.log('OK Pressed'),
-                        updateValidate(image.selected, update, navigation, setAllArticles, setArticles, setMyArticles);
+                        updateValidate('http://media.mw.metropolia.fi/wbma/media/'+fileID, update, navigation, setAllArticles, setArticles, setMyArticles);
                       },
                     },
                     {text: 'Cancel',

@@ -130,10 +130,10 @@ const appValidation = () => {
   const updateValidate = ( file, update, navigation, setAllArticles, setArticles, setMyArticles) => {
     const constraints = UploadValidation;
     const titleError = validate({ title: update.title }, constraints);
-    const bodyError = validate({ body: update.desc }, constraints);
-    const fileError = validate({ file: file }, constraints);
-
-    if (!titleError.title && !bodyError.body && !fileError.file) {
+    const bodyError = validate({ body: update.body }, constraints);
+    console.log('file', file);
+    console.log('update', update);
+    if (!titleError.title && !bodyError.body) {
       handleUpdate(file, update).then(() => {
         setTimeout(() => {
           reloadAllArticles().then((json) => {
