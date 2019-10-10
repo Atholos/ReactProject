@@ -80,26 +80,6 @@ const MyArticleEdit = (props) => {
                   () => {
                     console.log('press');
                     deleteArticle(fileID, setArticles, setMyArticles, setAllArticles, navigation);
-                    /*
-                    Alert.alert(
-                      'DELETE',
-                      'You are deleting this file for good, press "OK" to proceed or "Cancel" to retract.',
-                      [
-                        {
-                          text: 'OK',
-                          onPress: (navigation) => {
-                            console.log('OK Pressed'),
-                              deleteArticle(fileID, setMyArticles, setArticles, setAllArticles, navigation);
-                          },
-                        },
-                        {
-                          text: 'Cancel',
-                          onPress: () => console.log('Cancel Pressed'),
-                          style: 'cancel',
-                        },
-                      ],
-                      { cancelable: false },
-                    );*/
                   }
                 }>
                   <Icon name='ios-nuclear' />

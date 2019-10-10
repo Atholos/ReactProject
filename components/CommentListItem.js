@@ -7,22 +7,12 @@ import {
   Text,
   Card,
 } from 'native-base';
-import {Image} from 'react-native';
-import ArticleHooks from '../hooks/ArticleHooks';
 
 
 const CommentListItem = (props) => {
   const [desc, setDesc] = useState({});
   const {navigation, singleComment} = props;
-  // console.log('commentlistitem');
 
-  // useEffect(() => {
-  //   getArticleDesc(singleMedia.file_id).then((json) => {
-  //     setDesc({text: json});
-  //   }).catch((error) => {
-  //     console.log(console.error);
-  //   });
-  // }, []);
 
   return (
     <ListItem>

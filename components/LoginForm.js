@@ -18,7 +18,6 @@ import useLogRegForm from '../hooks/LogRegHooks';
 import appValidation from '../hooks/ValidationHooks';
 import {StyleSheet} from 'react-native';
 
-// Component for Login form that is then imported in Login View as a tab
 const LoginForm = (props) => {
   const {loginValidate} = appValidation();
   const {

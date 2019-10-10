@@ -10,12 +10,6 @@ import appValidation from '../hooks/ValidationHooks';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 
-// const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
-// const idUrl = 'http://media.mw.metropolia.fi/wbma/media/';
-// const picLink = 'http://media.mw.metropolia.fi/wbma/uploads/';
-// const mediaArray = [];
-
-
 const UploadArticle = (props) => {
   const { navigation } = props
   const [image, setImage] = useState({});

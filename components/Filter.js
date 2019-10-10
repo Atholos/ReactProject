@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {Header, Left, Right, Body, Item, Button, Icon, Input, Text} from 'native-base';
+import {Header, Left, Right, Body, Item, Button, Icon, Input, Text, Thumbnail} from 'native-base';
 import {StyleSheet} from 'react-native';
 import useSearch from '../hooks/SearchHooks';
 import {AppContext} from '../contexts/AppContext';
