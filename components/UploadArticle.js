@@ -8,6 +8,7 @@ import ArticleHooks from '../hooks/ArticleHooks';
 import { AppContext } from '../contexts/AppContext';
 import appValidation from '../hooks/ValidationHooks';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import {StyleSheet} from 'react-native';
 
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
@@ -51,7 +52,7 @@ const UploadArticle = (props) => {
     , []);
 
   return (
-    <Container>
+    <Container style={styles.back}>
       <Content padder>
         <Form>
           <Grid>
@@ -61,7 +62,7 @@ const UploadArticle = (props) => {
                   {image.selected && <Thumbnail
                     source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
                 </Item>
-                <Item last rounded style={{ margin: 10 }}>
+                <Item last rounded style={{backgroundColor: '#fffff2', margin: 10 }}>
                   <Input
                     autoCapitalize='none'
                     placeholder='Title'
@@ -69,7 +70,7 @@ const UploadArticle = (props) => {
                     value={upload.title} required
                   />
                 </Item>
-                <Item last rounded style={{ margin: 10 }}>
+                <Item last rounded style={{backgroundColor: '#fffff2', margin: 10 }}>
                   <Input
                     rowSpan={10}
                     autoCapitalize='none'
@@ -78,8 +79,8 @@ const UploadArticle = (props) => {
                     value={upload.body} required
                   />
                 </Item>
-                <Label>Article</Label>
-                <Textarea rowSpan={10} style={{ margin: 10 }}
+                <Label style={{color: '#fffff2', margin: 10}}>Article</Label>
+                <Textarea rowSpan={10} style={{backgroundColor: '#fffff2', margin: 10 }}
                   bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
                   value={upload.desc} required />
               </Col>
@@ -119,6 +120,15 @@ const UploadArticle = (props) => {
     </Container >
   );
 };
+
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor: '#5a5255',
+  },
+  form: {
+    backgroundColor: '#fffff2',
+  },
+});
 
 UploadArticle.propTypes = {
   navigation: PropTypes.object,

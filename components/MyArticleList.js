@@ -43,7 +43,7 @@ const MyArticleList = (props) => {
 
 const styles = StyleSheet.create({
   back: {
-    backgroundColor: '#c9d4d7',
+    backgroundColor: '#5a5255',
   },
 });
 

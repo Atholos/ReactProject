@@ -28,34 +28,36 @@ const MyArticleView = (props) => {
     });
   }, []);
   return (
-    <Content style={styles.container}>
-      <Card style={styles.card}>
-        <CardItem>
-          <Body>
-            <Text style={styles.title}>{title}</Text>
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Body>
-            <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-          </Body>
-        </CardItem>
-      </Card>
-      <Card style={styles.card}>
-        <CardItem>
-          <Text>{media.body}</Text>
-        </CardItem>
-      </Card>
-      <Text style ={styles.bodytext}>{media.description}</Text>
-      <CommentList fid={fileID} />
-      <CommentForm fid={fileID} navigation={navigation} />
-    </Content>
+    <Container style={styles.container}>
+      <Content>
+        <Card style={styles.card}>
+          <CardItem style={styles.cardit}>
+            <Body>
+              <Text style={styles.title}>{title}</Text>
+            </Body>
+          </CardItem>
+          <CardItem style={styles.cardim}>
+            <Body>
+              <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
+            </Body>
+          </CardItem>
+        </Card>
+        <Card style={styles.card}>
+          <CardItem>
+            <Text>{media.body}</Text>
+          </CardItem>
+        </Card>
+        <Text style ={styles.bodytext}>{media.description}</Text>
+        <CommentList fid={fileID} />
+        <CommentForm fid={fileID} navigation={navigation} />
+      </Content>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#c9d4d7',
+    backgroundColor: '#5a5255',
   },
   image: {
     borderRadius: 16,
@@ -68,6 +70,16 @@ const styles = StyleSheet.create({
   card: {
     marginLeft: 10,
     marginRight: 10,
+    backgroundColor: '#e1e5b8',
+    borderStyle: 'solid',
+    borderColor: '#d5da9b',
+    borderWidth: 3,
+  },
+  cardit: {
+    backgroundColor: '#fffff2',
+  },
+  cardim: {
+    backgroundColor: '#ce9c8d',
   },
   title: {
     fontSize: 28,
@@ -82,15 +94,17 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   bodytext: {
+    marginTop: 5,
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: 'white',
-    marginTop: 5,
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,
     padding: 5,
+  },
+  cform: {
   },
 });
 

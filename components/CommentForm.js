@@ -30,23 +30,21 @@ const CommentForm = (props) => {
   const {setMyComments} = useContext(AppContext);
 
   return (
-    <Container>
-      <Content style={styles.form}>
-        <Item>
-          <Input
-            autoCapitalize="none"
-            placeholder="Write your comment here!"
-            onChangeText={handleCommentChange}
-            value={inputs.comment} required
-          />
-        </Item>
-        <Button style={styles.button} onPress={() => {
-          postComment(fid, inputs.comment).then(() => reloadArticleComments(fid, setMyComments));
-        }}>
-          <Text>Post comment</Text>
-        </Button>
-      </Content>
-    </Container>
+    <Content style={styles.form}>
+      <Item>
+        <Input
+          autoCapitalize="none"
+          placeholder="Write your comment here!"
+          onChangeText={handleCommentChange}
+          value={inputs.comment} required
+        />
+      </Item>
+      <Button style={styles.button} onPress={() => {
+        postComment(fid, inputs.comment).then(() => reloadArticleComments(fid, setMyComments));
+      }}>
+        <Text>Post comment</Text>
+      </Button>
+    </Content>
   );
 };
 
@@ -55,12 +53,16 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 40,
     marginTop: 30,
+    backgroundColor: '#fffff2',
+    paddingBottom: 10,
+    paddingTop: 130,
   },
   button: {
     backgroundColor: 'green',
     height: 40,
     width: 150,
     marginTop: 30,
+    marginLeft: '25%',
   },
 });
 

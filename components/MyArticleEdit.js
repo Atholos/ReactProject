@@ -143,6 +143,15 @@ const MyArticleEdit = (props) => {
   );
 };
 
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor: '#5a5255',
+  },
+  form: {
+    backgroundColor: '#fffff2',
+  },
+});
+
 MyArticleEdit.propTypes = {
   navigation: PropTypes.object,
 };

@@ -19,8 +19,12 @@ const GuestTabNavigator = createBottomTabNavigator(
   {
     Main,
     Login,
+  }, {
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#fffff2',
+    }
   },
-  {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: () => {
         const { routeName } = navigation.state;
@@ -41,8 +45,13 @@ const LoggedTabNavigator = createBottomTabNavigator(
     Main,
     Creator,
     User,
-  },
-  {
+  }
+  , {
+    tabBarOptions: {
+      style: {
+        backgroundColor: '#fffff2',
+      }
+    },
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: () => {
         const { routeName } = navigation.state;
@@ -84,7 +93,7 @@ const GuestStackNavigator = createStackNavigator({
     screen: GuestTabNavigator,
     navigationOptions: {
       header: null // this will hide the header
-    }
+    },
   },
   Article: {
     screen: Article

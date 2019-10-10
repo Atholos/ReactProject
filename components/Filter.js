@@ -9,7 +9,7 @@ const Filter = () => {
   const {searchFilterFunction} = useSearch();
 
   return (
-    <Header searchBar rounded style={styles.header}>
+    <Header iosBarStyle='light-content' searchBar rounded style={styles.header}>
       <Item style={styles.search}>
         <Icon name="ios-search" />
         <Input
@@ -24,10 +24,10 @@ const Filter = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#c9d4d7',
+    backgroundColor: '#7a7476',
   },
   search: {
-    backgroundColor: 'white',
+    backgroundColor: '#fffff2',
     marginLeft: 20,
     marginRight: 20,
   },

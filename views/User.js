@@ -64,16 +64,12 @@ const User = (props) => {
     <Container style={styles.container}>
       <Content>
         <Card style={styles.profileCard}>
-          <CardItem header>
-            <Right>
-              <Icon name='person' style={styles.Icon}/> 
-            </Right>
-            <Left>
+          <CardItem style={{marginLeft: '22%', backgroundColor: '#fffff2'}} header>
+              <Icon name='person' style={styles.Icon}/>
               <Text style={styles.profileText}>Profile</Text>
-            </Left>
           </CardItem>
-          <CardItem>
-            <Left>
+          <CardItem style={{backgroundColor: '#fffff2'}}>
+            <Left style={{paddingRight: 12}}>
               {avatar &&
             <Thumbnail
               square
@@ -83,7 +79,7 @@ const User = (props) => {
             </Left>
             <Body>
               <Text>Welcome {uinfo.name}</Text>
-              <Text>Email {uinfo.email}</Text>
+              <Text>Email: {uinfo.email}</Text>
               <Text>Member since: {uinfo.doc}</Text>
             </Body>
           </CardItem>
@@ -111,16 +107,19 @@ const User = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#c9d4d7',
+    backgroundColor: '#5a5255',
   },
   Icon: {
     fontSize: 40,
      color: 'black',
   },
   profileCard: {
-    marginTop: 30, 
-    marginLeft: 20, 
+    marginTop: 30,
+    marginLeft: 20,
     marginRight: 20,
+    borderColor: '#e1e5b8',
+    borderStyle: 'solid',
+    borderWidth: 3,
   },
   profileText: {
     fontSize: 40,
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   linkButtons: {
     marginLeft: 40,
     marginRight: 40,
-    marginBottom: 10, 
+    marginBottom: 10,
     marginTop: 10,
   },
 })

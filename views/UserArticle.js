@@ -23,10 +23,10 @@ const UserArticle = (props) => {
   return (
     <Container>
       <Tabs>
-        <Tab heading="View">
+        <Tab activeTextStyle={{color: 'white'}} textStyle={{color: 'white'}} tabStyle={{backgroundColor: '#7a7476'}} activeTabStyle={{backgroundColor: '#7a7476'}} heading="View">
           <MyArticleView navigation={navigation} />
         </Tab>
-        <Tab heading="Edit">
+        <Tab activeTextStyle={{color: 'white'}} textStyle={{color: 'white'}} tabStyle={{backgroundColor: '#7a7476'}} activeTabStyle={{backgroundColor: '#7a7476'}} heading="Edit">
           <MyArticleEdit navigation={navigation} />
         </Tab>
       </Tabs>

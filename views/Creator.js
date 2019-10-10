@@ -11,10 +11,10 @@ const Creator = (props) => {
     <Container>
        {/* <Header hasTabs /> */}
       <Tabs tabContainerStyle={{ height: 60}}>
-        <Tab heading="Your Articles">
+        <Tab activeTextStyle={{color: 'white'}} textStyle={{color: 'white'}} tabStyle={{backgroundColor: '#7a7476'}} activeTabStyle={{backgroundColor: '#7a7476'}} heading="Your Articles">
           <MyArticleList navigation={navigation} />
         </Tab>
-        <Tab heading="Create a new Article">
+        <Tab activeTextStyle={{color: 'white'}} textStyle={{color: 'white'}} tabStyle={{backgroundColor: '#7a7476'}} activeTabStyle={{backgroundColor: '#7a7476'}} heading="Create a new Article">
           <UploadArticle navigation={navigation} />
         </Tab>
       </Tabs>

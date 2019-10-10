@@ -8,7 +8,7 @@ import {
 const StatusBarCust = () => {
   return (
     <Container>
-    <StatusBar />
+      <StatusBar barStyle="light-content" translucent={true} />
     </Container>
   );
 };
