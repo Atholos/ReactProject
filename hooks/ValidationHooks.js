@@ -130,7 +130,7 @@ const appValidation = () => {
   const updateValidate = ( file, update, navigation, setAllArticles, setArticles, setMyArticles) => {
     const constraints = UploadValidation;
     const titleError = validate({ title: update.title }, constraints);
-    const bodyError = validate({ body: update.desc }, constraints);
+    const bodyError = validate({ body: update.body }, constraints);
     const fileError = validate({ file: file }, constraints);
 
     if (!titleError.title && !bodyError.body && !fileError.file) {

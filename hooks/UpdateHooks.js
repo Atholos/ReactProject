@@ -30,6 +30,7 @@ const useUpdateArticle = () => {
       const formData = new FormData();
       formData.append('file', { uri: localUri, name: filename, type });
       formData.append('title', update.title);
+      formData.append('description', update.body);
       //console.log('formdata', formData);
   
   
@@ -46,7 +47,7 @@ const useUpdateArticle = () => {
       //console.log(json);
 
   
-      clearForm();
+     // clearForm();
     };
     return {
       handleTitleChange,
