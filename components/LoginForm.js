@@ -15,9 +15,10 @@ import {
   View,
 } from 'native-base';
 import useLogRegForm from '../hooks/LogRegHooks';
-import appValidation from '../hooks/ValidationHooks'
+import appValidation from '../hooks/ValidationHooks';
+import {StyleSheet} from 'react-native';
 
-//Component for Login form that is then imported in Login View as a tab
+// Component for Login form that is then imported in Login View as a tab
 const LoginForm = (props) => {
   const {loginValidate} = appValidation();
   const {
@@ -29,7 +30,7 @@ const LoginForm = (props) => {
     <Content>
       <Form>
         <Item floatingLabel>
-        <Label>Username</Label>
+          <Label>Username</Label>
           <Input
             autoCapitalize="none"
             placeholder="username"
@@ -38,7 +39,7 @@ const LoginForm = (props) => {
           />
         </Item>
         <Item floatingLabel>
-        <Label>Password</Label>
+          <Label>Password</Label>
           <Input
             autoCapitalize="none"
             placeholder="password"
@@ -47,11 +48,33 @@ const LoginForm = (props) => {
             value={inputs.password} required
           />
         </Item>
-        <Button onPress={() => loginValidate(inputs, props)}>
+        <Button style={styles.button} onPress={() => loginValidate(inputs, props)}>
           <Text>Login</Text>
         </Button>
       </Form>
     </Content>
   );
 };
+
+const styles = StyleSheet.create({
+  form: {
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 30,
+  },
+  button: {
+    justifyContent: 'center',
+    height: 40,
+    width: 150,
+    marginLeft: '30%',
+    marginTop: 25,
+  },
+  buttonImage: {
+    justifyContent: 'center',
+    height: 40,
+    width: 140,
+    marginLeft: 35,
+  },
+});
+
 export default LoginForm;
