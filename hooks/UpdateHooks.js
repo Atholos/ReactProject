@@ -30,6 +30,7 @@ const useUpdateArticle = () => {
       const formData = new FormData();
       formData.append('file', { uri: localUri, name: filename, type });
       formData.append('title', update.title);
+      formData.append('description', update.body);
       //console.log('formdata', formData);
   
   
@@ -40,13 +41,14 @@ const useUpdateArticle = () => {
           'Content-Type': 'application/json',
           'x-access-token': gotToken,
         },
-        body: formData,
+        body: JSON.stringify(data),
+      }).catch((error) => {
+        console.error(error);
       });
-      const json = await response.json();
-      //console.log(json);
-
+      const result = await response.json();
+      console.log('FILE UPDATE INFRO: ', result);
   
-      clearForm();
+      //clearForm();
     };
     return {
       handleTitleChange,
