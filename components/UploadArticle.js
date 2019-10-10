@@ -91,8 +91,13 @@ const UploadArticle = (props) => {
           </Item>
           <Item>
             <Button onPress={() => {
-              uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
-              setImage({});
+              uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles)
+              // .then( () => {
+              //   setImage({});
+              //   clearForm({});
+              // }
+              // );
+
               /*
               clearForm();
               setArticles([]);

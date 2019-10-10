@@ -56,12 +56,18 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: '600',
     marginBottom: 30,
+    textAlign: 'center',
   },
   desc: {
     marginBottom: 30,
     fontWeight: '500',
+    marginLeft: 15,
+    marginRight: 15,
   },
   bodytext: {
+    marginLeft: 10,
+    marginRight: 10,
+    fontFamily: 'Times New Roman',
   },
 });
 
