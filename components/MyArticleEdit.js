@@ -1,16 +1,19 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {StyleSheet, Image, Alert} from 'react-native';
-import {Container, Content, Button, Text, Header, Tab, Tabs} from 'native-base';
+import {Container, Content, Button, Text, Header, Tab, Tabs, Input, Thumbnail} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 import PropTypes from 'prop-types';
+import * as ImagePicker from 'expo-image-picker';
+import useUpdateForm from '../hooks/UpdateHooks';
+
 
 const MyArticleEdit = (props) => {
-    const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
-  const {checkUser} = appHooks();
+  const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
+  const {checkUser, getPermissionAsync} = appHooks();
   const {navigation} = props;
   const {deleteArticle} = ArticleHooks();
   const media = navigation.getParam('file', 'WRONG');
@@ -18,22 +21,88 @@ const MyArticleEdit = (props) => {
   const title = media.title;
   const fileID = media.file_id;
   const [uname, setUname] = useState({});
+  const [image, setImage] = useState({selected: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename});
+  const {
+    handleTitleChange,
+    handleBodyChange,
+    handleUpdate,
+    update,
+  } = useUpdateForm();
 
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    console.log(result);
+    setImage(
+      {
+        selected: result.uri,
+      });
+  };
+
+  useEffect(() => {
+    getPermissionAsync();
+  }
+    , []);
   useEffect(() => {
     console.log('Articlemedia!!!', media);
     checkUser(props).then((json) => {
       setUname({name: json});
     }).catch((error) => {
-      console.log(error);
+      console.log(error);x
     });
   }, []);
     return (
       <Content>
-        <Text style={styles.title}>{title}</Text>
-        <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-        {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
+        <Input 
+        autoCapitalize='none'
+        placeholder={title}
+        onChangeText={handleTitleChange}
+        value={update.title}
+        style={styles.title}>
+        
+        </Input>
+        {image.selected && <Thumbnail
+          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
+          <Button onPress={() => pickImage()}>
+              <Text>Show image</Text>
+            </Button>
         <Text style ={styles.desc}>{mediaDesc}</Text>
-        <Text style ={styles.bodytext}>{media.description}</Text>
+        <Input 
+        autoCapitalize='none'
+        placeholder={media.description}
+        onChangeText={handleBodyChange}
+        value={update.title}
+        style ={styles.bodytext}></Input>
+        <Button
+          onPress={
+            () => {
+              console.log('press');
+  
+              Alert.alert(
+                  'EDIT',
+                  'You are updating this Article, press "OK" to proceed or "Cancel" to retract.',
+                  [
+                    {
+                      text: 'OK',
+                      onPress: () => {
+                        console.log('OK Pressed'),
+                        deleteArticle(media, setMyArticles, setArticles, navigation);
+                      },
+                    },
+                    {text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel'},
+                  ],
+                  {cancelable: false},
+              );
+            }
+          }
+        >
+          <Text>Edit</Text>
+        </Button>
         <Button
           onPress={
             () => {
