@@ -68,14 +68,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,
-    ...Platform.select({
-      ios: {
-        fontFamily: 'Helvetica',
-      },
-      android: {
-        fontFamily: 'serif',
-      },
-    }),
   },
 });
 
