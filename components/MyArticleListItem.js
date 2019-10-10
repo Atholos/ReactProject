@@ -19,7 +19,6 @@ const MyArticleListItem = (props) => {
   const {navigation, singleMedia} = props;
   const {getThumbnail, deleteMedia} = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
-  console.log('thumbnails', tn);
   return (
     <ListItem thumbnail
       onPress={() => {

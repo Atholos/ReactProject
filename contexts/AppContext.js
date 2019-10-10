@@ -8,13 +8,15 @@ const AppProvider = (props) => {
     articles: initialArticle,
     user: initialUser,
     myArticles: initialMyArticle,
-    categories: initialCategories,
+    myComments: initialMyComment,
+    allArticles: initialAllArticles,
     children,
   } = props;
   const [articles, setArticles] = useState(initialArticle);
   const [user, setUser] = useState(initialUser);
   const [myArticles, setMyArticles] = useState(initialMyArticle);
-  const [categories, setCategories] = useState(initialCategories);
+  const [myComments, setMyComments] = useState(initialMyComment);
+  const [allArticles, setAllArticles] = useState(initialAllArticles);
 
   const applicationContext = {
     user,
@@ -22,9 +24,11 @@ const AppProvider = (props) => {
     articles,
     setArticles,
     myArticles,
+    myComments,
     setMyArticles,
-    categories,
-    setCategories,
+    setMyComments,
+    allArticles,
+    setAllArticles,
   };
 
   return (
@@ -36,16 +40,18 @@ const AppProvider = (props) => {
 
 AppProvider.propTypes = {
   articles: PropTypes.array,
+  comments: PropTypes.array,
   myArticles: PropTypes.array,
   user: PropTypes.object,
-  categories: PropTypes.array,
+  allArticles: PropTypes.array,
   children: PropTypes.node,
 };
 
 AppProvider.defaultProps = {
   articles: [],
+  comments: [],
   myArticles: [],
-  categories: [],
+  allArticles: [],
   user: {},
 };
 

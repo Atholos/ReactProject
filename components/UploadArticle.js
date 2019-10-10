@@ -5,7 +5,7 @@ import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
-import {AppContext} from '../contexts/AppContext';
+import { AppContext } from '../contexts/AppContext';
 
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
@@ -16,11 +16,11 @@ import {AppContext} from '../contexts/AppContext';
 
 const UploadArticle = (props) => {
   const [image, setImage] = useState({});
-  const  {articles, setArticles} = useContext(AppContext);
+  const { articles, setArticles, myArticles, setMyArticles } = useContext(AppContext);
   const {
     getPermissionAsync,
   } = appHooks();
-  const {reloadAllArticles} = ArticleHooks();
+  const { reloadAllArticles, reloadMyArticles } = ArticleHooks();
 
   const {
     upload,
@@ -55,7 +55,7 @@ const UploadArticle = (props) => {
       <Header />
       <Content>
         <Thumbnail
-          source={{ uri: image.selected }} style={{width: '100%', height: 200, alignSelf: 'center'}} />
+          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />
         <Form>
           <Item floatingLabel>
             <Label>Title </Label>
@@ -95,11 +95,16 @@ const UploadArticle = (props) => {
               clearForm();
               setImage({});
               setArticles([]);
-              
-               setTimeout(() =>{
-                //reloadAllArticles(articles);
+              setTimeout(() => {
+                reloadAllArticles().then((json) => {
+                  setArticles(json);
+                  setAllArticles(json);
+                });
+                reloadMyArticles().then((json) => {
+                  setMyArticles(json);
+                });
                 props.navigation.navigate('Main');
-                }, 2000);
+              }, 2000);
             }}>
               <Text>Upload</Text>
             </Button>

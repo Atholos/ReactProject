@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {StyleSheet, Image, Alert} from 'react-native';
-import {Container, Content, Button, Text} from 'native-base';
+import {Container, Content, Button, Text, Header, Tab, Tabs} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 const UserArticle = (props) => {
   const {setArticles, setMyArticles} = useContext(AppContext);
@@ -13,7 +15,7 @@ const UserArticle = (props) => {
   const media = navigation.getParam('file', 'WRONG');
   const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
-
+  const fileID = media.file_id;
   const [uname, setUname] = useState({});
 
   useEffect(() => {
@@ -25,8 +27,8 @@ const UserArticle = (props) => {
     });
   }, []);
 
+  const MyArticleView = () => {
   return (
-    <Container>
       <Content>
         <Text style={styles.title}>{title}</Text>
         <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
@@ -39,29 +41,91 @@ const UserArticle = (props) => {
               console.log('press');
 
               Alert.alert(
-                'DELETE',
-                'You are deleting this file for good "OK" to proceed or "Cancel" to retract.',
-                [
-                  {
-                    text: 'OK',
-                    onPress: () => {console.log('OK Pressed'),
-                    deleteArticle(media, setMyArticles, setArticles, navigation);
-                  },
-                  },
-                  {text: 'Cancel',
-                   onPress: () => console.log('Cancel Pressed'),
-                   style: 'cancel',},
-                ],
-                {cancelable: false},
+                  'DELETE',
+                  'You are deleting this file for good, press "OK" to proceed or "Cancel" to retract.',
+                  [
+                    {
+                      text: 'OK',
+                      onPress: () => {
+                        console.log('OK Pressed'),
+                        deleteArticle(media, setMyArticles, setArticles, navigation);
+                      },
+                    },
+                    {text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel'},
+                  ],
+                  {cancelable: false},
               );
             }
           }
         >
           <Text>Delete</Text>
         </Button>
+        <Button
+        onPress={() => {}}>
+          <Text>Edit</Text>
+        </Button>
+        <CommentList fid={fileID} />
+        <CommentForm fid={fileID} />
       </Content>
-    </Container>
   );
+};
+ 
+  const MyArticleEdit = () => {
+  return (
+    <Content>
+      <Text style={styles.title}>{title}</Text>
+      <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
+      {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
+      <Text style ={styles.desc}>{mediaDesc}</Text>
+      <Text style ={styles.bodytext}>{media.description}</Text>
+      <Button
+        onPress={
+          () => {
+            console.log('press');
+
+            Alert.alert(
+                'DELETE',
+                'You are deleting this file for good, press "OK" to proceed or "Cancel" to retract.',
+                [
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      console.log('OK Pressed'),
+                      deleteArticle(media, setMyArticles, setArticles, navigation);
+                    },
+                  },
+                  {text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel'},
+                ],
+                {cancelable: false},
+            );
+          }
+        }
+      >
+        <Text>Delete</Text>
+      </Button>
+      <Button
+        onPress={() => {}}>
+          <Text>Edit</Text>
+        </Button>
+      </Content>
+  )};
+
+if(value===1){
+  return (
+    <Container>
+      {MyArticleView()}
+    </Container>
+  );} else {
+    return (
+      <Container>
+        {MyArticleEdit()}
+      </Container>
+      )};
+
 };
 
 const styles = StyleSheet.create({

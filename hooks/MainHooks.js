@@ -108,6 +108,24 @@ const appHooks = () => {
     // console.log('USEROBJ', result);
     return JSON.stringify(result.username);
   };
+
+  const checkCommentUser = async (uid) => {
+    const gotToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTksInVzZXJuYW1lIjoiYXNkIiwiZW1haWwiOiJlYmluMTIzQGhvdG1haWwuY29tIiwiZnVsbF9uYW1lIjpudWxsLCJpc19hZG1pbiI6bnVsbCwidGltZV9jcmVhdGVkIjoiMjAxOS0wMS0yNFQxMDoyMzoyOC4wMDBaIiwiaWF0IjoxNTY5NzQ1NzgwLCJleHAiOjE1NzE4MTkzODB9.PN1qLUlFcQGK8Uqf3QMwDNtxFDRZegzVjfRIKsSbEVk';
+    const response = await fetch('http://media.mw.metropolia.fi/wbma/users/'+ uid, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-access-token': gotToken,
+      },
+    }).catch((error) => {
+      console.error(error);
+    });
+    const result = await response.json();
+    // console.log('USEROBJ', result);
+    return JSON.stringify(result.username);
+  };
+
+
   const getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -117,6 +135,43 @@ const appHooks = () => {
     }
   };
 
+  const updateInfo = async (data) => {
+    const gotToken = await AsyncStorage.getItem('userToken');
+    console.log('updatedata', data);
+    const response = await fetch('http://media.mw.metropolia.fi/wbma/users/', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(data),
+    }).catch((error) => {
+      console.error(error);
+    });
+    const result = await response.json();
+    console.log('UPDATE INFO', result);
+    return JSON.stringify(result.username);
+  };
+
+  const postComment = async (fileID, comment) => {
+    const data = {
+      file_id: fileID,
+      comment: comment,
+    };
+    const gotToken = await AsyncStorage.getItem('userToken');
+
+    const response = await fetch('http://media.mw.metropolia.fi/wbma/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': gotToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    console.log('POST COMMENT', result);
+  };
+
   return {
     bootstrapAsync,
     signIn,
@@ -124,9 +179,12 @@ const appHooks = () => {
     usernameCheck,
     signOut,
     checkUser,
+    checkCommentUser,
     getUser,
     getPermissionAsync,
     userToContext,
+    updateInfo,
+    postComment,
   };
 };
 export default appHooks;
