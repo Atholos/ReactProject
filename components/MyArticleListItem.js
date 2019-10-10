@@ -26,9 +26,9 @@ const MyArticleListItem = (props) => {
         filedesc: desc.text,
       });
     }}>
-      <Card style={{flex: 1}}>
+      <Card style={styles.card}>
         <CardItem>
-          <Body>
+          <Body style={styles.image}>
             <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
           </Body>
         </CardItem>
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '500',
+    marginBottom: 10,
+  },
+  card: {
+    flex: 1,
+    borderStyle: 'solid',
+    borderColor: 'black',
+    borderWidth: 1,
+
   },
   desc: {
     fontWeight: '500',
@@ -56,6 +64,13 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: 5,
     marginRight: 5,
+  },
+  image: {
+    borderStyle: 'solid',
+    borderColor: 'black',
+    borderWidth: 1/2,
+    borderRadius: 16,
+    overflow: 'hidden',
   },
 });
 

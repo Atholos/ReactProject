@@ -28,7 +28,7 @@ const Article = (props) => {
     <Container style={styles.container}>
       <Content>
         <Card style={styles.card}>
-        <CardItem>
+          <CardItem>
             <Body>
               <Text style={styles.title}>{title}</Text>
             </Body>
