@@ -70,7 +70,7 @@ const User = (props) => {
             </Right>
             <Left>
               <Text style={{fontSize: 40}}>Profile</Text>
-              </Left>
+            </Left>
           </CardItem>
           <CardItem>
             <Left>
@@ -91,10 +91,12 @@ const User = (props) => {
             <Right>
             </Right>
             <Button onPress={() => signOut(props)}>
-                <Text>Logout!</Text>
-              </Button>
+              <Text>Logout!</Text>
+            </Button>
           </CardItem>
         </Card>
+      </Content>
+      <Content>
         <Button style={{marginLeft: 40, marginRight: 40, marginBottom: 10, marginTop: 10}} onPress={() => togglePassword()}>
           <Text>Change password</Text>
         </Button>
