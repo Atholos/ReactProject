@@ -103,7 +103,6 @@ const appValidation = () => {
 
     if (!titleError.title && !descError.description && !bodyError.body && !fileError.file) {
       handleUpload(file, upload).then(() => {
-        clearForm();
         setTimeout(() => {
           reloadAllArticles().then((json) => {
             setArticles(json);
