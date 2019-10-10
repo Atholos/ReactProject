@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
+import {Platform, StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
 import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import CommentList from '../components/CommentList';
@@ -68,7 +68,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,
-    fontFamily: 'Helvetica',
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Helvetica',
+      },
+      android: {
+        fontFamily: 'serif',
+      },
+    }),
   },
 });
 
