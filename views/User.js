@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {Container, Content, Text, Button, Thumbnail} from 'native-base';
+import {Container, Content, Text, Button, Thumbnail, Card, CardItem, Right} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import UpdatePasswordForm from '../components/UpdatePasswordForm';
 import UpdateEmailForm from '../components/UpdateEmailForm';
@@ -63,27 +63,36 @@ const User = (props) => {
   return (
     <Container style={styles.container}>
       <Content>
-        <Text style={styles.title}>Profile</Text>
-        {avatar &&
-        <Thumbnail
-          square
-          large
-          source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
-        }
-        <Text>Welcome {uinfo.name}</Text>
-        <Text>Email {uinfo.email}</Text>
-        <Text>Member since {uinfo.doc}</Text>
-        <Button onPress={() => togglePassword()}>
-          <Text>Change password</Text>
-        </Button>
-        {uinfo.form === 1 && <UpdatePasswordForm />}
-        <Button onPress={() => toggleEmail()}>
-          <Text>Change email</Text>
-        </Button>
-        {uinfo.form === 2 && <UpdateEmailForm />}
-        <Button onPress={() => signOut(props)}>
-          <Text>Logout!</Text>
-        </Button>
+        <Card>
+          <CardItem header>
+            <Text style={styles.title}>Profile</Text>
+          </CardItem>
+           <CardItem>
+            <Right>
+            {avatar &&
+            <Thumbnail
+              square
+              large
+              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
+            }
+            </Right>
+            <Text>Welcome {uinfo.name}</Text>
+            <Text>Email {uinfo.email}</Text>          
+            <Text>Email {uinfo.email}</Text>
+            <Text>Member since {uinfo.doc}</Text>            
+            <Button onPress={() => togglePassword()}>
+                <Text>Change password</Text>
+            </Button>
+            {uinfo.form === 1 && <UpdatePasswordForm />}
+            <Button onPress={() => toggleEmail()}>
+              <Text>Change email</Text>
+            </Button>
+            {uinfo.form === 2 && <UpdateEmailForm />}
+            <Button onPress={() => signOut(props)}>
+              <Text>Logout!</Text>
+            </Button>
+          </CardItem>
+        </Card>
       </Content>
     </Container>
   );
