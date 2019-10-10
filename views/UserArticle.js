@@ -30,7 +30,8 @@ const UserArticle = (props) => {
           <MyArticleEdit navigation={navigation} />
         </Tab>
       </Tabs>
-    </Container>);
+    </Container>
+);
 };
 
 export default UserArticle;

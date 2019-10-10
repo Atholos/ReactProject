@@ -42,10 +42,10 @@ const MyArticleView = (props) => {
         </CardItem>
       </Card>
       <Card style={styles.card}>
-          <CardItem>
-            <Text>{media.body}</Text>
-          </CardItem>
-        </Card>
+        <CardItem>
+          <Text>{media.body}</Text>
+        </CardItem>
+      </Card>
       <Text style ={styles.bodytext}>{media.description}</Text>
       <CommentList fid={fileID} />
       <CommentForm fid={fileID} navigation={navigation} />
