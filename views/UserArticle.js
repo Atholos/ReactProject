@@ -22,7 +22,6 @@ const UserArticle = (props) => {
 
   return (
     <Container>
-      <Header hasTabs />
       <Tabs>
         <Tab heading="View">
           <MyArticleView navigation={navigation} />
