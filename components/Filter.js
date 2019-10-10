@@ -18,9 +18,9 @@ const Filter = () => {
         />
         <Icon name="pint" />
       </Item>
-      <Button transparent small rounded>
+      {/* <Button transparent small rounded>
         <Text>Search</Text>
-      </Button>
+      </Button> */}
     </Header>
   );
 };
