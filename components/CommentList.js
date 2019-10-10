@@ -1,10 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CommentListItem from './CommentListItem';
-import {Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, List} from 'native-base';
+import {Content, List} from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
-import {AsyncStorage} from 'react-native';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 
 const CommentList = (props) => {
@@ -12,7 +10,6 @@ const CommentList = (props) => {
   console.log(fid);
 
   const {
-    useFetch,
     getArticleComments,
   } = ArticleHooks();
 

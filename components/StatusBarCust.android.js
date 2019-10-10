@@ -8,7 +8,7 @@ import {
 const StatusBarCust = () => {
   return (
     <Container>
-    <StatusBar hidden />
+      <StatusBar hidden />
     </Container>
   );
 };

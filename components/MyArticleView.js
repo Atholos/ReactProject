@@ -1,26 +1,21 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {Platform, StyleSheet, Image, Alert} from 'react-native';
-import {Card, CardItem, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
+import {StyleSheet, Image} from 'react-native';
+import {Card, CardItem, Container, Content, Body, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
-import ArticleHooks from '../hooks/ArticleHooks';
-import {AppContext} from '../contexts/AppContext';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 
 const MyArticleView = (props) => {
-  const {setArticles, setMyArticles, setAllArticles} = useContext(AppContext);
   const {checkUser} = appHooks();
   const {navigation} = props;
-  const {deleteArticle} = ArticleHooks();
   const media = navigation.getParam('file', 'WRONG');
-  const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
   const fileID = media.file_id;
   const [uname, setUname] = useState({});
 
   useEffect(() => {
-    console.log('Articlemedia!!!', media);
+    // console.log('Articlemedia!!!', media);
     checkUser(props).then((json) => {
       setUname({name: json});
     }).catch((error) => {

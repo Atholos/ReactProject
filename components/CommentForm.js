@@ -2,9 +2,7 @@ import React, {useContext} from 'react';
 import {StyleSheet} from 'react-native';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
-
 import {
-  Container,
   Content,
   Item,
   Input,

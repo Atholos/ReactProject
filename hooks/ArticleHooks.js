@@ -3,7 +3,6 @@ import {AsyncStorage, Alert} from 'react-native';
 import {AppContext} from '../contexts/AppContext';
 import appHooks from '../hooks/MainHooks';
 
-
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
 const fetchGetUrl = async (url) => {
@@ -89,15 +88,15 @@ const ArticleHooks = () => {
     const {checkCommentUser} = appHooks();
     const {myComments, setMyComments} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
-    console.log('Starting my comments fetching');
+    // console.log('Starting my comments fetching');
     const fetchUrl = async () => {
-      console.log('fetchaa commentteja');
-      console.log('failiiidee', fileID);
+      // console.log('fetchaa commentteja');
+      // console.log('failiiidee', fileID);
       const result = await fetchGetUrl(apiUrl + 'comments/file/' + fileID);
       for (let i = 0; i < result.length; i++) {
-        console.log('usereita tseKKAILLAAN');
+        // console.log('usereita tseKKAILLAAN');
         result[i].username = await checkCommentUser(result[i].user_id);
-        console.log(result[i].username);
+        // console.log(result[i].username);
       }
       setMyComments(result);
       setLoading(false);
@@ -142,7 +141,7 @@ const ArticleHooks = () => {
     const myurl = 'http://media.mw.metropolia.fi/wbma/media/';
     const {myArticles, setMyArticles} = useContext(AppContext);
     const [loading, setLoading] = useState(true);
-    console.log('Starting my articles fetching');
+    // console.log('Starting my articles fetching');
     const fetchUrl = async () => {
       const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
       const userID = gotuser.user_id;
@@ -185,7 +184,7 @@ const ArticleHooks = () => {
 
   const fetchDeleteUrl = async (url, token = '') => {
     const userToken = await AsyncStorage.getItem('userToken');
-    console.log('fetchDeleteUrl', url, userToken);
+    // console.log('fetchDeleteUrl', url, userToken);
     const response = await fetch(apiUrl + url, {
       method: 'DELETE',
       headers: {
@@ -193,7 +192,7 @@ const ArticleHooks = () => {
       },
     });
     const json = await response.json();
-    console.log('fetchDeleteUrl json', json);
+    // console.log('fetchDeleteUrl json', json);
     return json;
   };
 
@@ -226,11 +225,11 @@ const ArticleHooks = () => {
   };
   const reloadMyArticles = () => {
     const myurl = 'http://media.mw.metropolia.fi/wbma/media/';
-    console.log('Starting my articles fetching');
+    // console.log('Starting my articles fetching');
     const fetchUrl = async () => {
       const gotuser = JSON.parse(await AsyncStorage.getItem('user'));
       const userID = gotuser.user_id;
-      console.log('3. userid', userID);
+      // console.log('3. userid', userID);
       // Hakee projektitagilla kaikki tiedostot
       const tagfiles = await getTagFiles('craftersguild');
 
@@ -275,17 +274,17 @@ const ArticleHooks = () => {
       }
       return result;
     };
-    console.log('fetchurling');
+    // console.log('fetchurling');
     fetchUrl().then((json) => {
       setMyComments(json);
-      console.log('Settingmycomments')
+      // console.log('Settingmycomments')
       ;
     });
   };
   // ARCH ENEMY THAT REFUSED TO YELD
   const deleteArticle = async (fileID, setArticles, setMyArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + fileID).then((json) => {
-      console.log('delete', json);
+      // console.log('delete', json);
       setArticles([]);
       setMyArticles([]);
       setTimeout(() => {

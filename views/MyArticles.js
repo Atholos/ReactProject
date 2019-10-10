@@ -2,7 +2,6 @@
 import React from 'react';
 import {Container, Content} from 'native-base';
 import MyArticleList from '../components/MyArticleList';
-import PropTypes from 'prop-types';
 
 const MyArticles = (props) => {
   const {navigation} = props;

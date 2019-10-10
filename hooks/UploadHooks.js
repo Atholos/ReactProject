@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { AsyncStorage} from 'react-native';
-import ArticleHooks from './ArticleHooks'
 
 const useUploadForm = () => {
   const [upload, setUpload] = useState({});
-  const {reloadMyArticles, reloadAllArticles} = ArticleHooks();
 
   const handleTitleChange = (text) => {
     setUpload((upload) =>

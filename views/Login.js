@@ -5,7 +5,8 @@ import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import PropTypes from 'prop-types';
 
-//Login has tabs for both login and register
+// Login has tabs for both login and register
+
 const Login = (props) => {
   const {navigation} = props;
   return (

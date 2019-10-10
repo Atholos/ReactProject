@@ -1,18 +1,12 @@
 import React from 'react';
-import FormTextInput from './FormTextInput';
-import appHooks from '../hooks/MainHooks';
 import {
-  Container,
-  Header,
   Content,
   Form,
   Item,
   Input,
   Label,
-  Body,
   Button,
   Text,
-  View,
 } from 'native-base';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appValidation from '../hooks/ValidationHooks';

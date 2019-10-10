@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {
   ListItem,
@@ -8,24 +8,10 @@ import {
   Card,
 } from 'native-base';
 import {Image, StyleSheet} from 'react-native';
-import ArticleHooks from '../hooks/ArticleHooks';
-
 
 const ArticleListItem = (props) => {
   const [desc, setDesc] = useState({});
   const {navigation, singleMedia} = props;
-  const {
-    getThumbnail,
-    getArticleDesc,
-  } = ArticleHooks();
-
-  // useEffect(() => {
-  //   getArticleDesc(singleMedia.file_id).then((json) => {
-  //     setDesc({text: json});
-  //   }).catch((error) => {
-  //     console.log(console.error);
-  //   });
-  // }, []);
 
   return (
 
@@ -36,11 +22,7 @@ const ArticleListItem = (props) => {
       });
     }}>
       <Card style={styles.card}>
-<<<<<<< HEAD
         <CardItem style={styles.imcard}>
-=======
-        <CardItem style={styles.cardItem}>
->>>>>>> 95e00b88fba517799ae04ad59355371869d613f1
           <Body style={styles.image}>
             <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
           </Body>

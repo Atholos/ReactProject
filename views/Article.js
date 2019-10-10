@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Platform, StyleSheet, View, Image, AsyncStorage, ScrollView} from 'react-native';
-import {Card, CardItem, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text} from 'native-base';
+import {StyleSheet, Image} from 'react-native';
+import {Card, CardItem, Container, Content, Body, Text} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
@@ -16,7 +16,7 @@ const Article = (props) => {
   const [uname, setUname] = useState({});
 
   useEffect(() => {
-    console.log('Articlemedia!!!', media.file_id);
+    // console.log('Articlemedia!!!', media.file_id);
     checkUser(props).then((json) => {
       setUname({name: json});
     }).catch((error) => {

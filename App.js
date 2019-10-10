@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 /* eslint-disable max-len */
-import { AppProvider } from './contexts/AppContext';
+import {AppProvider} from './contexts/AppContext';
 import Navigator from './navigators/Navigator';
 import * as Expo from 'expo';
-import { Ionicons } from "@expo/vector-icons";
 import * as Font from 'expo-font';
 
 const App = () => {
@@ -11,7 +10,7 @@ const App = () => {
   const loadFonts = async () => {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
     });
     setFontReady(true);
   };

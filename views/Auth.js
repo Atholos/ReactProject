@@ -8,7 +8,7 @@ import {
 import appHooks from '../hooks/MainHooks';
 
 const Auth = (props) => {
-  const { bootstrapAsync } = appHooks();
+  const {bootstrapAsync} = appHooks();
   bootstrapAsync(props);
   return (
     <View>

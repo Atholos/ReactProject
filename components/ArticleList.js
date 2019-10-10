@@ -1,14 +1,12 @@
-import React, {keyExtractor} from "react";
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import PropTypes from "prop-types";
-import ArticleListItem from "./ArticleListItem";
-import { List } from 'native-base';
+import PropTypes from 'prop-types';
+import ArticleListItem from './ArticleListItem';
+import {List} from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
 
-
-
 const ArticleList = (props) => {
-  const { navigation } = props;
+  const {navigation} = props;
 
   const {
     useFetch,
