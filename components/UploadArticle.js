@@ -54,57 +54,63 @@ const UploadArticle = (props) => {
     <Container>
       <Content padder>
         <Form>
-          <Item>
-            {image.selected && <Thumbnail
-              source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
-          </Item>
-          <Item floatingLabel last rounded>
-            <Label>Title </Label>
-            <Input
-              autoCapitalize='none'
-              placeholder='Title'
-              onChangeText={handleTitleChange}
-              value={upload.title} required
-            />
-          </Item>
-          <Item floatingLabel last rounded>
-            <Label>File Description</Label>
-            <Input
-              autoCapitalize='none'
-              placeholder='Description'
-              onChangeText={handleBodyChange}
-              value={upload.body} required
-            />
-          </Item>
-          <Label>Article</Label>
-          <Textarea rowSpan={10} bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
-            value={upload.desc} required />
           <Grid>
-            <Row>
+            <Col>
               <Col>
-                <Button onPress={() => pickImage()}>
-                  <Text>Header Image</Text>
-                </Button>
+                <Item>
+                  {image.selected && <Thumbnail
+                    source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
+                </Item>
+                <Item floatingLabel last rounded>
+                  <Label>Title </Label>
+                  <Input
+                    autoCapitalize='none'
+                    placeholder='Title'
+                    onChangeText={handleTitleChange}
+                    value={upload.title} required
+                  />
+                </Item>
+                <Item floatingLabel last rounded>
+                  <Label>File Description</Label>
+                  <Input
+                    autoCapitalize='none'
+                    placeholder='Description'
+                    onChangeText={handleBodyChange}
+                    value={upload.body} required
+                  />
+                </Item>
+                <Label>Article</Label>
+                <Textarea rowSpan={10} bordered rounded placeholder='Article body text' onChangeText={handleDescChange}
+                  value={upload.desc} required />
               </Col>
-              <Col>
-                <Button onPress={() => {
-                  uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
-                  // setImage({});
-                }}>
-                  <Text>Upload</Text>
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  onPress={() => {
-                    clearForm();
+
+
+              <Row style={{ height: 20 }}>
+                <Col>
+                  <Button
+                    onPress={() => {
+                      clearForm();
+                      setImage({});
+                    }}
+                  >
+                    <Text>Reset</Text>
+                  </Button>
+                </Col>
+                <Col>
+                  <Button onPress={() => {
+                    uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
                     setImage({});
-                  }}
-                >
-                  <Text>Reset</Text>
-                </Button>
-              </Col>
-            </Row>
+                  }}>
+                    <Text>Upload</Text>
+                  </Button>
+                </Col>
+                <Col>
+                  <Button onPress={() => pickImage()}>
+                    <Text>Header Image</Text>
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
           </Grid>
         </Form>
       </Content>
