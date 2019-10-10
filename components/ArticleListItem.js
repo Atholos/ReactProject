@@ -7,7 +7,7 @@ import {
   Text,
   Card,
 } from 'native-base';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import ArticleHooks from '../hooks/ArticleHooks';
 
 
@@ -29,7 +29,7 @@ const ArticleListItem = (props) => {
 
   return (
 
-    <ListItem thumbnail onPress={() => {
+    <ListItem style={styles.item} thumbnail onPress={() => {
       navigation.push('Article', {
         file: singleMedia,
         filedesc: desc.text,
@@ -43,8 +43,8 @@ const ArticleListItem = (props) => {
         </CardItem>
         <CardItem>
           <Body>
-            <Text>{singleMedia.title}</Text>
-            <Text note numberOfLines={3}>
+            <Text style ={styles.title}>{singleMedia.title}</Text>
+            <Text style={styles.desc} note numberOfLines={3}>
               {singleMedia.body}
             </Text>
           </Body>
@@ -53,6 +53,20 @@ const ArticleListItem = (props) => {
     </ListItem>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 28,
+    fontWeight: '500',
+  },
+  desc: {
+    fontWeight: '500',
+  },
+  item: {
+    marginLeft: 5,
+    marginRight: 5,
+  },
+});
 
 ArticleListItem.propTypes = {
   singleMedia: PropTypes.object,

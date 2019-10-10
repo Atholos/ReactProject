@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea, Grid } from 'native-base';
+import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea } from 'native-base';
 import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import { AppContext } from '../contexts/AppContext';
-import appValidation from '../hooks/ValidationHooks'
+import appValidation from '../hooks/ValidationHooks';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
@@ -44,7 +45,6 @@ const UploadArticle = (props) => {
         selected: result.uri,
       });
   };
-
   useEffect(() => {
     getPermissionAsync();
   }
@@ -74,34 +74,37 @@ const UploadArticle = (props) => {
               value={upload.body} required
             />
           </Item>
-
           <Label>Article</Label>
-
-
           <Textarea rowSpan={10} bordered placeholder='Article body text' onChangeText={handleDescChange}
             value={upload.desc} required />
 
-
-          <Button onPress={() => pickImage()}>
-            <Text>Header Image</Text>
-          </Button>
-
-          <Button onPress={() => {
-            uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
-            setImage({});
-          }}>
-            <Text>Upload</Text>
-          </Button>
-
-          <Button
-            onPress={() => {
-              clearForm();
-              setImage({});
-            }}
-          >
-            <Text>Reset</Text>
-          </Button>
-
+          <Grid>
+            <Row>
+              <Col>
+                <Button onPress={() => pickImage()}>
+                  <Text>Header Image</Text>
+                </Button>
+              </Col>
+              <Col>
+                <Button onPress={() => {
+                  uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
+                  setImage({});
+                }}>
+                  <Text>Upload</Text>
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  onPress={() => {
+                    clearForm();
+                    setImage({});
+                  }}
+                >
+                  <Text>Reset</Text>
+                </Button>
+              </Col>
+            </Row>
+          </Grid>
         </Form>
       </Content>
     </Container >

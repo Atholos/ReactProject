@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'native-base';
+import {StyleSheet} from 'react-native';
 import MyArticleListItem from './MyArticleListItem';
 import ArticleHooks from '../hooks/ArticleHooks';
 import appHooks from '../hooks/MainHooks';
@@ -31,6 +32,7 @@ const MyArticleList = (props) => {
 
   return (
     <List
+    style={styles.back}
       dataArray={myArticles}
       renderRow={(item) =>
         <MyArticleListItem navigation={navigation} singleMedia={item} />}
@@ -38,6 +40,12 @@ const MyArticleList = (props) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor: '#c9d4d7',
+  },
+});
 
 MyArticleList.propTypes = {
   navigation: PropTypes.object,
