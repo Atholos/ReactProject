@@ -10,7 +10,7 @@ const Filter = () => {
 
   return (
     <Header searchBar rounded style={styles.header}>
-      <Item style={{marginLeft: 20, marginRight: 20}}>
+      <Item style={styles.search}>
         <Icon name="ios-search" />
         <Input
           placeholder="Search"
@@ -25,6 +25,11 @@ const Filter = () => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#c9d4d7',
+  },
+  search: {
+    backgroundColor: 'white',
+    marginLeft: 20,
+    marginRight: 20,
   },
 })
 
