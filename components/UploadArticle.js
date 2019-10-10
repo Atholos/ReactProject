@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea } from 'native-base';
+import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea, Icon } from 'native-base';
 import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
@@ -86,29 +86,34 @@ const UploadArticle = (props) => {
                   value={upload.desc} required />
               </Col>
 
-
               <Row style={{ height: 40 }}>
-                <Col style={{ margin: 10 }}>
-                  <Button rounded
+                <Col>
+                  <Button style={{ margin: 10 }} iconLeft small rounded
                     onPress={() => {
                       clearForm();
                       setImage({});
                     }}
                   >
+                    <Icon name='trash' />
                     <Text>Reset</Text>
+
                   </Button>
                 </Col>
-                <Col style={{ margin: 10 }}>
-                  <Button rounded onPress={() => {
+                <Col>
+                  <Button style={{ margin: 10 }} iconLeft small rounded onPress={() => {
                     uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
                     setImage({});
                   }}>
-                    <Text>Upload</Text>
+                    <Icon name='paper-plane' />
+                    <Text>Create</Text>
+
                   </Button>
                 </Col>
-                <Col style={{ margin: 10 }}>
-                  <Button rounded onPress={() => pickImage()}>
-                    <Text>Header Image</Text>
+                <Col>
+                  <Button style={{ margin: 10 }} iconLeft small rounded onPress={() => pickImage()}>
+                    <Icon name='camera' />
+                    <Text>Image</Text>
+
                   </Button>
                 </Col>
               </Row>
