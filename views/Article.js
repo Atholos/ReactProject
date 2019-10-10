@@ -55,21 +55,27 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: '600',
     marginBottom: 30,
+    marginTop: 10,
     textAlign: 'center',
   },
   desc: {
     marginBottom: 12,
-    fontWeight: '500',
+    fontWeight: '400',
     marginLeft: 15,
     marginRight: 15,
   },
   bodytext: {
+    borderStyle: 'solid',
+    borderColor: 'black',
+    borderWidth: 1,
+    backgroundColor: '#EEF2F3',
     marginLeft: 10,
     marginRight: 10,
     fontSize: 15,
+    padding: 5,
   },
 });
 

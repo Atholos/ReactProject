@@ -10,7 +10,7 @@ const Creator = (props) => {
   return (
     <Container>
        {/* <Header hasTabs /> */}
-      <Tabs>
+      <Tabs tabContainerStyle={{ height: 60}}>
         <Tab heading="Your Articles">
           <MyArticleList navigation={navigation} />
         </Tab>
