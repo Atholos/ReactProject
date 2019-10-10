@@ -10,7 +10,7 @@ import MyArticleView from '../components/MyArticleView';
 import MyArticleEdit from '../components/MyArticleEdit';
 
 const UserArticle = (props) => {
-  const {setArticles, setMyArticles, setAllArticles} = useContext(AppContext);
+  const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
   const {checkUser} = appHooks();
   const {navigation} = props;
   const {deleteArticle} = ArticleHooks();
@@ -21,17 +21,18 @@ const UserArticle = (props) => {
   const [uname, setUname] = useState({});
 
   return (
-    <Container>
-      <Header hasTabs />
-      <Tabs>
-        <Tab heading="View">
-          <MyArticleView navigation={navigation} />
-        </Tab>
-        <Tab heading="Edit">
-          <MyArticleEdit navigation={navigation} />
-        </Tab>
-      </Tabs>
-    </Container>);
-};
+  <Container>
+    {/* <Header hasTabs /> */}
+    <Tabs>
+      <Tab heading="View">
+        <MyArticleView navigation={navigation} />
+      </Tab>
+      <Tab heading="Edit">
+        <MyArticleEdit navigation={navigation} />
+      </Tab>
+    </Tabs>
+  </Container>)
+  
+}
 
 export default UserArticle;
