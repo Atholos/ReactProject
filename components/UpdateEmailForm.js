@@ -1,6 +1,7 @@
 import React from 'react';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appValidation from '../hooks/ValidationHooks';
+import {StyleSheet} from 'react-native';
 import {
   Container,
   Content,
@@ -43,3 +44,17 @@ const UpdateEmailForm = (props) => {
   );
 };
 export default UpdateEmailForm;
+
+const styles = StyleSheet.create({
+  form: {
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 30,
+  },
+  button: {
+    backgroundColor: 'green',
+    height: 40,
+    width: 150,
+    marginTop: 30,
+  },
+});

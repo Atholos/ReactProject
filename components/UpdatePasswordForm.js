@@ -1,6 +1,7 @@
 import React from 'react';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appValidation from '../hooks/ValidationHooks';
+import {StyleSheet} from 'react-native';
 import {
   Container,
   Content,
@@ -23,7 +24,7 @@ const UpdatePasswordForm = (props) => {
   return (
     <Container>
       <Content>
-        <Form>
+        <Form style={styles.form}>
           <Item floatingLabel>
             <Label>Password</Label>
             <Input
@@ -45,7 +46,7 @@ const UpdatePasswordForm = (props) => {
             />
           </Item>
           <Item>
-            <Button onPress={() => updatePasswordValidate(inputs)}>
+            <Button style={styles.button} onPress={() => updatePasswordValidate(inputs)}>
               <Text>Update password</Text>
             </Button>
           </Item>
@@ -55,3 +56,17 @@ const UpdatePasswordForm = (props) => {
   );
 };
 export default UpdatePasswordForm;
+
+const styles = StyleSheet.create({
+  form: {
+    marginLeft: 20,
+    marginRight: 40,
+    marginTop: 30,
+  },
+  button: {
+    backgroundColor: 'green',
+    height: 40,
+    width: 150,
+    marginTop: 30,
+  },
+});
