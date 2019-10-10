@@ -10,7 +10,7 @@ const Filter = () => {
 
   return (
     <Header searchBar rounded>
-      <Item>
+      <Item style={{marginLeft: 20, marginRight: 20}}>
         <Icon name="ios-search" />
         <Input
           placeholder="Search"
@@ -18,9 +18,6 @@ const Filter = () => {
         />
         <Icon name="pint" />
       </Item>
-      {/* <Button transparent small rounded>
-        <Text>Search</Text>
-      </Button> */}
     </Header>
   );
 };
