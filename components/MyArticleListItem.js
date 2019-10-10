@@ -21,7 +21,7 @@ const MyArticleListItem = (props) => {
   const tn = getThumbnail(singleMedia.file_id);
   return (
     <ListItem style={styles.item} thumbnail onPress={() => {
-      navigation.push('Article', {
+      navigation.push('UserArticle', {
         file: singleMedia,
         filedesc: desc.text,
       });

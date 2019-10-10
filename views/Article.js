@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   desc: {
-    marginBottom: 30,
+    marginBottom: 12,
     fontWeight: '500',
     marginLeft: 15,
     marginRight: 15,
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   bodytext: {
     marginLeft: 10,
     marginRight: 10,
-    // fontFamily: 'Times New Roman',
+    fontSize: 15,
+    fontFamily: 'Helvetica',
   },
 });
 
