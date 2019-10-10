@@ -23,7 +23,7 @@ const UpdateEmailForm = (props) => {
   return (
     <Container>
       <Content>
-        <Form>
+        <Form style={styles.form}>
           <Item floatingLabel>
             <Label>Email</Label>
             <Input
@@ -34,7 +34,7 @@ const UpdateEmailForm = (props) => {
             />
           </Item>
           <Item>
-            <Button onPress={() => updateEmailValidate(inputs)}>
+            <Button style={styles.button} onPress={() => updateEmailValidate(inputs)}>
               <Text>Update email</Text>
             </Button>
           </Item>

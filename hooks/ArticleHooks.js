@@ -311,7 +311,7 @@ const ArticleHooks = () => {
     });
   };
 
-  const deleteArticle = async (fileID, setMyArticles, setArticles, setAllArticles, navigation) => {
+  const deleteArticle = async (fileID, setArticles, setMyArticles, setAllArticles, navigation) => {
     return fetchDeleteUrl('media/' + fileID).then((json) => {
       console.log('delete', json);
       setArticles([]);
@@ -324,7 +324,6 @@ const ArticleHooks = () => {
         reloadMyArticles().then((json) => {
           setMyArticles(json);
         });
-        navigation.navigate('Main');
         Alert.alert(
             'Article Deleted',
             'Reloading user Articles',
@@ -333,7 +332,7 @@ const ArticleHooks = () => {
             ],
             {cancelable: false},
         );
-      }, 2000);
+      }, 500);
     });
   };
 

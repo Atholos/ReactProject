@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   ListItem,
@@ -8,16 +8,19 @@ import {
   CardItem,
   Text,
   Card,
+  Right,
+  Button,
+  Icon,
 } from 'native-base';
 import ArticleHooks from '../hooks/ArticleHooks';
-import {AppContext} from '../contexts/AppContext';
-import {Image, StyleSheet} from 'react-native';
+import { AppContext } from '../contexts/AppContext';
+import { Image, StyleSheet, Alert } from 'react-native';
 
 const MyArticleListItem = (props) => {
   const [desc, setDesc] = useState({});
-  const {setArticle, setMyArticle} = useContext(AppContext);
-  const {navigation, singleMedia} = props;
-  const {getThumbnail, deleteMedia} = ArticleHooks();
+  const { setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
+  const { navigation, singleMedia } = props;
+  const { getThumbnail, deleteArticle } = ArticleHooks();
   const tn = getThumbnail(singleMedia.file_id);
   return (
     <ListItem style={styles.item} thumbnail onPress={() => {
@@ -29,12 +32,12 @@ const MyArticleListItem = (props) => {
       <Card style={styles.card}>
         <CardItem>
           <Body style={styles.image}>
-            <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
+            <Image source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320 }} style={{ height: 200, width: '100%', flex: 1 }} />
           </Body>
         </CardItem>
         <CardItem>
           <Body>
-            <Text style ={styles.title}>{singleMedia.title}</Text>
+            <Text style={styles.title}>{singleMedia.title}</Text>
             <Text style={styles.desc} note numberOfLines={3}>
               {singleMedia.body}
             </Text>
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
   image: {
     borderStyle: 'solid',
     borderColor: 'black',
-    borderWidth: 1/2,
+    borderWidth: 1 / 2,
     borderRadius: 16,
     overflow: 'hidden',
   },
