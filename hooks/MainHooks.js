@@ -14,7 +14,6 @@ const appHooks = () => {
       const userToken = await AsyncStorage.getItem('userToken');
       // This will switch to the Logged in User screen or Guest screen
       // screen will be unmounted and thrown away.
-      console.log('token', userToken);
       navigation.navigate(userToken ? 'User' : 'Guest');
     };
     useEffect(() => {
@@ -44,7 +43,6 @@ const appHooks = () => {
       'full_name': inputs.full_name,
     };
     const json = await fetchPostUrl('users', data);
-    // console.log(json.user_id);
     if (!json.error) {
       return (json.user_id);
     }
@@ -53,7 +51,6 @@ const appHooks = () => {
   const usernameCheck = async (uname) => {
     const {checkAvailability} = useFetch();
     const json = await checkAvailability(uname);
-    // console.log(json);
     if (!json) {
       Alert.alert(
           'Error',
@@ -106,7 +103,6 @@ const appHooks = () => {
       console.error(error);
     });
     const result = await response.json();
-    // console.log('USEROBJ', result);
     return JSON.stringify(result.username);
   };
 
@@ -122,7 +118,6 @@ const appHooks = () => {
       console.error(error);
     });
     const result = await response.json();
-    // console.log('USEROBJ', result);
     return JSON.stringify(result.username);
   };
 
@@ -136,6 +131,7 @@ const appHooks = () => {
     }
   };
 
+  //Käyttäjän tietojen päivitys.
   const updateInfo = async (data) => {
     const gotToken = await AsyncStorage.getItem('userToken');
     console.log('updatedata', data);
@@ -150,7 +146,6 @@ const appHooks = () => {
       console.error(error);
     });
     const result = await response.json();
-    console.log('UPDATE INFO', result);
     return JSON.stringify(result.username);
   };
 
@@ -170,7 +165,6 @@ const appHooks = () => {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log('POST COMMENT', result);
     return result;
   };
 

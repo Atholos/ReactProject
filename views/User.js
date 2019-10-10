@@ -20,7 +20,6 @@ const User = (props) => {
   const [avatar, setAvatar] = useState({});
 
   const togglePassword = () => {
-    console.log('toggle');
     if (uinfo.form === 0 || !uinfo.form) {
       setUinfo({form: 1});
     } else {
@@ -29,7 +28,6 @@ const User = (props) => {
   };
 
   const toggleEmail = () => {
-    console.log('toggle');
     if (uinfo.form === 0 || !uinfo.form) {
       setUinfo({form: 2});
     } else {
@@ -39,8 +37,6 @@ const User = (props) => {
 
   useEffect(() => {
     getUser().then((json) => {
-      console.log('USER DATA IN USER.JS', json);
-      console.log(uinfo.form);
       const parsedJson = JSON.parse(json);
       const date = parsedJson.time_created.split('T');
       setUinfo(

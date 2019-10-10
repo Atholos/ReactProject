@@ -10,7 +10,6 @@ const Article = (props) => {
   const {checkUser} = appHooks();
   const {navigation} = props;
   const media = navigation.getParam('file', 'WRONG');
-  // const mediaDesc = navigation.getParam('filedesc', 'WRONG');
   const title = media.title;
   const fileID = media.file_id;
 

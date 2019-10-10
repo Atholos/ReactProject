@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import ArticleHooks from '../hooks/ArticleHooks';
 import { Alert } from 'react-native'
 
-
-
 const useSearch = () => {
   const searchFilterFunction = ( text, setArticles, allArticles) => {
     const setNewData = () => {
@@ -13,7 +11,6 @@ const useSearch = () => {
         return itemData.indexOf(textData) > -1;
       });
      setArticles(newData);
-     console.log(newData);
     };
     setNewData();
   };

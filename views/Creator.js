@@ -4,12 +4,11 @@ import { Container, Header, Tab, Tabs } from 'native-base';
 import UploadArticle from '../components/UploadArticle';
 import MyArticleList from '../components/MyArticleList';
 import PropTypes from 'prop-types';
-//Login has tabs for both login and register
+
 const Creator = (props) => {
   const {navigation} = props;
   return (
     <Container>
-       {/* <Header hasTabs /> */}
       <Tabs tabContainerStyle={{ height: 60}}>
         <Tab heading="Your Articles">
           <MyArticleList navigation={navigation} />

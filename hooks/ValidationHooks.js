@@ -17,12 +17,10 @@ const appValidation = () => {
 
   const updatePasswordValidate = async (inputs) => {
     const { updateInfo } = appHooks();
-    console.log('updatePasswordValidate');
     const constraints = RegisterValidation;
     const passwordError = validate({ password: inputs.password }, constraints);
     const passconfError = validate({ password: inputs.password, confirmPassword: inputs.cpw }, constraints);
     if (!passwordError.password && !passconfError.confirmPassword) {
-      console.log('salasana vaihtuu');
       const data = {
         password: inputs.password,
       };
@@ -47,7 +45,6 @@ const appValidation = () => {
         email: inputs.email,
       };
       updateInfo(data);
-      // alert('Email updated successfully');
     } else {
       alert(emailError.email);
     }
@@ -130,7 +127,6 @@ const appValidation = () => {
     const constraints = UploadValidation;
     const titleError = validate({ title: update.title }, constraints);
     const bodyError = validate({ body: update.body }, constraints);
-    console.log('update', update);
     if (!titleError.title && !bodyError.body) {
       const data = {
         title: update.title,
