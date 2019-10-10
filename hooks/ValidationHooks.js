@@ -133,7 +133,11 @@ const appValidation = () => {
     console.log('file', file);
     console.log('update', update);
     if (!titleError.title && !bodyError.body) {
-      handleUpdate(file,fileID).then(() => {
+      const data = {
+        title: update.title,
+        description: update.body,
+        }
+      handleUpdate(data,fileID).then(() => {
         setTimeout(() => {
           reloadAllArticles().then((json) => {
             setArticles(json);
