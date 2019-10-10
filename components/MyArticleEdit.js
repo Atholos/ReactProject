@@ -24,17 +24,21 @@ const MyArticleEdit = (props) => {
   const fileID = media.file_id;
   const [uname, setUname] = useState({});
   const [image, setImage] = useState({ selected: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename });
-
+  //const placeHolderTitle = useState(media.title);
+  //const placeHolderDesc = useState(media.description);
   const {
     handleTitleChange,
     handleBodyChange,
     handleUpdate,
     update,
   } = useUpdateForm();
+
   const { updateValidate } = appValidation();
 
   useEffect(() => {
     getPermissionAsync();
+    handleTitleChange(media.title);
+    handleBodyChange(media.description);
   }
     , []);
   useEffect(() => {
@@ -60,7 +64,7 @@ const MyArticleEdit = (props) => {
                 placeholder={title}
                 onChangeText={handleTitleChange}
                 value={update.title}
-              />
+              ></Input>
             </Item>
             <Label>Article</Label>
             <Textarea rowSpan={10} style={{ margin: 10 }}
@@ -70,7 +74,7 @@ const MyArticleEdit = (props) => {
               placeholder={media.description}
               onChangeText={handleBodyChange}
               value={update.body}
-            />
+            ></Textarea>
 
             <Row style={{ height: 40 }}>
               <Col>
@@ -86,7 +90,7 @@ const MyArticleEdit = (props) => {
                           text: 'OK',
                           onPress: () => {
                             console.log('OK Pressed'),
-                              deleteArticle(setMyArticles, setArticles, setAllArticles, navigation);
+                              deleteArticle(fileID, setMyArticles, setArticles, setAllArticles, navigation);
                           },
                         },
                         {
