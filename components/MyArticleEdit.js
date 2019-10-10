@@ -24,6 +24,7 @@ const MyArticleEdit = (props) => {
   const fileID = media.file_id;
   const [uname, setUname] = useState({});
   const [image, setImage] = useState({ selected: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename });
+
   const {
     handleTitleChange,
     handleBodyChange,
@@ -69,7 +70,7 @@ const MyArticleEdit = (props) => {
               placeholder={media.description}
               onChangeText={handleBodyChange}
               value={update.body}
-               />
+            />
 
             <Row style={{ height: 40 }}>
               <Col>
@@ -85,7 +86,7 @@ const MyArticleEdit = (props) => {
                           text: 'OK',
                           onPress: () => {
                             console.log('OK Pressed'),
-                              deleteArticle(media, setMyArticles, setArticles, navigation);
+                              deleteArticle(setMyArticles, setArticles, setAllArticles, navigation);
                           },
                         },
                         {
@@ -116,7 +117,7 @@ const MyArticleEdit = (props) => {
                             text: 'OK',
                             onPress: () => {
                               console.log('OK Pressed'),
-                                updateValidate(image.selected, fileID, update, navigation, setAllArticles, setArticles, setMyArticles);
+                                updateValidate(fileID, update, navigation, setAllArticles, setArticles, setMyArticles);
                             },
                           },
                           {
@@ -130,7 +131,7 @@ const MyArticleEdit = (props) => {
                     }
                   }
                 >
-                  <Icon name='md-refresh-circle'/>
+                  <Icon name='md-refresh-circle' />
                   <Text>UPDATE</Text>
                 </Button>
               </Col>
