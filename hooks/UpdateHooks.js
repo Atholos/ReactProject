@@ -21,21 +21,10 @@ const useUpdateArticle = () => {
           body: text,
         }));
     };
-    const handleUpdate = async (file, update) => {
+    const handleUpdate = async (data) => {
       const gotToken = await AsyncStorage.getItem('userToken');
-      const localUri = file;
-      const filename = localUri.split('/').pop();
-      const match = /\.(\w+)$/.exec(filename);
-      const type = match ? `image/${match[1]}` : `image`;
-      const formData = new FormData();
-      formData.append('file', { uri: localUri, name: filename, type });
-      formData.append('title', update.title);
-      formData.append('description', update.body);
-      //console.log('formdata', formData);
-  
-  
-      // Kuvan päivitys
-      const response = await fetch('http://media.mw.metropolia.fi/wbma/media/' +file.file_id, {
+      console.log('updatedata', data);
+      const response = await fetch('http://media.mw.metropolia.fi/wbma/media/', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
