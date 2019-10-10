@@ -6,6 +6,8 @@ import ArticleHooks from '../hooks/ArticleHooks';
 import {AppContext} from '../contexts/AppContext';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import MyArticleView from '../components/MyArticleView';
+import MyArticleEdit from '../components/MyArticleEdit';
 
 const UserArticle = (props) => {
   const {setArticles, setMyArticles, setAllArticles } = useContext(AppContext);
@@ -18,133 +20,19 @@ const UserArticle = (props) => {
   const fileID = media.file_id;
   const [uname, setUname] = useState({});
 
-  useEffect(() => {
-    console.log('Articlemedia!!!', media);
-    checkUser(props).then((json) => {
-      setUname({name: json});
-    }).catch((error) => {
-      console.log(error);
-    });
-  }, []);
-
-  const MyArticleView = () => {
   return (
-      <Content>
-        <Text style={styles.title}>{title}</Text>
-        <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-        {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
-        <Text style ={styles.desc}>{mediaDesc}</Text>
-        <Text style ={styles.bodytext}>{media.description}</Text>
-        <Button
-          onPress={
-            () => {
-              console.log('press');
-
-              Alert.alert(
-                  'DELETE',
-                  'You are deleting this file for good, press "OK" to proceed or "Cancel" to retract.',
-                  [
-                    {
-                      text: 'OK',
-                      onPress: () => {
-                        console.log('OK Pressed'),
-                        deleteArticle(media, setMyArticles, setArticles, setAllArticles, navigation);
-                      },
-                    },
-                    {text: 'Cancel',
-                      onPress: () => console.log('Cancel Pressed'),
-                      style: 'cancel'},
-                  ],
-                  {cancelable: false},
-              );
-            }
-          }
-        >
-          <Text>Delete</Text>
-        </Button>
-        <Button
-        onPress={() => {}}>
-          <Text>Edit</Text>
-        </Button>
-        <CommentList fid={fileID} />
-        <CommentForm fid={fileID} />
-      </Content>
-  );
-};
- 
-  const MyArticleEdit = () => {
-  return (
-    <Content>
-      <Text style={styles.title}>{title}</Text>
-      <Image style={styles.image} source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + media.filename}} />
-      {uname.name &&<Text style={styles.desc}>This article is written by {uname.name}</Text>}
-      <Text style ={styles.desc}>{mediaDesc}</Text>
-      <Text style ={styles.bodytext}>{media.description}</Text>
-      <Button
-        onPress={
-          () => {
-            console.log('press');
-
-            Alert.alert(
-                'DELETE',
-                'You are deleting this file for good, press "OK" to proceed or "Cancel" to retract.',
-                [
-                  {
-                    text: 'OK',
-                    onPress: () => {
-                      console.log('OK Pressed'),
-                      deleteArticle(media, setMyArticles, setArticles, navigation);
-                    },
-                  },
-                  {text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel'},
-                ],
-                {cancelable: false},
-            );
-          }
-        }
-      >
-        <Text>Delete</Text>
-      </Button>
-      <Button
-        onPress={() => {}}>
-          <Text>Edit</Text>
-        </Button>
-      </Content>
-  )};
-
-  return (
-    <Container>
-      {MyArticleView()}
-    </Container>
-  )
-};
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-  image: {
-    borderRadius: 16,
-    height: 250,
-    width: '100%',
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: '600',
-    marginBottom: 30,
-  },
-  desc: {
-    marginBottom: 30,
-    fontWeight: '500',
-  },
-  bodytext: {
-  },
-});
+  <Container>
+    <Header hasTabs />
+    <Tabs>
+      <Tab heading="View">
+        <MyArticleView navigation={navigation} />
+      </Tab>
+      <Tab heading="Edit">
+        <MyArticleEdit navigation={navigation} />
+      </Tab>
+    </Tabs>
+  </Container>)
+  
+}
 
 export default UserArticle;
