@@ -63,10 +63,10 @@ const User = (props) => {
   return (
     <Container style={{backgroundColor: '#c9d4d7'}}>
       <Content>
-        <Card style={{marginTop: 30}}>
+        <Card style={{marginTop: 30, marginLeft: 10, marginRight: 10}}>
           <CardItem header>
             <Right>
-              <Icon name='person' iconSize={70}/> 
+              <Icon name='person' style={{fontSize: 100, color: 'black'}}/> 
             </Right>
             <Left>
               <Text style={{fontSize: 40}}>Profile</Text>
