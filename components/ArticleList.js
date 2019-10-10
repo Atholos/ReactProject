@@ -11,6 +11,7 @@ const ArticleList = (props) => {
 
   const {
     useFetch,
+    getThumbnail,
   } = ArticleHooks();
 
   const [articles, loading] = useFetch('http://media.mw.metropolia.fi/wbma/media/');

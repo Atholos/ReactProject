@@ -16,7 +16,7 @@ const Filter = () => {
           placeholder="Search"
           onChangeText={text => searchFilterFunction(text, setArticles, allArticles)}
           />
-        <Icon name="ios-people" />
+        <Icon name="pint" />
       </Item>
         <Button transparent small rounded>
           <Text>Search</Text>

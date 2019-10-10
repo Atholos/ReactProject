@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Alert } from 'react-native';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
 
@@ -13,15 +14,20 @@ import {
   Button,
   Text,
 } from 'native-base';
+import ArticleHooks from '../hooks/ArticleHooks';
+import { AppContext } from '../contexts/AppContext'
 
 const CommentForm = (props) => {
-  const {fid} = props;
+  const { fid, navigation } = props;
+
   // const {updateEmailValidate} = appValidation();
   const {
     inputs,
     handleCommentChange,
   } = useLogRegForm();
-  const {postComment} = appHooks();
+  const { postComment } = appHooks();
+  const { reloadArticleComments } = ArticleHooks();
+  const { setMyComments } = useContext(AppContext);
 
   return (
     <Container>
@@ -37,8 +43,10 @@ const CommentForm = (props) => {
             />
           </Item>
           <Item>
-            <Button onPress={() => (postComment(fid, inputs.comment))}>
-              <Text>Post comment</Text>
+            <Button onPress={() => {
+              postComment(fid, inputs.comment).then(() => reloadArticleComments(fid,setMyComments))
+            }}>
+                <Text>Post comment</Text>
             </Button>
           </Item>
         </Form>

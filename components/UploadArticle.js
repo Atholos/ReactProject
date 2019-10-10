@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import appHooks from '../hooks/MainHooks';
 import ArticleHooks from '../hooks/ArticleHooks';
 import { AppContext } from '../contexts/AppContext';
+import appValidation from '../hooks/ValidationHooks'
 
 
 // const dataUrl = 'http://media.mw.metropolia.fi/wbma/media';
@@ -15,13 +16,13 @@ import { AppContext } from '../contexts/AppContext';
 
 
 const UploadArticle = (props) => {
+  const { navigation } = props
   const [image, setImage] = useState({});
-  const { articles, setArticles, myArticles, setMyArticles } = useContext(AppContext);
+  const { articles, setArticles, myArticles, setMyArticles, setAllArticles } = useContext(AppContext);
   const {
     getPermissionAsync,
   } = appHooks();
-  const { reloadAllArticles, reloadMyArticles } = ArticleHooks();
-
+  const { uploadValidate } = appValidation();
   const {
     upload,
     handleTitleChange,
@@ -30,7 +31,6 @@ const UploadArticle = (props) => {
     handleUpload,
     clearForm,
   } = useUploadForm();
-
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -54,8 +54,8 @@ const UploadArticle = (props) => {
     <Container>
       <Header />
       <Content>
-        <Thumbnail
-          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />
+        {image.selected && <Thumbnail
+          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
         <Form>
           <Item floatingLabel>
             <Label>Title </Label>
@@ -91,9 +91,10 @@ const UploadArticle = (props) => {
           </Item>
           <Item>
             <Button onPress={() => {
-              handleUpload(image.selected, upload.title, upload.desc);
-              clearForm();
+              uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
               setImage({});
+              /*
+              clearForm();
               setArticles([]);
               setTimeout(() => {
                 reloadAllArticles().then((json) => {
@@ -104,7 +105,7 @@ const UploadArticle = (props) => {
                   setMyArticles(json);
                 });
                 props.navigation.navigate('Main');
-              }, 2000);
+              }, 2000);*/
             }}>
               <Text>Upload</Text>
             </Button>
