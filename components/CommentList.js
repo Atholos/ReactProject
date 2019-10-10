@@ -15,20 +15,8 @@ const CommentList = (props) => {
     useFetch,
     getArticleComments,
   } = ArticleHooks();
-  // const [comment, setComment] = useState({});
-  // const [comments, loading] = getArticleComments(fid);
+
   const [comments, loading] = getArticleComments(fid);
-  // console.log('kommentteja', comments);
-
-  // console.log('comments', comments);
-
-  // useEffect(() => {
-  //   getArticleComments(fid).then((json) => {
-  //     setComment({comment: json});
-  //   }).catch((error) => {
-  //     console.log(console.error);
-  //   });
-  // }, []);
 
   return (
     <Content>

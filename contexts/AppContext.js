@@ -44,6 +44,7 @@ AppProvider.propTypes = {
   myArticles: PropTypes.array,
   user: PropTypes.object,
   allArticles: PropTypes.array,
+  myComments: PropTypes.array,
   children: PropTypes.node,
 };
 
@@ -53,6 +54,7 @@ AppProvider.defaultProps = {
   myArticles: [],
   allArticles: [],
   user: {},
+  myComments: [],
 };
 
 export {AppContext, AppProvider};

@@ -36,7 +36,11 @@ const ArticleListItem = (props) => {
       });
     }}>
       <Card style={styles.card}>
+<<<<<<< HEAD
         <CardItem style={styles.imcard}>
+=======
+        <CardItem style={styles.cardItem}>
+>>>>>>> 95e00b88fba517799ae04ad59355371869d613f1
           <Body style={styles.image}>
             <Image source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.thumbnails.w320}} style={{height: 200, width: '100%', flex: 1}}/>
           </Body>
@@ -80,6 +84,9 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontWeight: '500',
+  },
+  cardItem: {
+    backgroundColor: '#65778e'
   },
   item: {
     marginLeft: 5,

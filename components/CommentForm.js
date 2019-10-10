@@ -3,14 +3,11 @@ import {StyleSheet} from 'react-native';
 import useLogRegForm from '../hooks/LogRegHooks';
 import appHooks from '../hooks/MainHooks';
 
-// import appValidation from '../hooks/ValidationHooks';
 import {
   Container,
   Content,
-  Form,
   Item,
   Input,
-  Label,
   Button,
   Text,
 } from 'native-base';
@@ -20,7 +17,6 @@ import {AppContext} from '../contexts/AppContext';
 const CommentForm = (props) => {
   const {fid, navigation} = props;
 
-  // const {updateEmailValidate} = appValidation();
   const {
     inputs,
     handleCommentChange,

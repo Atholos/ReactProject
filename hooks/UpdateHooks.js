@@ -38,7 +38,6 @@ const useUpdateArticle = () => {
       const result = await response.json();
       console.log('FILE UPDATE INFRO: ', result);
 
-      //clearForm();
     };
     return {
       handleTitleChange,
