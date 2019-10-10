@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {Container, Content, Text, Button, Thumbnail, Card, CardItem, Right} from 'native-base';
+import {Container, Content, Text, Button, Thumbnail, Card, CardItem, Right, Left, Body, Icon} from 'native-base';
 import appHooks from '../hooks/MainHooks';
 import UpdatePasswordForm from '../components/UpdatePasswordForm';
 import UpdateEmailForm from '../components/UpdateEmailForm';
@@ -61,26 +61,39 @@ const User = (props) => {
   });
 
   return (
-    <Container style={styles.container}>
+    <Container>
       <Content>
         <Card>
           <CardItem header>
-            <Text style={styles.title}>Profile</Text>
+            <Right>
+              <Icon active name='person'/> 
+            </Right>
+            <Left>
+              <Text>Profile</Text>
+            </Left>
           </CardItem>
            <CardItem>
-            <Right>
+            <Left>
             {avatar &&
             <Thumbnail
               square
               large
-              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} />
+              source={{uri: 'http://media.mw.metropolia.fi/wbma/uploads/'+avatar}} style ={{width: '100%', height: 100}} />
             }
-            </Right>
+            </Left>
+            <Body>
             <Text>Welcome {uinfo.name}</Text>
-            <Text>Email {uinfo.email}</Text>          
-            <Text>Email {uinfo.email}</Text>
-            <Text>Member since {uinfo.doc}</Text>            
-            <Button onPress={() => togglePassword()}>
+            <Text>Email {uinfo.email}</Text>                     
+            <Text>Member since {uinfo.doc}</Text>
+            </Body>
+            </CardItem>
+            <CardItem>            
+            <Button onPress={() => signOut(props)}>
+              <Text>Logout!</Text>
+            </Button>
+          </CardItem>
+        </Card>
+        <Button onPress={() => togglePassword()}>
                 <Text>Change password</Text>
             </Button>
             {uinfo.form === 1 && <UpdatePasswordForm />}
@@ -88,27 +101,10 @@ const User = (props) => {
               <Text>Change email</Text>
             </Button>
             {uinfo.form === 2 && <UpdateEmailForm />}
-            <Button onPress={() => signOut(props)}>
-              <Text>Logout!</Text>
-            </Button>
-          </CardItem>
-        </Card>
       </Content>
     </Container>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: '500',
-    marginBottom: 20,
-  },
-});
 
 
 export default User;
