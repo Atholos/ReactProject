@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label } from 'native-base';
+import { Container, Header, Content, Text, Thumbnail, Button, Form, Item, Input, Label, Textarea, Grid } from 'native-base';
 import PropTypes from 'prop-types';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
@@ -52,12 +52,11 @@ const UploadArticle = (props) => {
 
   return (
     <Container>
-      <Header />
-      <Content>
-        {image.selected && <Thumbnail
-          source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
+      <Content padder>
         <Form>
-          <Item floatingLabel>
+          {image.selected && <Thumbnail
+            source={{ uri: image.selected }} style={{ width: '100%', height: 200, alignSelf: 'center' }} />}
+          <Item floatingLabel rounded>
             <Label>Title </Label>
             <Input
               autoCapitalize='none'
@@ -66,7 +65,7 @@ const UploadArticle = (props) => {
               value={upload.title} required
             />
           </Item>
-          <Item floatingLabel>
+          <Item floatingLabel last rounded>
             <Label>File Description</Label>
             <Input
               autoCapitalize='none'
@@ -75,54 +74,37 @@ const UploadArticle = (props) => {
               value={upload.body} required
             />
           </Item>
-          <Item floatingLabel>
-            <Label>Article </Label>
-            <Input
-              autoCapitalize='none'
-              placeholder='Article body text'
-              onChangeText={handleDescChange}
-              value={upload.desc} required
-            />
-          </Item>
-          <Item>
-            <Button onPress={() => pickImage()}>
-              <Text>Show image</Text>
-            </Button>
-          </Item>
-          <Item>
-            <Button onPress={() => {
-              uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
-              setImage({});
-              /*
+
+          <Label>Article</Label>
+
+
+          <Textarea rowSpan={10} bordered placeholder='Article body text' onChangeText={handleDescChange}
+            value={upload.desc} required />
+
+
+          <Button onPress={() => pickImage()}>
+            <Text>Header Image</Text>
+          </Button>
+
+          <Button onPress={() => {
+            uploadValidate(image.selected, upload, navigation, setAllArticles, setArticles, setMyArticles);
+            setImage({});
+          }}>
+            <Text>Upload</Text>
+          </Button>
+
+          <Button
+            onPress={() => {
               clearForm();
-              setArticles([]);
-              setTimeout(() => {
-                reloadAllArticles().then((json) => {
-                  setArticles(json);
-                  setAllArticles(json);
-                });
-                reloadMyArticles().then((json) => {
-                  setMyArticles(json);
-                });
-                props.navigation.navigate('Main');
-              }, 2000);*/
-            }}>
-              <Text>Upload</Text>
-            </Button>
-          </Item>
-          <Item>
-            <Button
-              onPress={() => {
-                clearForm();
-                setImage({});
-              }}
-            >
-              <Text>Reset</Text>
-            </Button>
-          </Item>
+              setImage({});
+            }}
+          >
+            <Text>Reset</Text>
+          </Button>
+
         </Form>
       </Content>
-    </Container>
+    </Container >
   );
 };
 
