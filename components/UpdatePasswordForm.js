@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'green',
     height: 40,
-    width: 150,
+    width: 180,
     marginTop: 30,
   },
 });
