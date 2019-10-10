@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {Header, Left, Right, Body, Item, Button, Icon, Input, Text} from 'native-base';
-import {Image, ImageBackground} from 'react-native';
+import {StyleSheet} from 'react-native';
 import useSearch from '../hooks/SearchHooks';
 import {AppContext} from '../contexts/AppContext';
 
@@ -9,8 +9,8 @@ const Filter = () => {
   const {searchFilterFunction} = useSearch();
 
   return (
-    <Header searchBar rounded>
-      <Item style={{marginLeft: 20, marginRight: 20}}>
+    <Header searchBar rounded style={styles.header}>
+      <Item style={styles.search}>
         <Icon name="ios-search" />
         <Input
           placeholder="Search"
@@ -21,4 +21,16 @@ const Filter = () => {
     </Header>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#c9d4d7',
+  },
+  search: {
+    backgroundColor: 'white',
+    marginLeft: 20,
+    marginRight: 20,
+  },
+})
+
 export default Filter;
